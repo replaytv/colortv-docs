@@ -7,6 +7,10 @@ body {
     background-color: #03A9F4;
 }
 
+.wrapper .meta {
+    background-color: #03A9F4;
+}
+
 /*color of hoovered link*/
 .article a:hover, .article a:focus {
     color: black;
@@ -84,7 +88,39 @@ h1, h3 {
 }
 
 .footer {
-    background-color: #1A1E21;
+    background-color: #F2F2F2;
+}
+
+/*footer title */
+.footer nav div .title {
+    color: black;
+}
+
+/*right footer title */
+.footer nav .previous .title {
+    padding-top: 10px !important;
+}
+
+/*right footer title */
+.footer nav .next .title {
+    padding-top: 10px !important;
+}
+
+/*next sign over title in footer*/
+.pagination .direction {
+    color: #737373 !important;
+}
+
+/*next arrow in footer*/
+.button-next i {
+    padding-bottom: 20px;
+    color: black !important;
+}
+
+/*previous arrow in footer*/
+.button-previous i {
+    padding-bottom: 20px;
+    color: black !important;
 }
 
 img {
@@ -92,7 +128,9 @@ img {
 }
 
 .bottomPadding {
-    height: 100px;
+    height: 56px;
+    margin-left: -25px;
+    margin-right: -25px;
 }
 
 @media (max-width: 1400px) {
@@ -126,16 +164,18 @@ img {
 
 .helpful .helpfulSectionLabel {
     position: absolute;
-    padding-top: 10px;
+    padding-top: 12px;
     font-style: italic;
 }
 
 .helpful .helpfulSectionButtonBlock {
     position: absolute;
     right: 0px;
+    margin-bottom: 4px;
 }
 
 .helpful .helpfulSectionThanks, .helpful .helpfulSectionError {
+    margin-top: 10px;
     opacity: 0;
     display: none;
     position: absolute;
@@ -145,12 +185,14 @@ img {
     display: none;
     opacity: 0;
 }
-.helpful .helpfulSectionButtonBlock button{
+
+.helpful .helpfulSectionButtonBlock button {
     font-size: 12px;
     text-transform: capitalize;
     padding-left: 30px;
     padding-right: 30px;
 }
+
 .helpful .helpfulSectionWhyNot textarea {
     max-width: 890px;
     min-width: 500px;
@@ -160,13 +202,16 @@ img {
     border: 1px solid #169CEE;
     border-radius: 1px;
 }
-.helpful .helpfulSectionWhyNotTextAreaError{
-    color:red;
+
+.helpful .helpfulSectionWhyNotTextAreaError {
+    color: red;
     display: none;
 }
-#yesHelpSectionButton{
+
+#yesHelpSectionButton {
     margin-right: 3px;
 }
+
 .buttonStyle {
     border: 1px solid white;
     margin-top: 10px;
