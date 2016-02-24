@@ -1,0 +1,213 @@
+.copyright {
+    display: none;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    background-color: #03A9F4;
+}
+
+/*color of hoovered link*/
+.article a:hover, .article a:focus {
+    color: black;
+    outline: none !important;
+}
+
+/*overflow in code block*/
+.article .wrapper pre code {
+    overflow: auto;
+}
+
+.drawer .toc li.anchor a:hover {
+    color: #03A9F4;
+}
+
+/*background of code block*/
+.article .wrapper pre {
+    /*background-color: white;*/
+}
+
+h2 {
+    color: #03A9F4 !important;
+}
+
+h1, h3 {
+    color: black !important;
+}
+
+.current {
+    color: #03A9F4 !important;
+}
+
+.toc > ul li > a {
+    border-left-color: #03A9F4 !important;
+}
+
+.header {
+    height: 72px;
+    background-color: #03A9F4;
+    box-shadow: none;
+}
+
+.main > .drawer > nav > .project > .banner > .name {
+    font-size: 20px;
+    color: rgba(0, 0, 0, 0.870588);
+    letter-spacing: 0.08px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400 !important;
+}
+
+.name:before {
+    display: inline-block;
+    content: "";
+    width: 2px;
+    height: 27px;
+    margin-right: 25px;
+    vertical-align: bottom;
+    background: #03a9f5;
+}
+
+@media (max-width: 960px) {
+    .project {
+        background-color: white;
+    }
+}
+
+.note {
+    background: #03a9f5;
+    color: white;
+}
+
+.note a {
+    color: white;
+    text-decoration: underline;
+}
+
+.footer {
+    background-color: #1A1E21;
+}
+
+img {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19) !important;
+}
+
+.bottomPadding {
+    height: 100px;
+}
+
+@media (max-width: 1400px) {
+    nav .next {
+        right: 100px;
+    }
+}
+
+.code {
+    background-color: #333333;
+}
+
+.codeBlock {
+    position: relative;
+    margin-bottom: 50px;
+}
+
+.codeButton {
+    position: absolute;
+    right: 0px;
+}
+
+.helpful {
+    padding-top: 15px;
+    position: relative;
+}
+
+.helpful hr {
+    padding-bottom: 10px;
+}
+
+.helpful .helpfulSectionLabel {
+    position: absolute;
+    padding-top: 10px;
+    font-style: italic;
+}
+
+.helpful .helpfulSectionButtonBlock {
+    position: absolute;
+    right: 0px;
+}
+
+.helpful .helpfulSectionThanks, .helpful .helpfulSectionError {
+    opacity: 0;
+    display: none;
+    position: absolute;
+}
+
+.helpful .helpfulSectionWhyNot {
+    display: none;
+    opacity: 0;
+}
+.helpful .helpfulSectionButtonBlock button{
+    font-size: 12px;
+    text-transform: capitalize;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+.helpful .helpfulSectionWhyNot textarea {
+    max-width: 890px;
+    min-width: 500px;
+    min-height: 60px;
+    outline: none !important;
+    border-radius: 3px;
+    border: 1px solid #169CEE;
+    border-radius: 1px;
+}
+.helpful .helpfulSectionWhyNotTextAreaError{
+    color:red;
+    display: none;
+}
+#yesHelpSectionButton{
+    margin-right: 3px;
+}
+.buttonStyle {
+    border: 1px solid white;
+    margin-top: 10px;
+    padding: 4px 12px 5px 12px;
+    background-color: #169CEE;
+    border-radius: 4px;
+    color: white;
+}
+
+.animateShow {
+    transition: all 1s linear;
+}
+
+.buttonWhiteWithHover {
+    cursor: pointer;
+    border: 1px solid #169CEE;
+    margin-top: 10px;
+    padding: 4px 12px 5px 12px;
+    background-color: white;
+    border-radius: 4px;
+    color: #169CEE;
+}
+
+.buttonWhiteWithHover:hover {
+    color: white;
+    background-color: #169CEE;
+    border: 1px white solid;
+}
+
+.buttonBlueWithHover {
+    cursor: pointer;
+    border: 1px solid white;
+    margin-top: 10px;
+    padding: 4px 12px 5px 12px;
+    background-color: #169CEE;
+    border-radius: 4px;
+    color: white;
+}
+
+.buttonBlueWithHover:hover {
+    color: #169CEE;
+    background-color: white;
+    border: 1px #169CEE solid;
+}

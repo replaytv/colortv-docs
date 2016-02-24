@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="no-js ie6"><![endif]-->
+<!--[if IE 7 ]><html class="no-js ie7"><![endif]-->
+<!--[if IE 8 ]><html class="no-js ie8"><![endif]-->
+<!--[if IE 9 ]><html class="no-js ie9"><![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!-->
+<html class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
+    
+    
+    <title>UNITY ANDROID TV - Getting Started</title>
+    
+    
+    
+    
+    
+    <meta property="og:url" content="None">
+    <meta property="og:title" content="Getting Started">
+    <meta property="og:image" content="None/../">
+    <meta name="apple-mobile-web-app-title" content="Getting Started">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    
+    
+    <link rel="shortcut icon" type="image/x-icon" href="../assets/images/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="../assets/images/favicon.ico">
+    <style>
+        @font-face {
+            font-family: 'Icon';
+            src: url('../assets/fonts/icon.eot?52m981');
+            src: url('../assets/fonts/icon.eot?#iefix52m981') format('embedded-opentype'),
+            url('../assets/fonts/icon.woff?52m981') format('woff'),
+            url('../assets/fonts/icon.ttf?52m981') format('truetype'),
+            url('../assets/fonts/icon.svg?52m981#icon') format('svg');
+            font-weight: normal;
+            font-style: normal;
+        }
+    </style>
+    <link rel="stylesheet" href="../assets/stylesheets/application.css">
+    
+    
+    
+    
+    
+    
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ubuntu:400,700|Ubuntu+Mono">
+    <style>
+        body, input {
+            font-family: 'Ubuntu', Helvetica, Arial, sans-serif;
+        }
+        pre, code {
+            font-family: 'Ubuntu Mono', 'Courier New', 'Courier', monospace;
+        }
+    </style>
+    
+    
+    <link rel="stylesheet" href="../extra.css">
+    
+    <link rel="stylesheet" href="../highlightjs.css">
+    
+    <script src="../assets/javascripts/modernizr.js"></script>
+    
+</head>
+<body>
+
+<div class="backdrop">
+    <div class="backdrop-paper"></div>
+</div>
+<input class="toggle" type="checkbox" id="toggle-drawer">
+<input class="toggle" type="checkbox" id="toggle-search">
+<label class="toggle-button overlay" for="toggle-drawer"></label>
+<header class="header">
+    <nav aria-label="Header">
+  <div class="bar default">
+    <div class="button button-menu" role="button" aria-label="Menu">
+      <label class="toggle-button icon icon-menu" for="toggle-drawer">
+        <span></span>
+      </label>
+    </div>
+    <div class="stretch">
+      <div class="title">
+        
+          <span class="path">
+            
+          </span>
+        
+        
+          UNITY ANDROID TV
+        
+      </div>
+    </div>
+    
+    
+    <div class="button button-search" role="button" aria-label="Search">
+      <label class="toggle-button icon icon-search" title="Search" for="toggle-search"></label>
+    </div>
+  </div>
+  <div class="bar search">
+    <div class="button button-close" role="button" aria-label="Close">
+      <label class="toggle-button icon icon-back" for="toggle-search"></label>
+    </div>
+    <div class="stretch">
+      <div class="field">
+        <input class="query" type="text" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false">
+      </div>
+    </div>
+    <div class="button button-reset" role="button" aria-label="Search">
+      <button class="toggle-button icon icon-close" id="reset-search"></button>
+    </div>
+  </div>
+</nav>
+</header>
+<main class="main">
+    
+    <div class="drawer">
+        <nav aria-label="Navigation">
+  
+  <div class="project">
+    <div class="banner">
+      
+      <div class="name">
+        Documentation
+        
+      </div>
+    </div>
+  </div>
+  <div class="scrollable">
+    <div class="wrapper">
+      
+      <div class="toc">
+        <ul>
+          
+            
+  <li>
+    <a class="" title="Getting Started" href="..">
+      Getting Started
+    </a>
+    
+  </li>
+
+          
+            
+  <li>
+    <a class="" title="TVOS SDK" href="../tvOsSdk/">
+      TVOS SDK
+    </a>
+    
+  </li>
+
+          
+            
+  <li>
+    <a class="" title="UNITY TVOS" href="../unityTVOS/">
+      UNITY TVOS
+    </a>
+    
+  </li>
+
+          
+            
+  <li>
+    <a class="" title="ANDROID TV SDK" href="../androidTVSDK/">
+      ANDROID TV SDK
+    </a>
+    
+  </li>
+
+          
+            
+  <li>
+    <a class="current" title="UNITY ANDROID TV" href="./">
+      UNITY ANDROID TV
+    </a>
+    
+      
+      
+        <ul>
+          
+            <li class="anchor">
+              <a title="Unpacking the unitypackage" href="#unpacking-the-unitypackage">
+                Unpacking the unitypackage
+              </a>
+            </li>
+          
+            <li class="anchor">
+              <a title="Integrating the plugin to your game" href="#integrating-the-plugin-to-your-game">
+                Integrating the plugin to your game
+              </a>
+            </li>
+          
+            <li class="anchor">
+              <a title="Registering currency earned listener" href="#registering-currency-earned-listener">
+                Registering currency earned listener
+              </a>
+            </li>
+          
+        </ul>
+      
+    
+  </li>
+
+          
+        </ul>
+        
+      </div>
+    </div>
+  </div>
+</nav>
+    </div>
+    <article class="article">
+        <div class="wrapper">
+            
+            
+            <h1>UNITY ANDROID TV</h1>
+            
+            
+            <div class="admonition note">
+<p class="admonition-title">Download Unity Plugin</p>
+<p><a href="http://google.com">Download the tvOS SDK here</a></p>
+</div>
+<h4 id="unpacking-the-unitypackage">Unpacking the unitypackage</h4>
+<p>After you download the <code>ReplaySDKUnityPlugin-&lt;version&gt;.unitypackage</code>, double click it to unpack it to your project. You will be prompted with a checklist of all the files within the package:</p>
+<p><center><img alt="Screenshot" src="../images/unitypackageImport.png" /></center></p>
+<p><strong>NOTE</strong>: <em>You may already have the <code>android-support-v4</code>, <code>android-appcompat-v7</code> and <code>recyclerview</code> Android libraries in your project. In such case, do not import them.</em></p>
+<p>After the asset import is finished, copy the <code>google-play-services_lib</code> from <code>ANDROID_HOME/extras/google/google_play_services/libproject/</code> into your unity project's <code>Assets/Plugins/Android/</code> folder.</p>
+<p>Make sure your project has the <code>Minimum API Level</code> set to <code>21</code> or higher:</p>
+<p><center><img alt="Screenshot" src="../images/minApiLvl.png" /></center></p>
+<h3 id="integrating-the-plugin-to-your-game">Integrating the plugin to your game</h3>
+<p>To integrate our plugin into your game you first need to use the <code>ReplayPlugin</code> namespace in every script that will invoke Replay SDK methods:</p>
+<pre class="code"><code class="language-csharp">using ReplayPlugin;</code></pre>
+
+
+<p>Then you need to call the <code>Replay.Init ("AppId")</code> method, preferably in your game's first scene's <code>Start ()</code> method:</p>
+<pre class="code"><code class="language-csharp">void Start ()
+{
+    Replay.Init (&quot;AppId&quot;);
+}</code></pre>
+
+
+<p>You can also enable debug mode to receive more verbose logging by calling:</p>
+<pre class="code"><code class="language-csharp">Replay.SetDebugMode (true);</code></pre>
+
+
+<p>To get callbacks about the ad status, you need to create the following delegates:</p>
+<pre class="code"><code class="language-csharp">public void OnAdLoaded (string placementId)
+{
+  Debug.Log (&quot;Ad is available for placement: &quot; + placementId);
+}
+
+public void OnAdClosed (string placementId)
+{
+  Debug.Log (&quot;Ad has been closed for placement: &quot; + placementId);
+}
+
+public void OnError (ReplayError error)
+{
+  Debug.Log (&quot;Ad error occured for placement: &quot; + error.PlacementId + &quot;, with error code: &quot; + error.ErrorCode + &quot; and error message: &quot; + error.ErrorMessage);
+}</code></pre>
+
+
+<p>Then you need to register the delegates by using the ReplayCallbacks class members:</p>
+<pre class="code"><code class="language-csharp">ReplayCallbacks.AdLoaded += OnAdLoaded;
+ReplayCallbacks.AdClosed += OnAdClosed;
+ReplayCallbacks.AdError += OnError;</code></pre>
+
+
+<p>To load an ad for a certain placement, you need to call the following method:</p>
+<pre class="code"><code class="language-csharp">Replay.LoadAd (&quot;ad placement&quot;);</code></pre>
+
+
+<p>It is recommended that you use one of the predefined placements that you can find in <code>AdPlacement</code> class. You can also use a custom placement.</p>
+<p>To show an ad for a certain placement, you need to call the following method:</p>
+<pre class="code"><code class="language-csharp">Replay.ShowAd (&quot;ad placement&quot;);</code></pre>
+
+
+<p>Calling this method will show an ad for the placement you pass. Make sure you get the <code>AdLoaded</code> callback first, otherwise the ad won't be ready to be played.</p>
+<h3 id="registering-currency-earned-listener">Registering currency earned listener</h3>
+<p>In order to reward the user, you have to create a delegate method in one of your scripts:</p>
+<pre class="code"><code class="language-csharp">public void OnCurrencyEarnedListener (Currency coins)
+{
+  Debug.Log (&quot;User has been awarded: &quot; + coins.Amount + &quot; x &quot; + coins.Type);
+}</code></pre>
+
+
+<p>And then register the delegate by calling:</p>
+<pre class="code"><code class="language-csharp">ReplayCallbacks.CurrencyEarned += OnCurrencyEarnedListener;</code></pre>
+
+
+<p>Now you will be notified when the user earns virtual currency.</p>
+            <div class="helpful">
+                <hr>
+                <span class="helpfulSectionLabel">Was this section helpful?</span>
+                <div class="helpfulSectionButtonBlock">
+                    <button type="button" class="buttonWhiteWithHover" id="yesHelpSectionButton">Yes</button>
+                    <button type="button" class="buttonWhiteWithHover" id="noHelpSectionButton">No</button>
+                 </div>
+                <span class="helpfulSectionThanks animateShow">Thanks for your feedback! We always working on improving our documentation.</span>
+                <div class="helpfulSectionWhyNot animateShow">
+                    <span class="helpfulSectionWhyNotLabel">Please leave your feedback so we can work on improving our documentation.</span><br>
+                    <textarea noresize class="helpfulSectionWhyNotTextarea"></textarea><br>
+                    <span class="helpfulSectionWhyNotTextAreaError">Please write a longer description.</span>
+                    <button id="opinionSubmit" class="helpfulSectionWhyNotSubmit buttonWhiteWithHover">Submit</button>
+                </div>
+            </div>
+            <div class="bottomPadding">
+            </div>
+            
+            <footer class="footer">
+                
+  <nav class="pagination" aria-label="Footer">
+    <div class="previous">
+      
+        <a href="../androidTVSDK/" title="ANDROID TV SDK">
+          <span class="direction">Previous</span>
+          <div class="page">
+            <div class="button button-previous" role="button" aria-label="Previous">
+              <i class="icon icon-back"></i>
+            </div>
+            <div class="stretch">
+              <div class="title">
+                ANDROID TV SDK
+              </div>
+            </div>
+          </div>
+        </a>
+      
+    </div>
+    <div class="next">
+      
+    </div>
+  </nav>
+
+            </footer>
+            
+        </div>
+    </article>
+    <div class="results" role="status" aria-live="polite">
+        <div class="scrollable">
+            <div class="wrapper">
+                <div class="meta"></div>
+                <div class="list"></div>
+            </div>
+        </div>
+    </div>
+</main>
+<script>
+    var base_url = '..';
+    var repo_id = '';
+</script>
+<script src="../assets/javascripts/application.js"></script>
+
+<script src="../highlight.min.js"></script>
+
+<script src="../jquery-2.2.1.min.js"></script>
+
+<script src="../zscript.js"></script>
+
+
+</body>
+</html>

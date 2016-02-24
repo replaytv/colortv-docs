@@ -1,0 +1,12 @@
+site_name: Getting Started
+pages:
+- Getting Started: index.md
+- TVOS SDK: tvOsSdk.md
+- UNITY TVOS: unityTVOS.md
+- ANDROID TV SDK: androidTVSDK.md
+- UNITY ANDROID TV: unityAndroidTV.md
+theme_dir: '../mkdocs-material/material'
+
+markdown_extensions:
+  - codehilite(css_class=code)
+  - admonition

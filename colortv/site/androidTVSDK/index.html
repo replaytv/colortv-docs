@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="no-js ie6"><![endif]-->
+<!--[if IE 7 ]><html class="no-js ie7"><![endif]-->
+<!--[if IE 8 ]><html class="no-js ie8"><![endif]-->
+<!--[if IE 9 ]><html class="no-js ie9"><![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!-->
+<html class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
+    
+    
+    <title>ANDROID TV SDK - Getting Started</title>
+    
+    
+    
+    
+    
+    <meta property="og:url" content="None">
+    <meta property="og:title" content="Getting Started">
+    <meta property="og:image" content="None/../">
+    <meta name="apple-mobile-web-app-title" content="Getting Started">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    
+    
+    <link rel="shortcut icon" type="image/x-icon" href="../assets/images/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="../assets/images/favicon.ico">
+    <style>
+        @font-face {
+            font-family: 'Icon';
+            src: url('../assets/fonts/icon.eot?52m981');
+            src: url('../assets/fonts/icon.eot?#iefix52m981') format('embedded-opentype'),
+            url('../assets/fonts/icon.woff?52m981') format('woff'),
+            url('../assets/fonts/icon.ttf?52m981') format('truetype'),
+            url('../assets/fonts/icon.svg?52m981#icon') format('svg');
+            font-weight: normal;
+            font-style: normal;
+        }
+    </style>
+    <link rel="stylesheet" href="../assets/stylesheets/application.css">
+    
+    
+    
+    
+    
+    
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Ubuntu:400,700|Ubuntu+Mono">
+    <style>
+        body, input {
+            font-family: 'Ubuntu', Helvetica, Arial, sans-serif;
+        }
+        pre, code {
+            font-family: 'Ubuntu Mono', 'Courier New', 'Courier', monospace;
+        }
+    </style>
+    
+    
+    <link rel="stylesheet" href="../extra.css">
+    
+    <link rel="stylesheet" href="../highlightjs.css">
+    
+    <script src="../assets/javascripts/modernizr.js"></script>
+    
+</head>
+<body>
+
+<div class="backdrop">
+    <div class="backdrop-paper"></div>
+</div>
+<input class="toggle" type="checkbox" id="toggle-drawer">
+<input class="toggle" type="checkbox" id="toggle-search">
+<label class="toggle-button overlay" for="toggle-drawer"></label>
+<header class="header">
+    <nav aria-label="Header">
+  <div class="bar default">
+    <div class="button button-menu" role="button" aria-label="Menu">
+      <label class="toggle-button icon icon-menu" for="toggle-drawer">
+        <span></span>
+      </label>
+    </div>
+    <div class="stretch">
+      <div class="title">
+        
+          <span class="path">
+            
+          </span>
+        
+        
+          ANDROID TV SDK
+        
+      </div>
+    </div>
+    
+    
+    <div class="button button-search" role="button" aria-label="Search">
+      <label class="toggle-button icon icon-search" title="Search" for="toggle-search"></label>
+    </div>
+  </div>
+  <div class="bar search">
+    <div class="button button-close" role="button" aria-label="Close">
+      <label class="toggle-button icon icon-back" for="toggle-search"></label>
+    </div>
+    <div class="stretch">
+      <div class="field">
+        <input class="query" type="text" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false">
+      </div>
+    </div>
+    <div class="button button-reset" role="button" aria-label="Search">
+      <button class="toggle-button icon icon-close" id="reset-search"></button>
+    </div>
+  </div>
+</nav>
+</header>
+<main class="main">
+    
+    <div class="drawer">
+        <nav aria-label="Navigation">
+  
+  <div class="project">
+    <div class="banner">
+      
+      <div class="name">
+        Documentation
+        
+      </div>
+    </div>
+  </div>
+  <div class="scrollable">
+    <div class="wrapper">
+      
+      <div class="toc">
+        <ul>
+          
+            
+  <li>
+    <a class="" title="Getting Started" href="..">
+      Getting Started
+    </a>
+    
+  </li>
+
+          
+            
+  <li>
+    <a class="" title="TVOS SDK" href="../tvOsSdk/">
+      TVOS SDK
+    </a>
+    
+  </li>
+
+          
+            
+  <li>
+    <a class="" title="UNITY TVOS" href="../unityTVOS/">
+      UNITY TVOS
+    </a>
+    
+  </li>
+
+          
+            
+  <li>
+    <a class="current" title="ANDROID TV SDK" href="./">
+      ANDROID TV SDK
+    </a>
+    
+      
+      
+        <ul>
+          
+            <li class="anchor">
+              <a title="Getting Started" href="#getting-started">
+                Getting Started
+              </a>
+            </li>
+          
+            <li class="anchor">
+              <a title="Adding Android TV SDK" href="#adding-android-tv-sdk">
+                Adding Android TV SDK
+              </a>
+            </li>
+          
+            <li class="anchor">
+              <a title="Initializing SDK" href="#initializing-sdk">
+                Initializing SDK
+              </a>
+            </li>
+          
+            <li class="anchor">
+              <a title="Displaying Ads" href="#displaying-ads">
+                Displaying Ads
+              </a>
+            </li>
+          
+            <li class="anchor">
+              <a title="Declaring Session" href="#declaring-session">
+                Declaring Session
+              </a>
+            </li>
+          
+            <li class="anchor">
+              <a title="Earning Virtual Currency" href="#earning-virtual-currency">
+                Earning Virtual Currency
+              </a>
+            </li>
+          
+            <li class="anchor">
+              <a title="INSTALL_REFERRER Conflict" href="#install_referrer-conflict">
+                INSTALL_REFERRER Conflict
+              </a>
+            </li>
+          
+            <li class="anchor">
+              <a title="Summary" href="#summary">
+                Summary
+              </a>
+            </li>
+          
+        </ul>
+      
+    
+  </li>
+
+          
+            
+  <li>
+    <a class="" title="UNITY ANDROID TV" href="../unityAndroidTV/">
+      UNITY ANDROID TV
+    </a>
+    
+  </li>
+
+          
+        </ul>
+        
+      </div>
+    </div>
+  </div>
+</nav>
+    </div>
+    <article class="article">
+        <div class="wrapper">
+            
+            
+            <h1>ANDROID TV SDK</h1>
+            
+            
+            <h2 id="getting-started">Getting Started</h2>
+<p>Before getting started make sure you have: </p>
+<ul>
+<li>
+<p>Added your app in the My Applications section of the Color Dashboard. You need to do this so that you can get your App ID that you'll be adding to your app with our SDK.</p>
+</li>
+<li>
+<p>Make sure your Android Studio version is up to date and that your application is targeting minSdkVersion:21</p>
+</li>
+</ul>
+<h2 id="adding-android-tv-sdk">Adding Android TV SDK</h2>
+<h3 id="connecting-your-app">Connecting Your App</h3>
+<p>In your project <strong>build.gradle</strong> make sure you are using jcenter repository:</p>
+<pre class="code"><code class="language-groovy">    repositories {
+        jcenter()
+    }</code></pre>
+
+
+<p>Then add the following dependencies in your app <strong>build.gradle</strong> file in Android Studio: </p>
+<pre class="code"><code class="language-groovy">dependencies {
+  compile 'com.replay:android-sdk:0.0.1@aar'
+  compile 'com.google.android.gms:play-services-ads:8.3.0'
+}</code></pre>
+
+
+<p>Doing this prevents you from having to download our SDK and adding it to your project, as the aar file will handle that for you.</p>
+<h2 id="initializing-sdk">Initializing SDK</h2>
+<p>Import the SDK to your MainActivity.java file.</p>
+<pre class="code"><code class="language-java">import com.colortv.android.ColorTvSdk;</code></pre>
+
+
+<p>Setup the ReplaySDK for your app by invoking ReplaySdk initialization method below in your code. </p>
+<pre class="code"><code class="language-java">ColorTvSdk.init(this, &quot;your_app_id_from_dashboard&quot;);</code></pre>
+
+
+<div class="admonition note">
+<p>We recommend putting the initialization method inside either <strong>Application.onCreate()</strong> or <strong>MainActivity.onCreate() </strong>. The application must be initialized before invoking any functions of the SDK.</p>
+</div>
+<h2 id="displaying-ads">Displaying Ads</h2>
+<p>Ads may be shown wherever you place them inside your app, but they <strong>must</strong> include a Placement parameter to indicate the specific location. Placements are used to optimize user experience and analytics. </p>
+<h3 id="placements">Placements</h3>
+<p>Below are all the possible placement values: 
+- AppLaunch
+- AppResume
+- AppClose
+- MainMenu
+- Pause
+- StageOpen
+- StageComplete
+- StageFailed
+- LevelUp
+- BetweenLevels
+- StoreOpen
+- InAppPurchase
+- AbandonInAppPurchase
+- VirtualGoodPurchased
+- UserHighScore
+- OutofGoods
+- OutofEnergy
+- InsufficientCurrency
+- FinishedTutorial</p>
+<div class="admonition note">
+<p>You can choose what ad units you want to show for a specific placement in the dashboard, <a href="doc:ad-units">click to learn more about Ad Units</a></p>
+</div>
+<p>To get callbacks about the ad status, you need to create a <code>ColorTvAdListener</code> object by overriding it's methods:</p>
+<pre class="code"><code class="language-java">ColorTvAdListener listener = new ColorTvAdListener() {
+
+  @Override
+  public void onAdLoaded(String placement) {
+     ReplaySdk.show(&quot;chosen_placement&quot;);
+  }
+
+  @Override
+  public void onAdError(String placement, ColorTvError colorTvError) {
+  }
+
+  @Override
+  public void onAdClosed(String placement) {
+  }
+};</code></pre>
+
+
+<p>and register that listener to the SDK:</p>
+<pre class="code"><code class="language-java">ColorTvSdk.registerAdListener(listener);</code></pre>
+
+
+<p>To load an ad for a certain placement, you need to call the following method:</p>
+<pre class="code"><code class="language-java">ColorTvSdk.loadAd(&quot;chosen_placement&quot;);</code></pre>
+
+
+<p>It is recommended that you use one of the predefined placements that you can find in <code>AdPlacement</code> class, e.g. <em>AdPlacement.LEVEL_UP</em>,  You can also use a custom placement.</p>
+<p>In order to show an ad, call the following function: </p>
+<pre class="code"><code class="language-java">ReplaySdk.show(&quot;chosen_placement&quot;);</code></pre>
+
+
+<div class="admonition note">
+<p>It is recommended to set up multiple placements inside your app to maximize monetization and improve user experience.</p>
+</div>
+<h2 id="declaring-session">Declaring Session</h2>
+<p>Creating a session is <strong>necessary</strong> for tracking virtual currency transactions and user sessions. Add the following code to every Activity file in your application e.g. MainActivity.java</p>
+<pre class="code"><code class="language-java">// Start Session
+@Override
+protected void onStart() {
+  super.onStart();
+  ColorTvSdk.onStart();
+}
+
+// End Session
+@Override
+protected void onStop() {
+  super.onStop();
+  ColorTvSdk.onStop();
+}</code></pre>
+
+
+<h2 id="earning-virtual-currency">Earning Virtual Currency</h2>
+<p>A listener must be added in order to receive events when a virtual currency transaction has occurred. </p>
+<pre class="code"><code class="language-java">private OnCurrencyEarnedListener listener = new OnCurrencyEarnedListener() {
+            @Override
+            public void onCurrencyEarned(int currencyAmount, String currencyType){
+
+            }
+        }
+
+...
+
+ColorTvSdk.addOnCurrencyEarnedListener(listener);</code></pre>
+
+
+<p>Use the following function to unregister listeners:</p>
+<pre class="code"><code class="language-java">ColorTvSdk.removeOnCurrencyEarnedListener(listener);</code></pre>
+
+
+<p>Use the following function to cancel all listeners: </p>
+<pre class="code"><code class="language-java">ColorTvSdk.clearOnCurrencyEarnedListeners();</code></pre>
+
+
+<div class="admonition note">
+<p class="admonition-title">Reminder!</p>
+<p><a href="doc:session">Session</a> must also be implemented for virtual currency transactions to function.</p>
+</div>
+<h3 id="currency-for-user">Currency for user</h3>
+<p>In order to distribute currency to the same user but on other device, use below:</p>
+<pre class="code"><code class="language-java">ColorTvSdk.setUserId(&quot;user123&quot;);</code></pre>
+
+
+<h2 id="install_referrer-conflict">INSTALL_REFERRER Conflict</h2>
+<p>If any of your BroadcastReceiver class declared in AndroidManifest.xml contains Intent Action INSTALL_REFERRER:</p>
+<pre class="code"><code class="language-xml">&lt;receiver ...&gt;
+  &lt;intent-filter&gt;
+    &lt;action android:name=&quot;com.android.vending.INSTALL_REFERRER&quot;/&gt;
+  &lt;/intent-filter&gt;
+&lt;/receiver&gt;</code></pre>
+
+
+<p>Add the following code to your AndroidManifest.xml file: </p>
+<pre class="code"><code class="language-xml">&lt;receiver android:name=&quot;com.replay.android.ColorTvBroadcastReceiver&quot;&gt;</code></pre>
+
+
+<p>In your BroadcastReceiver that handles action <strong>com.android.vending.INSTALL_REFERRER</strong>, add Java code:</p>
+<pre class="code"><code class="language-java">if (intent.getAction().equals(&quot;com.android.vending.INSTALL_REFERRER&quot;)) {
+  final String referrer = intent.getStringExtra(&quot;referrer&quot;);
+  ColorTvSdk.registerReferrer(context, referrer);
+}</code></pre>
+
+
+<h2 id="summary">Summary</h2>
+<p>After completing all previous steps your Activity could look like this:</p>
+<pre class="code"><code class="language-java">import com.colortv.android.AdPlacement;
+import com.colortv.android.ColorTvAdListener;
+import com.colortv.android.ColorTvError;
+import com.colortv.android.ColorTvSdk;
+import com.colortv.android.OnCurrencyEarnedListener;
+
+public class MainActivity extends Activity {
+
+    private ColorTvAdListener listener = new ColorTvAdListener() {
+
+        @Override
+        public void onAdLoaded(String placement) {
+            ColorTvSdk.showAd(placement);
+        }
+
+        @Override
+        public void onAdError(String placement, ColorTvError colorTvError) {
+
+        }
+
+        @Override
+        public void onAdClosed(String placement) {
+        }
+    };
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        ColorTvSdk.setDebugMode(true);
+        ColorTvSdk.init(this, &quot;your_app_id&quot;);
+        ColorTvSdk.registerOnAdStatusChangedListener(listener);
+
+        findViewById(R.id.btnShowAd).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ColorTvSdk.loadAd(AdPlacement.APP_LAUNCH);
+            }
+        });
+
+        ColorTvSdk.addOnCurrencyEarnedListener(new OnCurrencyEarnedListener() {
+            @Override
+            public void onCurrencyEarned(int currencyAmount, String currencyType) {
+                Toast.makeText(MainActivity.this, &quot;Received &quot; + currencyAmount + &quot; &quot; + currencyType, Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        ColorTvSdk.onStart();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        ColorTvSdk.onStop();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        ColorTvSdk.clearOnCurrencyEarnedListeners();
+    }
+}</code></pre>
+            <div class="helpful">
+                <hr>
+                <span class="helpfulSectionLabel">Was this section helpful?</span>
+                <div class="helpfulSectionButtonBlock">
+                    <button type="button" class="buttonWhiteWithHover" id="yesHelpSectionButton">Yes</button>
+                    <button type="button" class="buttonWhiteWithHover" id="noHelpSectionButton">No</button>
+                 </div>
+                <span class="helpfulSectionThanks animateShow">Thanks for your feedback! We always working on improving our documentation.</span>
+                <div class="helpfulSectionWhyNot animateShow">
+                    <span class="helpfulSectionWhyNotLabel">Please leave your feedback so we can work on improving our documentation.</span><br>
+                    <textarea noresize class="helpfulSectionWhyNotTextarea"></textarea><br>
+                    <span class="helpfulSectionWhyNotTextAreaError">Please write a longer description.</span>
+                    <button id="opinionSubmit" class="helpfulSectionWhyNotSubmit buttonWhiteWithHover">Submit</button>
+                </div>
+            </div>
+            <div class="bottomPadding">
+            </div>
+            
+            <footer class="footer">
+                
+  <nav class="pagination" aria-label="Footer">
+    <div class="previous">
+      
+        <a href="../unityTVOS/" title="UNITY TVOS">
+          <span class="direction">Previous</span>
+          <div class="page">
+            <div class="button button-previous" role="button" aria-label="Previous">
+              <i class="icon icon-back"></i>
+            </div>
+            <div class="stretch">
+              <div class="title">
+                UNITY TVOS
+              </div>
+            </div>
+          </div>
+        </a>
+      
+    </div>
+    <div class="next">
+      
+        <a href="../unityAndroidTV/" title="UNITY ANDROID TV">
+          <span class="direction">Next</span>
+          <div class="page">
+            <div class="stretch">
+              <div class="title">
+                UNITY ANDROID TV
+              </div>
+            </div>
+            <div class="button button-next" role="button" aria-label="Next">
+              <i class="icon icon-forward"></i>
+            </div>
+          </div>
+        </a>
+      
+    </div>
+  </nav>
+
+            </footer>
+            
+        </div>
+    </article>
+    <div class="results" role="status" aria-live="polite">
+        <div class="scrollable">
+            <div class="wrapper">
+                <div class="meta"></div>
+                <div class="list"></div>
+            </div>
+        </div>
+    </div>
+</main>
+<script>
+    var base_url = '..';
+    var repo_id = '';
+</script>
+<script src="../assets/javascripts/application.js"></script>
+
+<script src="../highlight.min.js"></script>
+
+<script src="../jquery-2.2.1.min.js"></script>
+
+<script src="../zscript.js"></script>
+
+
+</body>
+</html>
