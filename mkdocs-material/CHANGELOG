@@ -1,0 +1,28 @@
+mkdocs-material-0.1.3 (2016-02-21)
+
+  * Fixed #3: Ordered lists within an unordered list have ::before content
+  * Fixed #4: Click on Logo/Title without Github-Repository: "None"
+  * Fixed #5: Page without headlines renders empty list in table of contents
+  * Moved Modernizr to top to ensure basic usability in IE8
+
+mkdocs-material-0.1.2 (2016-02-16)
+
+  * Fixed styles for deep navigational hierarchies
+  * Fixed webfont delivery problem when hosted in subdirectories
+  * Fixed print styles in mobile/tablet configuration
+  * Added option to configure fonts in mkdocs.yml with fallbacks
+  * Changed styles for admonition notes and warnings
+  * Set download link to latest version if available
+  * Set up tracking of outgoing links and actions for Google Analytics
+
+mkdocs-material-0.1.1 (2016-02-11)
+
+  * Fixed #1: GitHub stars don't work if the repo_url ends with a '/'
+  * Updated npm and bower dependencies to most recent versions
+  * Changed footer/copyright link to Material theme to GitHub pages
+  * Made MkDocs building/serving in build process optional
+  * Set up continuous integration with travis-ci.org
+
+mkdocs-material-0.1.0 (2016-02-09)
+
+  * Initial release
