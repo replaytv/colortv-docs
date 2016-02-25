@@ -22,21 +22,11 @@ $(document).ready(() => {
 
 
     $('#noHelpSectionButton').on('click', (e) => {
-        $('.helpfulSectionButtonBlock').css('display', 'none');
-        $('.helpfulSectionLabel').css('display', 'none');
-        $('.helpfulSectionWhyNot').css('display', 'block');
-        setTimeout(() => {
-            $('.helpfulSectionWhyNot').css('opacity', '1');
-        });
+        hideInitialPart();
+        showTextArea();
     });
 
     $('#yesHelpSectionButton').on('click', (e) => {
-        $('.helpfulSectionButtonBlock').css('display', 'none');
-        $('.helpfulSectionLabel').css('display', 'none');
-        $('.helpfulSectionThanks').css('display', 'block');
-        setTimeout(() => {
-            $('.helpfulSectionThanks').css('opacity', '1');
-        });
         let userID = getUrlParameter('id');
         sendDataToServer(userID, getCurrentSection(), true);
     });
@@ -46,17 +36,13 @@ $(document).ready(() => {
         let textarea = $('.helpful textarea');
         // check if there is minimal number of characters
         if (textarea.val().length < 10) {
-            $('.helpful .helpfulSectionWhyNotTextAreaError').css('display', 'block');
+            showTextAreaError();
             return;
         }
         let opinion = textarea.val();
         // hide textarea and show thanks
-        $('.helpful .helpfulSectionWhyNot').css('display', 'none');
-        $('.helpful .helpfulSectionThanks').css('display', 'block');
-        // for opacity transition
-        setTimeout(() => {
-            $('.helpful .helpfulSectionThanks').css('opacity', '1');
-        });
+        hideTextArea();
+        showThanksSection();
         let userID = getUrlParameter('id');
         sendDataToServer(userID, getCurrentSection(), false, opinion);
     });
@@ -78,9 +64,11 @@ function sendDataToServer(userID, section, isHelpful, description) {
         url: 'https://api.colortv.com/',
         type: 'GET',
         crossDomain: true,
-        success: (resp,b,details) => {
+        success: (resp, b, details) => {
             let status = details.status;
             console.log(status);
+            hideInitialPart();
+            (status >= 400) ? showError() : showThanksSection();
         },
         error: function () {
             alert('Failed!');
@@ -88,6 +76,54 @@ function sendDataToServer(userID, section, isHelpful, description) {
     });
 
 
+}
+function showTextAreaError() {
+    let selector = $('.helpful .helpfulSectionWhyNotTextAreaError');
+    selector.css('display', 'block');
+    setTimeout(() => {
+        selector.css('opacity', '1');
+    });
+}
+function showError() {
+    let selector = $('.helpful .helpfulSectionError');
+    selector.css('display', 'block');
+    setTimeout(() => {
+        selector.css('opacity', '1');
+    });
+}
+function hideError() {
+    let selector = $('.helpful .helpfulSectionError');
+    selector.css('opacity', '0');
+    setTimeout(() => {
+        selector.css('display', 'none');
+    }, 1000);
+}
+function showTextArea() {
+    $('.helpfulSectionWhyNot').css('display', 'block');
+    setTimeout(() => {
+        $('.helpfulSectionWhyNot').css('opacity', '1');
+    });
+}
+function hideTextArea() {
+    $('.helpfulSectionWhyNot').css('opacity', '0');
+    setTimeout(() => {
+        $('.helpfulSectionWhyNot').css('display', 'none');
+    }, 1000);
+}
+function hideInitialPart() {
+    $('.initialPart').css('display', 'none');
+}
+function showThanksSection() {
+    $('.helpfulSectionThanks').css('display', 'block');
+    setTimeout(() => {
+        $('.helpfulSectionThanks').css('opacity', '1');
+    });
+}
+function hideThanksSection() {
+    $('.helpfulSectionThanks').css('opacity', '0');
+    setTimeout(() => {
+        $('.helpfulSectionThanks').css('display', 'none');
+    }, 1000);
 }
 function replaceAll(str, find, replace) {
     return str.replace(new RegExp(find, 'g'), replace);

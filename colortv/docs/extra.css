@@ -7,6 +7,10 @@ body {
     background-color: #03A9F4;
 }
 
+.backdrop-paper {
+    height: calc(100% - 120px);
+}
+
 .wrapper .meta {
     background-color: #03A9F4;
 }
@@ -88,6 +92,7 @@ h1, h3 {
 }
 
 .footer {
+    padding-bottom: 20px;
     background-color: #F2F2F2;
 }
 
@@ -128,9 +133,7 @@ img {
 }
 
 .bottomPadding {
-    height: 56px;
-    margin-left: -25px;
-    margin-right: -25px;
+    height: 40px;
 }
 
 @media (max-width: 1400px) {
@@ -162,6 +165,10 @@ img {
     padding-bottom: 10px;
 }
 
+.helpful .initialPart {
+    height: 40px;
+}
+
 .helpful .helpfulSectionLabel {
     position: absolute;
     padding-top: 12px;
@@ -178,7 +185,6 @@ img {
     margin-top: 10px;
     opacity: 0;
     display: none;
-    position: absolute;
 }
 
 .helpful .helpfulSectionWhyNot {
@@ -203,7 +209,7 @@ img {
     border-radius: 1px;
 }
 
-.helpful .helpfulSectionWhyNotTextAreaError {
+.helpful .helpfulSectionWhyNotTextAreaError, .helpful .helpfulSectionError {
     color: red;
     display: none;
 }
