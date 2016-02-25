@@ -183,36 +183,33 @@
 
             <!-- Article content -->
             {{ content }}
-
             <div class="helpful">
                 <hr>
-                <span class="helpfulSectionLabel">Was this section helpful?</span>
-                <div class="helpfulSectionButtonBlock">
-                    <button type="button" class="buttonWhiteWithHover" id="yesHelpSectionButton">Yes</button>
-                    <button type="button" class="buttonWhiteWithHover" id="noHelpSectionButton">No</button>
-                 </div>
+                <div class="initialPart">
+                    <span class="helpfulSectionLabel">Was this section helpful?</span>
+                    <div class="helpfulSectionButtonBlock">
+                        <button type="button" class="buttonWhiteWithHover" id="yesHelpSectionButton">Yes</button>
+                        <button type="button" class="buttonWhiteWithHover" id="noHelpSectionButton">No</button>
+                    </div>
+                </div>
                 <span class="helpfulSectionThanks animateShow">Thanks for your feedback! We always working on improving our documentation.</span>
-                <!--<span class="helpfulSectionError">Error Error Error Error Error</span>-->
+                <span class="helpfulSectionError animateShow">Could not establish a connection to the server. Please check your internet and try again.</span>
                 <div class="helpfulSectionWhyNot animateShow">
                     <span class="helpfulSectionWhyNotLabel">Please leave your feedback so we can work on improving our documentation.</span><br>
                     <textarea noresize class="helpfulSectionWhyNotTextarea"></textarea><br>
-                    <span class="helpfulSectionWhyNotTextAreaError">Please write a longer description.</span>
+                    <span class="helpfulSectionWhyNotTextAreaError animateShow">Please write a longer description.</span>
                     <button id="opinionSubmit" class="helpfulSectionWhyNotSubmit buttonWhiteWithHover">Submit</button>
                 </div>
-
             </div>
-
-            <div class="bottomPadding">
-            </div>
-            <!-- Footer -->
-            {% block footer %}
-            <footer class="footer">
-                {% include "footer.html" %}
-            </footer>
-            {% endblock %}
+            <div class="bottomPadding"></div>
         </div>
     </article>
-
+    <!-- Footer -->
+    {% block footer %}
+    <footer class="footer">
+        {% include "footer.html" %}
+    </footer>
+    {% endblock %}
 
     <!-- Search results -->
     <div class="results" role="status" aria-live="polite">
