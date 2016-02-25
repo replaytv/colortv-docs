@@ -110,11 +110,13 @@
             {{ content }}
             <div class="helpful">
                 <hr>
-                <span class="helpfulSectionLabel">Was this section helpful?</span>
-                <div class="helpfulSectionButtonBlock">
-                    <button type="button" class="buttonWhiteWithHover" id="yesHelpSectionButton">Yes</button>
-                    <button type="button" class="buttonWhiteWithHover" id="noHelpSectionButton">No</button>
-                 </div>
+                <div class="initialPart">
+                    <span class="helpfulSectionLabel">Was this section helpful?</span>
+                    <div class="helpfulSectionButtonBlock">
+                        <button type="button" class="buttonWhiteWithHover" id="yesHelpSectionButton">Yes</button>
+                        <button type="button" class="buttonWhiteWithHover" id="noHelpSectionButton">No</button>
+                    </div>
+                </div>
                 <span class="helpfulSectionThanks animateShow">Thanks for your feedback! We always working on improving our documentation.</span>
                 <div class="helpfulSectionWhyNot animateShow">
                     <span class="helpfulSectionWhyNotLabel">Please leave your feedback so we can work on improving our documentation.</span><br>
@@ -123,15 +125,14 @@
                     <button id="opinionSubmit" class="helpfulSectionWhyNotSubmit buttonWhiteWithHover">Submit</button>
                 </div>
             </div>
-            <div class="bottomPadding">
-            </div>
-            {% block footer %}
-            <footer class="footer">
-                {% include "footer.html" %}
-            </footer>
-            {% endblock %}
+            <div class="bottomPadding"></div>
         </div>
     </article>
+    {% block footer %}
+    <footer class="footer">
+        {% include "footer.html" %}
+    </footer>
+    {% endblock %}
     <div class="results" role="status" aria-live="polite">
         <div class="scrollable">
             <div class="wrapper">

@@ -22,7 +22,7 @@ $(document).ready(() => {
 
 
     $('#noHelpSectionButton').on('click', (e) => {
-        $('.helpfulSectionButtonBlock').css('display', 'none');
+        $('.initialPart').css('display', 'none');
         $('.helpfulSectionLabel').css('display', 'none');
         $('.helpfulSectionWhyNot').css('display', 'block');
         setTimeout(() => {
@@ -31,7 +31,7 @@ $(document).ready(() => {
     });
 
     $('#yesHelpSectionButton').on('click', (e) => {
-        $('.helpfulSectionButtonBlock').css('display', 'none');
+        $('.initialPart').css('display', 'none');
         $('.helpfulSectionLabel').css('display', 'none');
         $('.helpfulSectionThanks').css('display', 'block');
         setTimeout(() => {
