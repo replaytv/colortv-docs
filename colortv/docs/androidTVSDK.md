@@ -5,7 +5,7 @@ Before getting started make sure you have:
 
 * Make sure your Android Studio version is up to date and that your application is targeting minSdkVersion:21
 ##Adding Android TV SDK
-###Connecting Your App 
+###Connecting Your App 1
 
 In your project **build.gradle** make sure you are using jcenter repository:
 
