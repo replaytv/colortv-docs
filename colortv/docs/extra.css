@@ -185,7 +185,6 @@ img {
     margin-top: 10px;
     opacity: 0;
     display: none;
-    /*position: absolute;*/
 }
 
 .helpful .helpfulSectionWhyNot {
@@ -210,7 +209,7 @@ img {
     border-radius: 1px;
 }
 
-.helpful .helpfulSectionWhyNotTextAreaError {
+.helpful .helpfulSectionWhyNotTextAreaError, .helpful .helpfulSectionError {
     color: red;
     display: none;
 }
