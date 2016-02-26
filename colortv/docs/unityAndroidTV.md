@@ -5,7 +5,7 @@
 
 ####Unpacking the unitypackage
 
-After you download the `ReplaySDKUnityPlugin-<version>.unitypackage`, double click it to unpack it to your project. You will be prompted with a checklist of all the files within the package:
+After you download the `ColorTvSDKUnityPlugin-<version>.unitypackage`, double click it to unpack it to your project. You will be prompted with a checklist of all the files within the package:
 
 <center>![Screenshot](images/unitypackageImport.png)</center>
 
@@ -18,20 +18,20 @@ Make sure your project has the `Minimum API Level` set to `21` or higher:
 <center>![Screenshot](images/minApiLvl.png)</center>
 ###Integrating the plugin to your game
 
-To integrate our plugin into your game you first need to use the `ReplayPlugin` namespace in every script that will invoke Replay SDK methods:
+To integrate our plugin into your game you first need to use the `ColorTvPlugin` namespace in every script that will invoke ColorTv SDK methods:
 ```csharp
-using ReplayPlugin;
+using ColorTvPlugin;
 ```
-Then you need to call the `Replay.Init ("AppId")` method, preferably in your game's first scene's `Start ()` method:
+Then you need to call the `ColorTv.Init ("AppId")` method, preferably in your game's first scene's `Start ()` method:
 ```csharp
 void Start ()
 {
-    Replay.Init ("AppId");
+    ColorTv.Init ("AppId");
 }
 ```
 You can also enable debug mode to receive more verbose logging by calling:
 ```csharp
-Replay.SetDebugMode (true);
+ColorTv.SetDebugMode (true);
 ```
 To get callbacks about the ad status, you need to create the following delegates:
 ```csharp
@@ -45,26 +45,26 @@ public void OnAdClosed (string placementId)
   Debug.Log ("Ad has been closed for placement: " + placementId);
 }
     
-public void OnError (ReplayError error)
+public void OnError (ColorTvError error)
 {
   Debug.Log ("Ad error occured for placement: " + error.PlacementId + ", with error code: " + error.ErrorCode + " and error message: " + error.ErrorMessage);
 }
 ```
-Then you need to register the delegates by using the ReplayCallbacks class members:
+Then you need to register the delegates by using the ColorTvCallbacks class members:
 ```csharp
-ReplayCallbacks.AdLoaded += OnAdLoaded;
-ReplayCallbacks.AdClosed += OnAdClosed;
-ReplayCallbacks.AdError += OnError;
+ColorTvCallbacks.AdLoaded += OnAdLoaded;
+ColorTvCallbacks.AdClosed += OnAdClosed;
+ColorTvCallbacks.AdError += OnError;
 ```
 To load an ad for a certain placement, you need to call the following method:
 ```csharp
-Replay.LoadAd ("ad placement");
+ColorTv.LoadAd ("ad placement");
 ```
 It is recommended that you use one of the predefined placements that you can find in `AdPlacement` class. You can also use a custom placement.
 
 To show an ad for a certain placement, you need to call the following method:
 ```csharp
-Replay.ShowAd ("ad placement");
+ColorTv.ShowAd ("ad placement");
 ```
 Calling this method will show an ad for the placement you pass. Make sure you get the `AdLoaded` callback first, otherwise the ad won't be ready to be played.
 
@@ -79,6 +79,6 @@ public void OnCurrencyEarnedListener (Currency coins)
 ```
 And then register the delegate by calling:
 ```csharp
-ReplayCallbacks.CurrencyEarned += OnCurrencyEarnedListener;
+ColorTvCallbacks.CurrencyEarned += OnCurrencyEarnedListener;
 ```
 Now you will be notified when the user earns virtual currency.
