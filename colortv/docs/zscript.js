@@ -4,11 +4,12 @@ $(document).ready(() => {
 
     let userID = getUrlParameter('id');
 
-    $('a').each((i, elem) => {
+    $('li a').each((i, elem) => {
         elem = $(elem);
-        let newURL = `${elem.attr('href')}?id=${userID}`;
-        elem.attr('href', newURL);
-
+        if (!elem.parent().hasClass("anchor")) {
+            let newURL = `${elem.attr('href')}?id=${userID}`;
+            elem.attr('href', newURL);
+        }
     });
     // run highlight
     $('pre code').each(function (i, block) {
@@ -59,14 +60,12 @@ function sendDataToServer(userID, section, isHelpful, description) {
     //console.log('section', section);
     //console.log('isHelpful', isHelpful);
     //console.log('Description', description);
-
     $.ajax({
         url: 'https://api.colortv.com/',
         type: 'GET',
         crossDomain: true,
         success: (resp, b, details) => {
             let status = details.status;
-            console.log(status);
             hideInitialPart();
             (status >= 400) ? showError() : showThanksSection();
         },

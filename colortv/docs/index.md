@@ -1,15 +1,5 @@
 Welcome to the home of Color's documentation. You'll find tons of information here, topics ranging from navigating through the dashboard to integrating your app with our SDK. If you can't find what you are looking for, click the button in the bottom right corner to chat with our team or email us at support@colortv.com
 
-##Introduction
-###Quickstart
-[Add an Application](#adding-an-application) 
-[Ad Units](#ad-units) 
-
-###SDK Setup
-[tvOS SDK](tvOsSdk.md) 
-[Unity tvOS Plugin](unityTVOS.md) 
-[Android TV SDK](androidTVSDK.md) 
-[Unity Android TV Plugin](unityAndroidTV.md)
 
 ##Adding an Application
 Navigate to the My Applications section in the Publisher Dashboard. To add a new application, click the plus button. 
