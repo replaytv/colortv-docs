@@ -11,11 +11,8 @@ $(document).ready(() => {
             elem.attr('href', newURL);
         }
     });
-    console.log("run highlighter");
     // run highlight
     $('pre code').each(function (i, block) {
-        console.log(i);
-        console.log(block);
         hljs.highlightBlock(block);
         // add block with language under block of code
         let classes = $(block).attr('class');
