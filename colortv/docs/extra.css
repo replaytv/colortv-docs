@@ -30,6 +30,9 @@ body {
     color: #03A9F4;
 }
 
+.drawer .toc a:hover{
+    color:#03A9F4;
+}
 /*background of code block*/
 .article .wrapper pre {
     /*background-color: white;*/
