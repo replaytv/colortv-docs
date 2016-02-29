@@ -118,9 +118,9 @@ To improve ad targeting you can use methods in ColorTv class that set the user p
 You can set age, gender and some keywords as comma-separated values, eg. `sport,health` like so:
 
 ```csharp
-ColorTv.setUserAge(24);
-ColorTv.setUserGender(UserProfile.Gender.FEMALE);
-ColorTv.setUserKeywords("sport,health");
+ColorTv.SetUserAge(24);
+ColorTv.SetUserGender(UserProfile.Gender.FEMALE);
+ColorTv.SetUserKeywords("sport,health");
 ```
 
 These values will automatically be saved and attached to an ad request.
