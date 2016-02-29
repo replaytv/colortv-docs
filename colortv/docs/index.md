@@ -8,6 +8,8 @@ Navigate to the My Applications section in the Publisher Dashboard. To add a new
 
 Copy and paste the tvOS, Android TV, or Amazon Fire TV app store URL for your application and all the details of your app will be gathered and displayed. 
 
+<center>![Screenshot](images/added_app.png)</center>
+
 If you want to integrate a virtual currency from you can configure it in the next tab. First enter your virtual currency name and value. The value of your virtual currency should be the amount per $1 e.g. 100 gems, 2 spins, etc. Then choose whether you would like to have a Client Side or Server Side callback and configure either appropriately. 
 
 Next you can choose if you would like to join our Open Marketplace. Our Open Marketplace allows you to gain more users and traction to your app by helping promote other apps. The discovery potential of your app is dependant on how well you promote other apps: the more your users download other apps in the marketplace, the more users you will gain!
