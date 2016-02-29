@@ -9,7 +9,10 @@ body {
 
 .article p code{
     color: red !important;
+.article p code {
+    color: #C492DB !important;
 }
+
 .backdrop-paper {
     height: calc(100% - 120px);
 }
@@ -60,7 +63,11 @@ h1, h3 {
 .header {
     height: 72px;
     background-color: #03A9F4;
+    height: 105px;
     box-shadow: none;
+}
+.header .bar{
+    padding-top: 25px ;
 }
 
 .main > .drawer > nav > .project > .banner > .name {
@@ -90,6 +97,10 @@ h1, h3 {
 .note {
     background: #03a9f5;
     color: white;
+}
+.article .note p code {
+    color: white !important;
+    font-style: italic;
 }
 
 .note a {
