@@ -226,6 +226,24 @@ if (intent.getAction().equals("com.android.vending.INSTALL_REFERRER")) {
 }
 ```
 
+##User profile
+ 
+To improve ad targeting you can use the UserProfile class. To do so, create a new instance of this class:
+
+```java
+UserProfile user = new UserProfile(context);
+```
+
+You can set age, gender and some keywords as comma-separated values, eg. `sport,health` like so:
+
+```java
+user.setAge(24);
+user.setGender(UserProfile.Gender.FEMALE);
+user.setKeywords("sport,health");
+```
+
+These values will automatically be saved and attached to an ad request.
+
 ##Summary
 
 After completing all previous steps your Activity could look like this:
