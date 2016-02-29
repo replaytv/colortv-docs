@@ -54,26 +54,45 @@ Ads may be shown wherever you place them inside your app, but they **must** incl
 
 ###Placements
 Below are all the possible placement values: 
-- AppLaunch
-- AppResume
-- AppClose
-- MainMenu
-- Pause
-- StageOpen
-- StageComplete
-- StageFailed
-- LevelUp
-- BetweenLevels
-- StoreOpen
-- InAppPurchase
-- AbandonInAppPurchase
-- VirtualGoodPurchased
-- UserHighScore
-- OutofGoods
-- OutofEnergy
-- InsufficientCurrency
-- FinishedTutorial
 
+- AppLaunch
+
+- AppResume
+
+- AppClose
+
+- MainMenu
+
+- Pause
+
+- StageOpen
+
+- StageComplete
+
+- StageFailed
+
+- LevelUp
+
+- BetweenLevels
+
+- StoreOpen
+
+- InAppPurchase
+
+- AbandonInAppPurchase
+
+- VirtualGoodPurchased
+
+- UserHighScore
+
+- OutofGoods
+
+- OutofEnergy
+
+- InsufficientCurrency
+
+- FinishedTutorial
+ 
 !!! note ""
     You can choose what ad units you want to show for a specific placement in the dashboard, [click to learn more about Ad Units](doc:ad-units)
     
