@@ -1,4 +1,4 @@
-##Getting Started
+##Getting Started 1
 Before getting started make sure you have: 
 
 * Added your app in the My Applications section of the Color Dashboard. You need to do this so that you can get your App ID that you'll be adding to your app with our SDK.
