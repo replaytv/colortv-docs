@@ -110,3 +110,17 @@ In order to distribute currency to the same user but on other device, use below:
 ```csharp
 ColorTv.SetUserId ("user123");
 ```
+
+##User profile
+ 
+To improve ad targeting you can use methods in ColorTv class that set the user profile.
+
+You can set age, gender and some keywords as comma-separated values, eg. `sport,health` like so:
+
+```csharp
+ColorTv.SetUserAge(24);
+ColorTv.SetUserGender(ColorTv.Gender.FEMALE);
+ColorTv.SetUserKeywords("sport,health");
+```
+
+These values will automatically be saved and attached to an ad request.
