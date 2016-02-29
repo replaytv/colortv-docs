@@ -119,7 +119,7 @@ You can set age, gender and some keywords as comma-separated values, eg. `sport,
 
 ```csharp
 ColorTv.SetUserAge(24);
-ColorTv.SetUserGender(UserProfile.Gender.FEMALE);
+ColorTv.SetUserGender(ColorTv.Gender.FEMALE);
 ColorTv.SetUserKeywords("sport,health");
 ```
 
