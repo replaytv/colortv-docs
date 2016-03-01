@@ -1,8 +1,12 @@
-##Introduction
+##Getting started
+
 The ColorTV Unity Plugin is a light-weight plugin to provide functionality of the ColorTV SDK with Unity3D apps. Currently the plugin works only on actual tvOS devices, the Xcode simulator and Unity Editor will not show ads.
 
-!!! note ""
-    Current guide is prepared for Unity 5.3.1f1 version with XCode 7.2.
+Before getting started make sure you have: 
+
+* Added your app in the My Applications section of the Color Dashboard. You need to do this so that you can get your App ID that you'll be adding to your app with our SDK.
+
+* Updated to the newest version of Unity. Current guide is prepared for Unity 5.3.1f1 version with XCode 7.2.
   
 ##Adding tvOS Unity Plugin
 
