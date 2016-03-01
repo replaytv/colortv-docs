@@ -35,7 +35,7 @@ Unzip and open the folder, then navigate to the ColorTV framework folder. Includ
 
 Click on your Application at the top-left side of Xcode and go to project settings. Select *General* and choose proper target, it name in most cases corresponds to name of your project. Then drag and drop the COLORAdFramework.framework directory into the **Embeded Binaries** section.
 
-![Importing Framework](https://github.com/color-tv/colortv-docs/blob/master/colortv/docs/images/add_framework_tvOS.gif)
+![Importing Framework](https://raw.githubusercontent.com/color-tv/colortv-docs/master/colortv/docs/images/add_framework_tvOS.gif)
 
 Once complete, you will see the COLORAdFramework in both the **Embedded Binaries and Linked Frameworks and Libraries** sections. Please note that the framework will be automatically added to **Linked Frameworks and Libraries**. It will **not** be automatically added to both if you add it to Linked Frameworks and Libraries first.
 
