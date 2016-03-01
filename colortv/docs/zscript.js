@@ -60,6 +60,9 @@ function sendDataToServer(userID, section, isHelpful, description) {
     //console.log('section', section);
     //console.log('isHelpful', isHelpful);
     //console.log('Description', description);
+    if (userID === undefined) {
+        console.error("User ID not found");
+    }
     $.ajax({
         url: 'https://api.colortv.com/',
         type: 'GET',
