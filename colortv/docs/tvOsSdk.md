@@ -99,26 +99,20 @@ ColorTV offers lot of different types of advertisement which are automatically p
 Swift:
 
 ```Swift
-    RPLTAdController.sharedAdController().adViewControllerWithCompletion({ (vc , error) in
-            
-        if((error) != nil) {
-            NSLog("ERROR: %@", error!);
-        }
-            
-        if((vc) != nil) {
-            vc?.adCompleted = {
-                self.dismissViewControllerAnimated(true, completion: { () -> Void in
-                        
-                });
-            };
-                
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                self.presentViewController(vc!, animated: true, completion: { () -> Void in
-                        
-                });
-            });
-        }
-    });
+    COLORAdController.sharedAdController().adViewControllerForPlacement(placement, withCompletion:{ (vc , error) in
+            guard let vc = vc else {
+                print("Failed to initialize ad view controller, error: \(error?.description)")
+                return
+            }
+    
+            vc.adCompleted = {
+                self.dismissViewControllerAnimated(true, completion: nil)
+            }
+    
+            dispatch_async(dispatch_get_main_queue()) {
+                self.presentViewController(vc, animated: true, completion: nil)
+            }
+        })
 ```
 
 We understand how imporant user experience is to your app's performance. Nobody wants to wait a few seconds to see an advertisement regardless how relevant it's content is, so we developed the method `adViewControllerWithCompletion` for optimal performance. Call `adViewControllerWithCompletion` whenever you think an ad is likely to be shown. We highly reccommend invoking this method in all potential places you will show an ad. By doing this you can decide to either stop or start showing ads at specific placements in your app via our dashboard without pushing updates to your users! 
@@ -142,7 +136,7 @@ When showing an ad you must provide the context inside your app where you are sh
 Swift:
 
 ```Swift
-RPLTAdController.sharedAdController().currentPlacement = RPLTAdFrameworkPlacementMainMenu;
+COLORAdController.sharedAdController().currentPlacement = COLORAdFrameworkPlacementMainMenu
 ```
 
 The predefined values available as constants whose names start with COLORAdFrameworkPlacement... 
@@ -164,10 +158,24 @@ COLORUserProfile *profile = [COLORUserProfile sharedProfile];
 profile.age = 30;
 profile.gender = @"female"; //male or female are expected here
 
-//keywords which may charactirize your audience. It is used to better target ad.
+//keywords which may characterize your audience. They are used to target ads more effectively.
 [profile addKeyword:@"aviation"];
 [profile addKeyword:@"airplane"];
 [profile addKeyword:@"airport"];
+```
+
+Swift:
+```Swift
+    let profile = COLORUserProfile.sharedProfile()
+    profile.reset() //reset current profile if user is switched in your application.
+    
+    profile.age = 30
+    profile.gender = "female" //male or female are expected here
+    
+    //keywords which may characterize your audience. They are used to target ads more effectively.
+    profile.addKeyword("aviation")
+    profile.addKeyword("airplane")
+    profile.addKeyword("airport")
 ```
 
 ---
@@ -186,6 +194,12 @@ Ad conversions are monitored by our server and you will be informed when some cu
 }];
 ```
 
+```swift
+NSNotificationCenter.defaultCenter().addObserverForName(COLORAdFrameworkNotificationDidGetCurrency, object: nil, queue: nil) { note in
+    print("userInfo: \(note.userInfo)")
+}
+```        
+
 Each time a conversion is registered (usually when application returns to foreground) a notification will be triggered for each conversion. Note is an object of class NSNotification which contains property userInfo of class NSDictionary. It contains some useful information like amount of currency to be assigned or name of the currency.
 
 ####Delegate
@@ -196,6 +210,11 @@ If you prefer to use delegates please remember to set desired class as compliant
 [COLORAdController sharedAdController].delegate = self;
 ```
 
+Swift
+```swift
+COLORAdController.sharedAdController().delegate = self
+```
+
 Whenever a conversion is registered, the following method is to be called. Details contains the same information as userInfo.
 
 ```objective-c
@@ -203,5 +222,11 @@ Whenever a conversion is registered, the following method is to be called. Detai
 
 -(void)didGetCurrency:(NSDictionary *)details {
     NSLog(@"didGetcurrency delegate method: %@", details);
+}
+```
+Swift
+```swift
+func didGetCurrency(details: [NSObject : AnyObject]!) {
+    print("didGetCurrency delegate method: \(details)")
 }
 ```
