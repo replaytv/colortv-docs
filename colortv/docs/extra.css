@@ -10,6 +10,7 @@ body {
 .article p code {
     color: red !important;
 }
+
 .article p code {
     color: #C492DB !important;
 }
@@ -37,9 +38,10 @@ body {
     color: #03A9F4;
 }
 
-.drawer .toc a:hover{
-    color:#03A9F4;
+.drawer .toc a:hover {
+    color: #03A9F4;
 }
+
 /*background of code block*/
 .article .wrapper pre {
     /*background-color: white;*/
@@ -62,18 +64,19 @@ h1, h3 {
 }
 
 .header {
-    height: 72px;
     background-color: #03A9F4;
-    height: 105px;
+    height: 112px;
     box-shadow: none;
 }
-.header .bar{
-    padding-top: 25px ;
+
+.header .bar {
+    padding-top: 25px;
 }
 
 .main > .drawer > nav > .project > .banner > .name {
     font-size: 20px;
     color: rgba(0, 0, 0, 0.870588);
+    padding-top: 50px;
     letter-spacing: 0.08px;
     font-family: 'Open Sans', sans-serif;
     font-weight: 400 !important;
@@ -99,6 +102,7 @@ h1, h3 {
     background: #03a9f5;
     color: white;
 }
+
 .article .note p code {
     color: white !important;
     font-style: italic;
