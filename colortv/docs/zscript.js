@@ -141,11 +141,9 @@ function createSingleAndMultilanguageCodeBlocksWithButtons() {
                         // display wanted block
                         codeBlockMembers[nr].css('display', 'block');
                         // change selected button colors
-                        $(buttonContainer.children()[selectedBtn]).removeClass('buttonBlueWithHover');
-                        $(buttonContainer.children()[selectedBtn]).addClass('buttonWhiteWithHover');
+                        $(buttonContainer.children()[selectedBtn]).removeClass('activeUser');
                         selectedBtn = nr;
-                        $(buttonContainer.children()[selectedBtn]).removeClass('buttonWhiteWithHover');
-                        $(buttonContainer.children()[selectedBtn]).addClass('buttonBlueWithHover');
+                        $(buttonContainer.children()[selectedBtn]).addClass('activeUser');
                         $(obj).hover();
                     });
                 });
@@ -174,8 +172,7 @@ function initializeMultilanguageCodeBlock(codeBlockMembers, buttonContainer) {
     });
     // display first code block
     codeBlockMembers[0].css('display', 'block');
-    $(buttonContainer.children()[0]).removeClass('buttonWhiteWithHover');
-    $(buttonContainer.children()[0]).addClass('buttonBlueWithHover');
+    $(buttonContainer.children()[0]).addClass('activeUser');
 }
 /**
  * Return current section

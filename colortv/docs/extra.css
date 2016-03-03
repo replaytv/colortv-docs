@@ -188,9 +188,18 @@ img {
     justify-content: flex-end;
 }
 
+.multiLanguageBlock .buttonContainer div {
+    margin-left: 6px;
+}
+
 .multiLanguageBlock .multiLangButton {
-    /*display: inline-block;*/
-    margin-left: 5px;
+    display: inline-block;
+}
+
+.multiLanguageBlock .buttonContainer .activeUser {
+    border-color: white;
+    background-color: #169CEE;
+    color: white;
 }
 
 .helpful {
