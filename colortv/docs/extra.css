@@ -103,6 +103,10 @@ h1, h3 {
     color: white;
 }
 
+.multiLanguageBlock {
+    position: relative;
+}
+
 .article .note p code {
     color: white !important;
     font-style: italic;
@@ -176,6 +180,17 @@ img {
 .codeButton {
     position: absolute;
     right: 0px;
+}
+
+.multiLanguageBlock .buttonContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+.multiLanguageBlock .multiLangButton {
+    /*display: inline-block;*/
+    margin-left: 5px;
 }
 
 .helpful {

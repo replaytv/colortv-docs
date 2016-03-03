@@ -12,15 +12,13 @@ $(document).ready(() => {
         }
     });
     // run highlight
+
+
     $('pre code').each(function (i, block) {
         hljs.highlightBlock(block);
-        // add block with language under block of code
-        let classes = $(block).attr('class');
-        let lang = detectLanguage(classes);
-        $(block).parent().wrap(`<div class="codeBlock"></div>`);
-        $(block).parent().parent().append(`<div class="codeButton buttonStyle">${lang}</div>`);
     });
 
+    createSingleAndMultilanguageCodeBlocksWithButtons();
 
     $('#noHelpSectionButton').on('click', (e) => {
         hideInitialPart();
@@ -49,17 +47,151 @@ $(document).ready(() => {
     });
 });
 
-// Get rid of / for example /section/
+// I dedicate all this code, all my work, to my girlfriend, Magda, who will
+// have to support me and our dog once it gets
+// released into the public.
+function createSingleAndMultilanguageCodeBlocksWithButtons() {
+    let nextElement = $('.article .wrapper');
+    let childrens = nextElement.children();
+
+    for (let i = 0; i < childrens.length - 1; i++) {
+        //reference to actual element in DOM
+        let actual = $(childrens[i]);
+        // filter to only blocks of code
+        if (actual.is('pre')) {
+
+            // we need to take all trailing code block
+            // run loop until last element is code block. Then just check size of array
+            let codeBlockMembers = [actual];
+
+            for (let u = i; u < childrens.length - 1; u++) {
+                // if next element is code block
+                if ($(childrens[u + 1]).is('pre')) {
+                    codeBlockMembers.push($(childrens[u + 1]));
+                } else {
+                    break;
+                }
+            }
+            // omit elements that are already wrapped as code block
+            i += codeBlockMembers.length - 1;
+            // if we got two blocks of code next to each other
+            if (codeBlockMembers.length > 1) {
+                let multiLanguageWrapperHTML = `<div class="multiLanguageBlock"></div>`;
+                // wrap all code blocks into one holder
+                /**
+                 * Dear maintainer:
+
+                 Once you are done trying to 'optimize' this function,
+                 and have realized what a terrible mistake that was,
+                 please increment the following counter as a warning
+                 to the next guy:
+
+                 total_hours_wasted_here = 2
+                 */
+                switch (codeBlockMembers.length) {
+                    case 0:
+                        codeBlockMembers[0]
+                            .wrapAll(multiLanguageWrapperHTML);
+                        break;
+                    case 1:
+                        codeBlockMembers[0]
+                            .add(codeBlockMembers[1])
+                            .wrapAll(multiLanguageWrapperHTML);
+                        break;
+                    case 2:
+                        codeBlockMembers[0]
+                            .add(codeBlockMembers[1])
+                            .add(codeBlockMembers[2])
+                            .wrapAll(multiLanguageWrapperHTML);
+                        break;
+                    case 3:
+                        codeBlockMembers[0]
+                            .add(codeBlockMembers[1])
+                            .add(codeBlockMembers[2])
+                            .add(codeBlockMembers[3])
+                            .wrapAll(multiLanguageWrapperHTML);
+                        break;
+                    case 4:
+                        codeBlockMembers[0]
+                            .add(codeBlockMembers[1])
+                            .add(codeBlockMembers[2])
+                            .add(codeBlockMembers[3])
+                            .add(codeBlockMembers[4])
+                            .wrapAll(multiLanguageWrapperHTML);
+                        break;
+                }
+                // append button container for specific language button
+                actual.parent().append(`<div class="buttonContainer"></div>`);
+                // reference for button holder element
+                let buttonContainer = $(actual.parent().children('.buttonContainer'));
+                // add buttons to button holder
+                codeBlockMembers.forEach((item) => {
+                    let lang = detectLanguage(item.children().attr('class'));
+                    buttonContainer.append(`<div class="buttonWhiteWithHover multiLangButton">${lang}</div>`);
+                });
+
+                let selectedBtn = 0;
+                // add click events to show/hide codeBlocks
+                buttonContainer.children().each((nr, obj) => {
+                    $(obj).click(() => {
+                        //hide all code blocks
+                        codeBlockMembers.forEach((item) => {
+                            $(item).css('display', 'none');
+                        });
+                        // display wanted block
+                        codeBlockMembers[nr].css('display', 'block');
+                        // change selected button colors
+                        $(buttonContainer.children()[selectedBtn]).removeClass('buttonBlueWithHover');
+                        $(buttonContainer.children()[selectedBtn]).addClass('buttonWhiteWithHover');
+                        selectedBtn = nr;
+                        $(buttonContainer.children()[selectedBtn]).removeClass('buttonWhiteWithHover');
+                        $(buttonContainer.children()[selectedBtn]).addClass('buttonBlueWithHover');
+                        $(obj).hover();
+                    });
+                });
+                initializeMultilanguageCodeBlock(codeBlockMembers, buttonContainer);
+
+
+            }
+            //// we got only one block of code. Just add button under block
+            else {
+                actual.wrap(`<div class="codeBlock"></div>`);
+                let lang = detectLanguage(actual.children().attr('class'));
+                actual.parent().append(`<div class="codeButton buttonStyle">${lang}</div>`);
+            }
+        }
+    }
+}
+/**
+ * After creating multilanguage code blocks displays first one and appropiate button
+ * @param codeBlockMembers
+ * @param buttonContainer
+ */
+function initializeMultilanguageCodeBlock(codeBlockMembers, buttonContainer) {
+    //at the beggining hide all code blocks except for first one
+    codeBlockMembers.forEach((item) => {
+        $(item).css('display', 'none');
+    });
+    // display first code block
+    codeBlockMembers[0].css('display', 'block');
+    $(buttonContainer.children()[0]).removeClass('buttonWhiteWithHover');
+    $(buttonContainer.children()[0]).addClass('buttonBlueWithHover');
+}
+/**
+ * Return current section
+ * @returns {String}
+ */
 function getCurrentSection() {
     return replaceAll(window.location.pathname, "/", " ").trim();
 }
+/**
+ * Function send to specified serwer opinion about section
+ * @param userID
+ * @param section
+ * @param isHelpful
+ * @param description
+ */
 function sendDataToServer(userID, section, isHelpful, description) {
-
-    //section = section || 'getting started';
-    //console.log('USERID', userID);
-    //console.log('section', section);
-    //console.log('isHelpful', isHelpful);
-    //console.log('Description', description);
     if (userID === undefined) {
         console.error("User ID not found");
     }
@@ -142,7 +274,11 @@ function getUrlParameter(sParam) {
         }
     }
 };
-
+/**
+ * Detects in which language block of code is written in.
+ * @param classes
+ * @returns {*}
+ */
 function detectLanguage(classes) {
     "use strict";
     classes = classes.split(" ");

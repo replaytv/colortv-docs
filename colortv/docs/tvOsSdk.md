@@ -19,7 +19,7 @@ There are two ways to add Color to your Xcode project:
 ####1. Cocoapods
 Easily add Color to your project by adding the following code to your Podfile:
 
-```
+```objective-c
 pod 'Color-tvOS-SDK'
 ```
 
