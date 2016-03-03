@@ -148,6 +148,7 @@ function detectLanguage(classes) {
     classes = classes.split(" ");
     let lang;
     classes.forEach((item) => {
+        item = item.toLowerCase();
         switch (item) {
             case 'language-objectivec':
                 lang = 'Objective-C';
@@ -166,6 +167,18 @@ function detectLanguage(classes) {
                 break;
             case 'language-xml':
                 lang = 'XML';
+                break;
+            case 'language-javascript':
+                lang = 'JavaScript';
+                break;
+            case 'language-swift':
+                lang = 'Swift';
+                break;
+            case 'language-objective-c':
+                lang = 'Objective-C';
+                break;
+            case 'nginx':
+                lang = 'Nginx';
                 break;
         }
     });
