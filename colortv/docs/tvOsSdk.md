@@ -19,7 +19,7 @@ There are two ways to add Color to your Xcode project:
 ####1. Cocoapods
 Easily add Color to your project by adding the following code to your Podfile:
 
-```objective-c
+```
 pod 'Color-tvOS-SDK'
 ```
 
@@ -50,9 +50,6 @@ Open AppDelegate.m and modify body of function `application:DidFinishLaunchingWi
 ```objective-c
 [[COLORAdController sharedAdController] startWithAppIdentifier:@"YOUR_APP_ID_HERE"];
 ```
-
-or in Swift:
-
 ```Swift
 COLORAdController.sharedAdController().startWithAppIdentifier("YOUR_APP_ID_HERE");
 ```
@@ -62,9 +59,6 @@ Remember to import COLORAdFramework module. Add following line of code above cla
 ```objective-c
 @import COLORAdFramework;
 ```
-
-Swift:
-
 ```Swift
 @import COLORAdFramework
 ```
@@ -95,9 +89,6 @@ ColorTV offers lot of different types of advertisement which are automatically p
         }        
     }];
 ```
-
-Swift:
-
 ```Swift
     COLORAdController.sharedAdController().adViewControllerForPlacement(placement, withCompletion:{ (vc , error) in
             guard let vc = vc else {
@@ -132,9 +123,6 @@ When showing an ad you must provide the context inside your app where you are sh
 ```objective-c
 [[COLORAdController sharedAdController] setCurrentPlacement:COLORAdFrameworkPlacementStageOpen];
 ```
-
-Swift:
-
 ```Swift
 COLORAdController.sharedAdController().currentPlacement = COLORAdFrameworkPlacementMainMenu
 ```
@@ -163,8 +151,6 @@ profile.gender = @"female"; //male or female are expected here
 [profile addKeyword:@"airplane"];
 [profile addKeyword:@"airport"];
 ```
-
-Swift:
 ```Swift
     let profile = COLORUserProfile.sharedProfile()
     profile.reset() //reset current profile if user is switched in your application.
@@ -193,7 +179,6 @@ Ad conversions are monitored by our server and you will be informed when some cu
     NSLog(@"userInfo: %@", note);
 }];
 ```
-
 ```swift
 NSNotificationCenter.defaultCenter().addObserverForName(COLORAdFrameworkNotificationDidGetCurrency, object: nil, queue: nil) { note in
     print("userInfo: \(note.userInfo)")
@@ -209,8 +194,6 @@ If you prefer to use delegates please remember to set desired class as compliant
 ```objective-c
 [COLORAdController sharedAdController].delegate = self;
 ```
-
-Swift
 ```swift
 COLORAdController.sharedAdController().delegate = self
 ```
@@ -224,7 +207,6 @@ Whenever a conversion is registered, the following method is to be called. Detai
     NSLog(@"didGetcurrency delegate method: %@", details);
 }
 ```
-Swift
 ```swift
 func didGetCurrency(details: [NSObject : AnyObject]!) {
     print("didGetCurrency delegate method: \(details)")
