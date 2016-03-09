@@ -8,7 +8,7 @@ You can add a new application by clicking the plus button in either the Analytic
 
 Copy and paste the tvOS, Android TV, or Amazon Fire TV app store URL for your application and all the details of your app will be displayed. 
 
-<center>![Screenshot](images/added_app.jpg)</center>
+<center>![Screenshot](images/add_app2.jpg)(images/added_app.jpg)</center>
 
 If you want to integrate a virtual currency from you can configure it in the next tab. First enter your virtual currency name and value. The value of your virtual currency should be the amount per $1 e.g. 100 gems, 2 spins, etc. Then choose whether you would like to have a Client Side or Server Side callback and configure either appropriately. 
 
