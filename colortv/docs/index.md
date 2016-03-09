@@ -1,12 +1,12 @@
-Welcome to the home of ColorTV's documentation. You'll find tons of information here, topics ranging from navigating through the dashboard to integrating your app with our SDK. If you can't find what you are looking for, click the button in the bottom right corner to chat with our team, or email us at support@colortv.com
+Welcome to the home of ColorTV's documentation. You'll find topics ranging from navigating around the dashboard to integrating your app with our SDK. If you can't find what you are looking for, click the button in the bottom right corner to chat with our team or email us at support@colortv.com
 
 
 ##Adding an Application
-Navigate to the My Applications section in the Publisher Dashboard. To add a new application, click the plus button. 
+You can add a new application by clicking the plus button in either the Analytics or My Applications sections. 
 
 <center>![Screenshot](images/add_new_app.png)</center>
 
-Copy and paste the tvOS, Android TV, or Amazon Fire TV app store URL for your application and all the details of your app will be gathered and displayed. 
+Copy and paste the tvOS, Android TV, or Amazon Fire TV app store URL for your application and all the details of your app will be displayed. 
 
 <center>![Screenshot](images/added_app.jpg)</center>
 
