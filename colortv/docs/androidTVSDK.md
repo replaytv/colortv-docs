@@ -95,7 +95,7 @@ Below are all the possible placement values:
 - FinishedTutorial
  
 !!! note ""
-    You can choose what ad units you want to show for a specific placement in the dashboard, [click to learn more about Ad Units](#ad-units)
+    You can choose what ad units you want to show for a specific placement in the dashboard, [click to learn more about Ad Units](../#ad-units)
     
 To get callbacks about the ad status, you need to create a `ColorTvAdListener` object by overriding it's methods:
 
