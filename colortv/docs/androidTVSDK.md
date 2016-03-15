@@ -3,33 +3,34 @@ Before getting started make sure you have:
 
 * Added your app in the My Applications section of the Color Dashboard. You need to do this so that you can get your App ID that you'll be adding to your app with our SDK.
 
-* Make sure your Android Studio version is up to date and that your application is targeting minSdkVersion:21
+* Make sure your Android Studio version is up to date and that your application is targeting `minSdkVersion:21`
 
 ##Adding Android TV SDK
 
 ###Connecting Your App
 
-In your project **build.gradle** make sure you are using ColorTv Bintray repository:
+In your project's **build.gradle** make sure you are using ColorTV Bintray repository:
 
 ```groovy
-    repositories {
-        maven {
-            url  "http://colortv.bintray.com/maven"
-        }
+repositories {
+    maven {
+        url  "http://colortv.bintray.com/maven"
     }
-```
-Then add the following dependencies in your app **build.gradle** file in Android Studio: 
-
-```groovy
-dependencies {
-  compile 'com.colortv:android-sdk:1.2.0'
-  compile 'com.google.android.gms:play-services-ads:8.3.0'
 }
 ```
 
-Doing this prevents you from having to download our SDK and adding it to your project, as the aar file will handle that for you.
+Then add the following dependencies in your app's **build.gradle** file in Android Studio: 
 
-##Initializing SDK
+```groovy
+dependencies {
+    compile 'com.colortv:android-sdk:1.2.0'
+    compile 'com.google.android.gms:play-services-ads:8.3.0'
+}
+```
+
+Doing this prevents you from having to download our SDK and adding it manually to your project, as the aar file will handle that for you.
+
+##Initializing the SDK
 
 Import the SDK to your `MainActivity.java` file.
 
@@ -43,7 +44,7 @@ Setup the ColorTvSDK for your app by invoking `ColorTvSdk` initialization method
 ColorTvSdk.init(this, "your_app_id_from_dashboard");
 ```
 
-Your app id is generated in the publisher dashboard after adding or editing an application in the My Applications section. Copy the app id and paste the value for "your_app_id".
+Your app id is generated in the publisher dashboard after adding or editing an application in the My Applications section. Copy the app id and paste the value for "your_app_id_from_dashboard".
 
 !!! note ""
     We recommend putting the initialization method inside either **Application.onCreate()** or **MainActivity.onCreate() **. The application must be initialized before invoking any functions of the SDK.
@@ -94,25 +95,25 @@ Below are all the possible placement values:
 - FinishedTutorial
  
 !!! note ""
-    You can choose what ad units you want to show for a specific placement in the dashboard, [click to learn more about Ad Units](doc:ad-units)
+    You can choose what ad units you want to show for a specific placement in the dashboard, [click to learn more about Ad Units](androidTVSDK.md#ad-units)
     
 To get callbacks about the ad status, you need to create a `ColorTvAdListener` object by overriding it's methods:
 
 ```java
 ColorTvAdListener listener = new ColorTvAdListener() {
-  
-  @Override
-  public void onAdLoaded(String placement) {
-     ColorTvSdk.show(placement);
-  }
 
-  @Override
-  public void onAdError(String placement, ColorTvError colorTvError) {
-  }
+    @Override
+    public void onAdLoaded(String placement) {
+        ColorTvSdk.show(placement);
+    }
 
-  @Override
-  public void onAdClosed(String placement) {
-  }
+    @Override
+        public void onAdError(String placement, ColorTvError colorTvError) {
+    }
+
+    @Override
+        public void onAdClosed(String placement) {
+    }
 };
 ```
 
@@ -128,7 +129,7 @@ To load an ad for a certain placement, you need to call the following method:
 ColorTvSdk.loadAd("chosen_placement");
 ```
 
-It is recommended that you use one of the predefined placements that you can find in `AdPlacement` class, e.g. *AdPlacement.LEVEL_UP*,  You can also use a custom placement.
+It is recommended that you use one of the predefined placements that you can find in `AdPlacement` class, e.g. `AdPlacement.LEVEL_UP`,  You can also use a custom placement.
 
 In order to show an ad, call the following function: 
 
@@ -166,11 +167,11 @@ A listener must be added in order to receive events when a virtual currency tran
 
 ```java
 private OnCurrencyEarnedListener listener = new OnCurrencyEarnedListener() {
-            @Override
-            public void onCurrencyEarned(int currencyAmount, String currencyType){
+    @Override
+    public void onCurrencyEarned(int currencyAmount, String currencyType){
 
-            }
-        }
+    }
+};
 
 ...
   
@@ -190,7 +191,7 @@ ColorTvSdk.clearOnCurrencyEarnedListeners();
 ```
 
 !!! note "Reminder!"
-    [Session](doc:session) must also be implemented for virtual currency transactions to function.
+    Session must also be implemented for virtual currency transactions to function.
 
 ###Currency for user
 
@@ -201,7 +202,7 @@ ColorTvSdk.setUserId("user123");
 
 ##INSTALL_REFERRER Conflict
 
-If any of your BroadcastReceiver class declared in AndroidManifest.xml contains Intent Action INSTALL_REFERRER:
+If any of your `BroadcastReceiver` class declared in `AndroidManifest.xml` contains Intent Action `INSTALL_REFERRER`:
 
 ```xml
 <receiver ...>
@@ -211,7 +212,7 @@ If any of your BroadcastReceiver class declared in AndroidManifest.xml contains 
 </receiver>
 ```
 
-Add the following code to your AndroidManifest.xml file: 
+Add the following code to your `AndroidManifest.xml` file: 
 
 ```xml
 <receiver android:name="com.replay.android.ColorTvBroadcastReceiver">
