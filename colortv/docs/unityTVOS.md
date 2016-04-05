@@ -139,6 +139,9 @@ ColorTv.SetUserKeywords("sport,health");
 
 These values will automatically be saved and attached to an ad request.
 
+!!! note ""
+    If you're already using XUPorter make sure you exclude the `Assets/ColorTv/Editor/ColorTV.projmods`, which will add unnecessary framework to your iOS build.
+
 ##Known issues
 
 The Apple TV remote's menu button behaves strangely when used to dismiss an ad. The click is received and propagated to Unity, even though it is in a "paused" state. If that issue occurs in your game, the possible workaround would be to freeze the UI between invoking the `ShowAd` method and receiving either `OnAdClosed` or `OnError` callback.  
