@@ -30,7 +30,7 @@ Discovery Center amplifies the finite amount of content in the App Store to prov
 
 Configure the way you want to utilize the Discovery Center for your apps in the My Applications section of the dashboard by selecting the option to join our open-marketplace or integrate your virtual currency to monetize. If you are using the monetization component, you will be notified by the SDK that the transaction was successful and your users will be credited by either client or server side callbacks. 
 
-<center>![Screenshot](images/discoveryCenter.png)</center>
+<center>![Screenshot](images/discoveryCenter-1.png)</center>
 ###Game Trailer
 Game Trailer gives users an immersive experience with one of our featured applications. Scroll through the assortment of images to get insight to the gameplay and functionality of the app,  description and app ratings further helps users determine whether the app will appeal to them. The Game Trailer unit also supports showing video before to further enhance the user's experience with the app. 
 
