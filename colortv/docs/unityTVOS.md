@@ -1,110 +1,147 @@
 ##Getting started
 
-The ColorTV Unity Plugin is a light-weight plugin to provide functionality of the ColorTV SDK with Unity3D apps. Currently the plugin works only on actual tvOS devices, the Xcode simulator and Unity Editor will not show ads.
+The ColorTV Unity Plugin is a light-weight plugin to provide functionality of the ColorTV SDK with Unity3D apps.
 
 Before getting started make sure you have: 
 
 * Added your app in the My Applications section of the Color Dashboard. You need to do this so that you can get your App ID that you'll be adding to your app with our SDK.
 
-* Updated to the newest version of Unity. Current guide is prepared for Unity 5.3.1f1 with XCode 7.2.
-  
-##Adding tvOS Unity Plugin
+* Updated to the newest version of Unity. Current guide is prepared for Unity 5.3.4p1
 
-!!! note "Download"
-    [Download the Unity tvOS Plugin here](https://www.dropbox.com/s/yj1j7699wb4nnjg/ColorTV.unitypackage?dl=0)
-    
-Double click the ReplayTV.unitypackage file
+##Adding Apple TV Unity Plugin
 
-<center>![Screenshot](images/unity_1.jpg)</center>
+!!! note "Download Unity Plugin"
+    [Download the Apple TV Unity3d SDK here](https://bintray.com/colortv/unity-plugin/unity-plugin/view)
 
-The plugin will open inside Unity, Click Import.
+####Unpacking the unitypackage
 
-<center>![Screenshot](images/unity_2.jpg)</center>
+After you download the `ColorTvSDKUnityPlugin-<version>.unitypackage`, double click it to unpack it to your project. You will be prompted with a checklist of all the files within the package:
 
-##Integrating the plugin to your game
+<center>![Screenshot](images/unitypackageImport.png)</center>
 
-Drag the ColorTVController’s Prefab into the scene’s hierarchy
+###Integrating the plugin to your game
 
-<center>![Screenshot](images/unity_3.jpg)</center>
+To integrate our plugin into your game you first need to use the `ColorTvPlugin` namespace in every script that will invoke ColorTv SDK methods:
 
-Fill out your App ID value generated in the dashboard in ColorTVController’s inspector panel
-
-<center>![Screenshot](images/unity_4.jpg)</center>
-
-##Showing Ads
-
-Using SDK is as easy as referencing the ColorTVController prefab and executing the following method with two parameters:
-
-```objective-c
-ShowAd(enum ColorTVAdPlacement adPlacement)
+```csharp
+using ColorTvPlugin;
 ```
 
-The enum ColorTVAdPlacement can become the following:
--AppLaunch
--AppResume
--AppClose
--MainMenu
--Pause
--StageOpen
--StageComplete
--StageFailed
--LevelUp
--BetweenLevels
--StoreOpen
--InAppPurchase
--InAppPurchaseAbandoned
--VirtualGoodPurchase
--UserHighScore
--OutOfGoods
--OutOfEnergy
--InsufficientCurrency
--FinishedTutorial
+Then you need to call the `ColorTv.Init ("AppId")` method, preferably in your game's first scene's `Start ()` method:
 
-An example scene is included with the plugin and can be found under ColorTV/ColorTV Test Scene.unity
+```csharp
+void Start ()
+{
+    ColorTv.Init ("AppId");
+}
+```
 
-!! note 
-**Important**: In order for the buttons to be clickable you have to set the Unity Projects’ Input settings properly. Go to Edit>Project Settings>Input, Open Axes>Submit (first one) and put: joystick button 14 into All Positive Button field. Now build and run!
+If you're using both tvOS and Android platforms then you'll need to do a platform-specific initialization:
 
-<center>![Screenshot](images/unity_5.jpg)</center>
+```csharp
+void Start ()
+{
+    #if !UNITY_EDITOR && UNITY_ANDROID
+    ColorTv.Init ("AndroidAppId");
+    #elif !UNITY_EDITOR && UNITY_TVOS
+    ColorTv.Init ("AppleTVAppId");
+    #endif
+}
+```
 
-##Implementing Virtual Currency
+You can also enable debug mode to receive more verbose logging by calling:
 
-In order to reward the user, you have to create a delegate method in one of your scripts: 
+```csharp
+ColorTv.SetDebugMode (true);
+```
 
-```objective-c
-public void YourFunctionName (String jsonString){
-Debug.Log ("User has received currency info “ + jsonString);
+To get callbacks about the ad status, you need to create the following delegates:
+
+```csharp
+public void OnAdLoaded (string placementId)
+{
+  Debug.Log ("Ad is available for placement: " + placementId);
+}
+    
+public void OnAdClosed (string placementId)
+{
+  Debug.Log ("Ad has been closed for placement: " + placementId);
+}
+    
+public void OnError (ColorTvError error)
+{
+  Debug.Log ("Ad error occured for placement: " + error.PlacementId + ", with error code: " + error.ErrorCode + " and error message: " + error.ErrorMessage);
+}
+```
+
+Then you need to register the delegates by using the ColorTvCallbacks class members:
+
+```csharp
+ColorTvCallbacks.AdLoaded += OnAdLoaded;
+ColorTvCallbacks.AdClosed += OnAdClosed;
+ColorTvCallbacks.AdError += OnError;
+```
+
+To load an ad for a certain placement, you need to call the following method:
+
+```csharp
+ColorTv.LoadAd ("ad placement");
+```
+
+It is recommended that you use one of the predefined placements that you can find in `AdPlacement` class. You can also use a custom placement.
+
+To show an ad for a certain placement, you need to call the following method:
+
+```csharp
+ColorTv.ShowAd ("ad placement");
+```
+
+Calling this method will show an ad for the placement you pass. Make sure you get the `AdLoaded` callback first, otherwise the ad won't be ready to be played.
+
+###Registering currency earned listener
+
+In order to reward the user, you have to create a delegate method in one of your scripts:
+
+```csharp
+public void OnCurrencyEarnedListener (Currency coins)
+{
+  Debug.Log ("User has been awarded: " + coins.Amount + " x " + coins.Type);
 }
 ```
 
 And then register the delegate by calling:
 
-```objective-c
-ColorTvController.Instance.OnCurrencyEvent += this.YourFunctionName;
+```csharp
+ColorTvCallbacks.CurrencyEarned += OnCurrencyEarnedListener;
 ```
 
-Now you will be notified when a user earns virtual currency.
+Now you will be notified when the user earns virtual currency.
 
-In order to distribute currency to the same user but on other device, use:
+###Currency for user
 
-```objective-c
-ColorTVController.RegisterUserId ("user123");
+In order to distribute currency to the same user but on other device, use below:
+
+```csharp
+ColorTv.SetUserId ("user123");
 ```
 
-##Building the Project
+##User profile
+ 
+To improve ad targeting you can use methods in ColorTv class that set the user profile.
 
-In order for the plugin to work, you have to switch the project’s platform to tvOS.
+You can set age, gender and some keywords as comma-separated values, eg. `sport,health` like so:
 
-Go to File > Build Settings...
+```csharp
+ColorTv.SetUserAge(24);
+ColorTv.SetUserGender(ColorTv.Gender.FEMALE);
+ColorTv.SetUserKeywords("sport,health");
+```
 
-<center>![Screenshot](images/unity_6.jpg)</center>
+These values will automatically be saved and attached to an ad request.
 
-Click on tvOS and Switch Platform
+!!! note ""
+    If you're already using XUPorter make sure you exclude the `Assets/ColorTv/Editor/ColorTV.projmods`, which will add unnecessary framework to your iOS build.
 
-<center>![Screenshot](images/unity_7.jpg)</center>
+##Known issues
 
-Click Build and Run
-
-<center>![Screenshot](images/unity_8.jpg)</center>
-
-The XCode project will show up and run automatically on your AppleTV.
+The Apple TV remote's menu button behaves strangely when used to dismiss an ad. The click is received and propagated to Unity, even though it is in a "paused" state. If that issue occurs in your game, the possible workaround would be to freeze the UI between invoking the `ShowAd` method and receiving either `OnAdClosed` or `OnError` callback.  

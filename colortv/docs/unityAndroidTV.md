@@ -6,7 +6,7 @@ Before getting started make sure you have:
 
 * Added your app in the My Applications section of the Color Dashboard. You need to do this so that you can get your App ID that you'll be adding to your app with our SDK.
 
-* Updated to the newest version of Unity. Current guide is prepared for Unity 5.3.1f1
+* Updated to the newest version of Unity. Current guide is prepared for Unity 5.3.4p1
 
 ##Adding Android TV Unity Plugin
 
@@ -42,6 +42,19 @@ Then you need to call the `ColorTv.Init ("AppId")` method, preferably in your ga
 void Start ()
 {
     ColorTv.Init ("AppId");
+}
+```
+
+If you're using both tvOS and Android platforms then you'll need to do a platform-specific initialization:
+
+```csharp
+void Start ()
+{
+    #if !UNITY_EDITOR && UNITY_ANDROID
+    ColorTv.Init ("AndroidAppId");
+    #elif !UNITY_EDITOR && UNITY_TVOS
+    ColorTv.Init ("AppleTVAppId");
+    #endif
 }
 ```
 
