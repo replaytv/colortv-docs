@@ -144,4 +144,4 @@ These values will automatically be saved and attached to an ad request.
 
 ##Known issues
 
-The Apple TV remote's menu button behaves strangely when used to dismiss an ad. The click is received and propagated to Unity, even though it is in a "paused" state. If that issue occurs in your game, the possible workaround would be to freeze the UI between invoking the `ShowAd` method and receiving either `OnAdClosed` or `OnError` callback.  
+The Apple TV remote's menu button behaves strangely when used to dismiss an ad. The click is received and propagated to Unity, even though it is in a "paused" state. If that issue occurs in your game, a workaround would be to go to `Edit->Project Settings->Input` and remove `joystick button 0` from the `Submit` action.  
