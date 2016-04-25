@@ -33,7 +33,7 @@ After adding this value, run `pod install` and the latest version of our tvOS SD
 
 Unzip and open the folder, then navigate to the ColorTV framework folder. Included are both frameworks for simulator and actual devices. Use the framework from the tvos-device folder for production, **only** use the framework for simulator for testing. 
 
-Click on your Application at the top-left side of Xcode and go to project settings. Select *General* and choose proper target, it name in most cases corresponds to name of your project. Then drag and drop the COLORAdFramework.framework directory into the **Embeded Binaries** section.
+Click on your Application at the top-left side of Xcode and go to project settings. Select *General* and choose proper target, the name in most cases corresponds to name of your project. Then drag and drop the COLORAdFramework.framework directory into the **Embeded Binaries** section.
 
 ![Importing Framework](https://raw.githubusercontent.com/color-tv/colortv-docs/master/colortv/docs/images/add_framework_tvOS.gif)
 
