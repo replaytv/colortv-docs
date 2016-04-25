@@ -11,13 +11,13 @@ Copy and paste the tvOS, Android TV, or Amazon Fire TV app store URL for your ap
 <center>![Screenshot](images/add_app2.png)</center>
 <center>![Screenshot](images/add_app.gif)</center>
 
-If you want to integrate a virtual currency from you can configure it in the next tab. First enter your virtual currency name and value. The value of your virtual currency should be the amount per $1 e.g. 100 gems, 2 spins, etc. Then choose whether you would like to have a Client Side or Server Side callback and configure either appropriately. 
+If you want to integrate a virtual currency you can configure it in the next tab. First enter your virtual currency name and value. The value of your virtual currency should be the amount per $1 e.g. 100 gems, 2 spins, etc. Then choose whether you would like to have a Client Side or Server Side callback and configure either appropriately. 
 
 Next you can choose if you would like to join our Open Marketplace. Our Open Marketplace allows you to gain more users and traction to your app by helping promote other apps. The discovery potential of your app is dependant on how well you promote other apps: the more your users download other apps in the marketplace, the more users you will gain!
 
 Lastly you must choose what type of content you want to be shown at specific placements in your application.  
 !!! note "Placements"
-    A placement is a specific time or location in your application where you might want to display Replay content to your users.
+    A placement is a specific time or location in your application where you might want to display ColorTV content to your users.
     
     You can find out more specifics about placements and how to incorporate them in your app [here](androidTVSDK.md#showing-ads)
     In order to show an ad, you must declare the placement in the ad request inside of your code.
@@ -75,11 +75,9 @@ Placements are specific times or locations inside of your app where you can choo
   * FinishedTutorial
   
 By setting up placements inside your app, you will have the ability to control what type of ad units are being shown at specific locations in your app in real-time server side. In addition to added control, our machine learning algorithm optimizes the best performing ad units for specific times: Making more relevant content displayed to your users and maximizing revenue for you. It is recommended that you select all ad units to maximize revenue for your placements.
+
 ##Payments
 Payment information must be filled out before getting paid. Navigate to the Payments section of the dashboard and click on the settings icon above the table to edit or update your payment information. 
 
 Payments are paid out by either Paypal or a Wire transfer. Contact your account manager if you would like to receive payments by Wire.
-##Referrals
-Payment information must be filled out before getting paid. Navigate to the Payments section of the dashboard and click on the settings icon above the table to edit or update your payment information. 
 
-Payments are paid out by either Paypal or a Wire transfer. Contact your account manager if you would like to receive payments by Wire.
