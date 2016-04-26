@@ -104,7 +104,7 @@ ColorTvAdListener listener = new ColorTvAdListener() {
 
     @Override
     public void onAdLoaded(String placement) {
-        ColorTvSdk.show(placement);
+        ColorTvSdk.showAd(placement);
     }
 
     @Override
@@ -134,7 +134,7 @@ It is recommended that you use one of the predefined placements that you can fin
 In order to show an ad, call the following function: 
 
 ```java
-ColorTvSdk.show("chosen_placement");
+ColorTvSdk.showAd("chosen_placement");
 ```
 
 Calling this method will show an ad for the placement you pass. Make sure you get the `adLoaded` callback first, otherwise the ad won't be played.
