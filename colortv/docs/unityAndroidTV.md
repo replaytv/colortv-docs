@@ -24,9 +24,12 @@ After you download the `ColorTvSDKUnityPlugin-<version>.unitypackage`, double cl
 
 After the asset import is finished, copy the `google-play-services_lib` from `ANDROID_HOME/extras/google/google_play_services/libproject/` into your unity project's `Assets/Plugins/Android/` folder.
 
-Make sure your project has the `Minimum API Level` set to `21` or higher:
+Make sure your project has the `Minimum API Level` set to `14` or higher:
 
 <center>![Screenshot](images/minApiLvl.png)</center>
+
+!!! note ""
+    Our SDK supports Android versions 21+, but for convenience in maintaining one app for multiple platforms we've lowered the `minSdkVersion` to 14. ColorTv SDK will not be initialized however on versions below 21.
 
 ###Integrating the plugin to your game
 
