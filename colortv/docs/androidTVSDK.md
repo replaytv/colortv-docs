@@ -8,7 +8,9 @@ Before getting started make sure you have:
 !!! note ""
     Our SDK supports Android versions 21+, but for convenience in maintaining one app for multiple platforms we've lowered the `minSdkVersion` to 14. ColorTv SDK will not be initialized however on versions below 21.
 
-##Adding Android TV SDK
+##Adding Android TV/Amazon Fire TV SDK
+
+For a demo of the correct integration, please refer to our [demo application](https://github.com/color-tv/android-DemoApp)
 
 ###Connecting Your App
 
@@ -28,6 +30,7 @@ Then add the following dependencies in your app's **build.gradle** file in Andro
 dependencies {
     compile 'com.colortv:android-sdk:1.2.6'
     compile 'com.google.android.gms:play-services-ads:8.4.0'
+    compile 'com.android.support:recyclerview-v7:23.3.0'
 }
 ```
 
