@@ -103,9 +103,9 @@ Calling this method will show an ad for the placement you pass. Make sure you ge
 In order to reward the user, you have to create a delegate method in one of your scripts:
 
 ```csharp
-public void OnCurrencyEarnedListener (Currency coins)
+public void OnCurrencyEarnedListener (Currency reward)
 {
-  Debug.Log ("User has been awarded: " + coins.Amount + " x " + coins.Type);
+  Debug.Log ("User has been awarded for placement " + reward.Placement + ": " + reward.Amount + " x " + reward.Type);
 }
 ```
 
@@ -144,4 +144,4 @@ These values will automatically be saved and attached to an ad request.
 
 ##Known issues
 
-The Apple TV remote's menu button behaves strangely when used to dismiss an ad. The click is received and propagated to Unity, even though it is in a "paused" state. If that issue occurs in your game, a workaround would be to go to `Edit->Project Settings->Input` and remove `joystick button 0` from the `Submit` action.  
+The Apple TV remote's menu button behaves strangely when used to dismiss an ad. The click is received and propagated to Unity, even though it is in a "paused" state. If that issue occurs in your game, a workaround would be to go to `Edit->Project Settings->Input` and remove `joystick button 0` from the `Submit` action.

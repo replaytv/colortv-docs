@@ -115,9 +115,9 @@ Calling this method will show an ad for the placement you pass. Make sure you ge
 In order to reward the user, you have to create a delegate method in one of your scripts:
 
 ```csharp
-public void OnCurrencyEarnedListener (Currency coins)
+public void OnCurrencyEarnedListener (Currency reward)
 {
-  Debug.Log ("User has been awarded: " + coins.Amount + " x " + coins.Type);
+  Debug.Log ("User has been awarded for placement " + reward.Placement + ": " + reward.Amount + " x " + reward.Type);
 }
 ```
 
