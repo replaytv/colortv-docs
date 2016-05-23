@@ -221,7 +221,7 @@ If any of your `BroadcastReceiver` class declared in `AndroidManifest.xml` conta
 Add the following code to your `AndroidManifest.xml` file: 
 
 ```xml
-<receiver android:name="com.replay.android.ColorTvBroadcastReceiver">
+<receiver android:name="com.colortv.android.ColorTvBroadcastReceiver">
 ```
 
 In your BroadcastReceiver that handles action **com.android.vending.INSTALL_REFERRER**, add Java code:
