@@ -5,6 +5,7 @@ pages:
 - UNITY TVOS: unityTVOS.md
 - ANDROID TV / FIRE TV SDK: androidTVSDK.md
 - UNITY ANDROID TV / FIRE TV: unityAndroidTV.md
+- CORONA ANDROID TV / FIRE TV: coronaAndroidTV.md
 theme_dir: '../mkdocs-material/material'
 
 markdown_extensions:
