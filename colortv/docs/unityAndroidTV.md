@@ -150,3 +150,17 @@ ColorTv.SetUserKeywords("sport,health");
 ```
 
 These values will automatically be saved and attached to an ad request.
+
+##Disabling voice input on phone fields
+
+If you don't want to use the voice input functionality add the following line to your manifest:
+
+```xml
+<uses-permission android:name="android.permission.RECORD_AUDIO" tools:node="remove" />
+```
+
+and call the following method after the `ColorTv.Init()`:
+
+```java
+ColorTv.SetRecordAudioEnabled(false);
+```
