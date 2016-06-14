@@ -84,6 +84,11 @@ public void OnError (ColorTvError error)
 {
   Debug.Log ("Ad error occured for placement: " + error.PlacementId + ", with error code: " + error.ErrorCode + " and error message: " + error.ErrorMessage);
 }
+
+public void OnAdExpired (string placementId)
+{
+  Debug.Log ("Ad has expired for placement: " + placementId);
+}
 ```
 
 Then you need to register the delegates by using the ColorTvCallbacks class members:
@@ -92,6 +97,7 @@ Then you need to register the delegates by using the ColorTvCallbacks class memb
 ColorTvCallbacks.AdLoaded += OnAdLoaded;
 ColorTvCallbacks.AdClosed += OnAdClosed;
 ColorTvCallbacks.AdError += OnError;
+ColorTvCallbacks.AdExpired += OnAdExpired;
 ```
 
 To load an ad for a certain placement, you need to call the following method:
