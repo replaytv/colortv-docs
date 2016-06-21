@@ -1,7 +1,6 @@
 ##Getting Started
-Before getting started make sure you have: 
 
-* Added your app in the My Applications section of the Color Dashboard. You need to do this so that you can get your App ID that you'll be adding to your app with our SDK.
+Before getting started make sure you have added your app in the My Applications section of the Color Dashboard. You need to do this so that you can get your App ID that you'll be adding to your app with our SDK.
 
 ##Adding Color TV Corona plugin
 
@@ -11,7 +10,7 @@ For a demo of the correct integration, please refer to our [Corona demo applicat
 
 To use our plugin, simply require the `plugin.colortv` plugin in your main scene:
 
-```
+```lua
 local colorTvSdk = require("plugin.colortv")
 ```
 
@@ -19,7 +18,7 @@ local colorTvSdk = require("plugin.colortv")
 
 Setup the Color TV SDK for your app by invoking `colorTvSdk` initialization method in your code:
 
-```
+```lua
 colorTvSdk.init("your_app_id_from_dashboard")
 ```
 
@@ -75,7 +74,7 @@ Below are all the possible placement values:
     
 To get callbacks about the ad status, you need to create an `adlistener` function that you'll pass to `loadAd` function:
 
-```
+```lua
 local function adlistener(event)
     local name = event.name
     if (name == "adLoaded") then
@@ -93,7 +92,7 @@ end
 
 To load an ad for a certain placement, you need to call the following method:
 
-```
+```lua
 colorTvSdk.loadAd("adPlacement", adlistener)
 ```
 
@@ -101,7 +100,7 @@ Use one of the predefined placements that you can find in the list above, e.g. `
 
 In order to show an ad, call the following function: 
 
-```
+```lua
 colorTvSdk.showAd("adPlacement")
 ```
 
@@ -113,7 +112,7 @@ Calling this method will show an ad for the placement you pass. Make sure you ge
 ##Earning Virtual Currency
 A listener must be added in order to receive events when a virtual currency transaction has occurred. 
 
-```
+```lua
 local function currencyListener (event)
     if (event.name == "currencyEarned") then
         local placement = event.placement
@@ -132,7 +131,7 @@ colorTvSdk.registerCurrencyEarnedListener(currencyListener)
 
 In order to distribute currency to the same user but on other device, use below:
 
-```
+```lua
 colorTvSdk.setUserId("user123")
 ```
 
@@ -140,7 +139,7 @@ colorTvSdk.setUserId("user123")
  
 To improve ad targeting you can use the user profile. You can set age, gender and some keywords as comma-separated values, eg. `sport,health` like so:
 
-```
+```lua
 colorTvSdk.setUserAge(25)
 colorTvSdk.setUserGender("male")
 colorTvSdk.setUserKeywords("speed,cars")
@@ -152,7 +151,7 @@ These values will automatically be saved and attached to an ad request.
 
 After completing all previous steps your Lua script could look like this:
 
-```
+```lua
 local colorTvSdk = require("plugin.colortv")
 
 local function adlistener(event)
