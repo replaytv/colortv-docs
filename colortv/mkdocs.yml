@@ -1,4 +1,5 @@
 site_name: Getting Started
+site_favicon: favicon.ico
 pages:
 - Getting Started: index.md
 - TVOS SDK: tvOsSdk.md
@@ -6,7 +7,6 @@ pages:
 - ANDROID TV / FIRE TV SDK: androidTVSDK.md
 - UNITY ANDROID TV / FIRE TV: unityAndroidTV.md
 theme_dir: '../mkdocs-material/material'
-
 markdown_extensions:
   - codehilite(css_class=code)
   - admonition

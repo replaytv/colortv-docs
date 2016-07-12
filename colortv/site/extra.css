@@ -7,6 +7,22 @@ body {
     background-color: #03A9F4;
 }
 
+.article p code {
+    color: red !important;
+}
+
+.article p code {
+    color: #C492DB !important;
+}
+
+.backdrop-paper {
+    height: calc(100% - 120px);
+}
+
+.wrapper .meta {
+    background-color: #03A9F4;
+}
+
 /*color of hoovered link*/
 .article a:hover, .article a:focus {
     color: black;
@@ -19,6 +35,10 @@ body {
 }
 
 .drawer .toc li.anchor a:hover {
+    color: #03A9F4;
+}
+
+.drawer .toc a:hover {
     color: #03A9F4;
 }
 
@@ -44,14 +64,15 @@ h1, h3 {
 }
 
 .header {
-    height: 72px;
-    background-color: #03A9F4;
+    background-color: transparent;
     box-shadow: none;
+    color: black;
 }
 
 .main > .drawer > nav > .project > .banner > .name {
     font-size: 20px;
     color: rgba(0, 0, 0, 0.870588);
+    padding-top: 50px;
     letter-spacing: 0.08px;
     font-family: 'Open Sans', sans-serif;
     font-weight: 400 !important;
@@ -78,13 +99,55 @@ h1, h3 {
     color: white;
 }
 
+.multiLanguageBlock {
+    position: relative;
+}
+
+.article .note p code {
+    color: white !important;
+    font-style: italic;
+}
+
 .note a {
     color: white;
     text-decoration: underline;
 }
 
 .footer {
-    background-color: #1A1E21;
+    padding-bottom: 20px;
+    background-color: #F2F2F2;
+}
+
+/*footer title */
+.footer nav div .title {
+    color: black;
+}
+
+/*right footer title */
+.footer nav .previous .title {
+    padding-top: 10px !important;
+}
+
+/*right footer title */
+.footer nav .next .title {
+    padding-top: 10px !important;
+}
+
+/*next sign over title in footer*/
+.pagination .direction {
+    color: #737373 !important;
+}
+
+/*next arrow in footer*/
+.button-next i {
+    padding-bottom: 20px;
+    color: black !important;
+}
+
+/*previous arrow in footer*/
+.button-previous i {
+    padding-bottom: 20px;
+    color: black !important;
 }
 
 img {
@@ -92,7 +155,7 @@ img {
 }
 
 .bottomPadding {
-    height: 100px;
+    height: 40px;
 }
 
 @media (max-width: 1400px) {
@@ -115,6 +178,26 @@ img {
     right: 0px;
 }
 
+.multiLanguageBlock .buttonContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+.multiLanguageBlock .buttonContainer div {
+    margin-left: 6px;
+}
+
+.multiLanguageBlock .multiLangButton {
+    display: inline-block;
+}
+
+.multiLanguageBlock .buttonContainer .activeUser {
+    border-color: white;
+    background-color: #169CEE;
+    color: white;
+}
+
 .helpful {
     padding-top: 15px;
     position: relative;
@@ -124,33 +207,40 @@ img {
     padding-bottom: 10px;
 }
 
+.helpful .initialPart {
+    height: 40px;
+}
+
 .helpful .helpfulSectionLabel {
     position: absolute;
-    padding-top: 10px;
+    padding-top: 12px;
     font-style: italic;
 }
 
 .helpful .helpfulSectionButtonBlock {
     position: absolute;
     right: 0px;
+    margin-bottom: 4px;
 }
 
 .helpful .helpfulSectionThanks, .helpful .helpfulSectionError {
+    margin-top: 10px;
     opacity: 0;
     display: none;
-    position: absolute;
 }
 
 .helpful .helpfulSectionWhyNot {
     display: none;
     opacity: 0;
 }
-.helpful .helpfulSectionButtonBlock button{
+
+.helpful .helpfulSectionButtonBlock button {
     font-size: 12px;
     text-transform: capitalize;
     padding-left: 30px;
     padding-right: 30px;
 }
+
 .helpful .helpfulSectionWhyNot textarea {
     max-width: 890px;
     min-width: 500px;
@@ -160,13 +250,16 @@ img {
     border: 1px solid #169CEE;
     border-radius: 1px;
 }
-.helpful .helpfulSectionWhyNotTextAreaError{
-    color:red;
+
+.helpful .helpfulSectionWhyNotTextAreaError, .helpful .helpfulSectionError {
+    color: red;
     display: none;
 }
-#yesHelpSectionButton{
+
+#yesHelpSectionButton {
     margin-right: 3px;
 }
+
 .buttonStyle {
     border: 1px solid white;
     margin-top: 10px;

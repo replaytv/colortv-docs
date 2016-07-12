@@ -161,14 +161,26 @@
         <ul>
           
             <li class="anchor">
-              <a title="Introduction" href="#introduction">
-                Introduction
+              <a title="Getting started" href="#getting-started">
+                Getting started
               </a>
             </li>
           
             <li class="anchor">
-              <a title="Adding tvOS Unity Plugin" href="#adding-tvos-unity-plugin">
-                Adding tvOS Unity Plugin
+              <a title="Adding Apple TV Unity Plugin" href="#adding-apple-tv-unity-plugin">
+                Adding Apple TV Unity Plugin
+              </a>
+            </li>
+          
+            <li class="anchor">
+              <a title="User profile" href="#user-profile">
+                User profile
+              </a>
+            </li>
+          
+            <li class="anchor">
+              <a title="Known issues" href="#known-issues">
+                Known issues
               </a>
             </li>
           
@@ -180,8 +192,8 @@
           
             
   <li>
-    <a class="" title="ANDROID TV SDK" href="../androidTVSDK/">
-      ANDROID TV SDK
+    <a class="" title="ANDROID TV / FIRE TV SDK" href="../androidTVSDK/">
+      ANDROID TV / FIRE TV SDK
     </a>
     
   </li>
@@ -189,8 +201,8 @@
           
             
   <li>
-    <a class="" title="UNITY ANDROID TV" href="../unityAndroidTV/">
-      UNITY ANDROID TV
+    <a class="" title="UNITY ANDROID TV / FIRE TV" href="../unityAndroidTV/">
+      UNITY ANDROID TV / FIRE TV
     </a>
     
   </li>
@@ -210,39 +222,147 @@
             <h1>UNITY TVOS</h1>
             
             
-            <h2 id="introduction">Introduction</h2>
-<p>The ReplayTV Unity Plugin is a light-weight way of including Ads into your games
-and apps from Unity3D using ReplayTV SDK. Currently the plugin works only on
-the actual device, simulators and Unity Editor will not show ads.</p>
+            <h2 id="getting-started">Getting started</h2>
+<p>The ColorTV Unity Plugin is a light-weight plugin to provide functionality of the ColorTV SDK with Unity3D apps.</p>
+<p>Before getting started make sure you have: </p>
+<ul>
+<li>
+<p>Added your app in the My Applications section of the Color Dashboard. You need to do this so that you can get your App ID that you'll be adding to your app with our SDK.</p>
+</li>
+<li>
+<p>Updated to the newest version of Unity. Current guide is prepared for Unity 5.3.4p1</p>
+</li>
+</ul>
+<h2 id="adding-apple-tv-unity-plugin">Adding Apple TV Unity Plugin</h2>
 <div class="admonition note">
-<p>Current guide is prepared for Unity 5.3.1f1 version with XCode 7.2.</p>
+<p class="admonition-title">Download Unity Plugin</p>
+<p><a href="https://bintray.com/colortv/unity-plugin/unity-plugin/view">Download the Apple TV Unity3d SDK here</a></p>
 </div>
-<h2 id="adding-tvos-unity-plugin">Adding tvOS Unity Plugin</h2>
+<h4 id="unpacking-the-unitypackage">Unpacking the unitypackage</h4>
+<p>After you download the <code>ColorTvSDKUnityPlugin-&lt;version&gt;.unitypackage</code>, double click it to unpack it to your project. You will be prompted with a checklist of all the files within the package:</p>
+<p><center><img alt="Screenshot" src="../images/unitypackageImport.png" /></center></p>
+<h3 id="integrating-the-plugin-to-your-game">Integrating the plugin to your game</h3>
+<p>To integrate our plugin into your game you first need to use the <code>ColorTvPlugin</code> namespace in every script that will invoke ColorTv SDK methods:</p>
+<pre class="code"><code class="language-csharp">using ColorTvPlugin;</code></pre>
+
+
+<p>Then you need to call the <code>ColorTv.Init ("AppId")</code> method, preferably in your game's first scene's <code>Start ()</code> method:</p>
+<pre class="code"><code class="language-csharp">void Start ()
+{
+    ColorTv.Init (&quot;AppId&quot;);
+}</code></pre>
+
+
+<p>If you're using both tvOS and Android platforms then you'll need to do a platform-specific initialization:</p>
+<pre class="code"><code class="language-csharp">void Start ()
+{
+    #if !UNITY_EDITOR &amp;&amp; UNITY_ANDROID
+    ColorTv.Init (&quot;AndroidAppId&quot;);
+    #elif !UNITY_EDITOR &amp;&amp; UNITY_TVOS
+    ColorTv.Init (&quot;AppleTVAppId&quot;);
+    #endif
+}</code></pre>
+
+
+<p>You can also enable debug mode to receive more verbose logging by calling:</p>
+<pre class="code"><code class="language-csharp">ColorTv.SetDebugMode (true);</code></pre>
+
+
+<p>To get callbacks about the ad status, you need to create the following delegates:</p>
+<pre class="code"><code class="language-csharp">public void OnAdLoaded (string placementId)
+{
+  Debug.Log (&quot;Ad is available for placement: &quot; + placementId);
+}
+
+public void OnAdClosed (string placementId)
+{
+  Debug.Log (&quot;Ad has been closed for placement: &quot; + placementId);
+}
+
+public void OnError (ColorTvError error)
+{
+  Debug.Log (&quot;Ad error occured for placement: &quot; + error.PlacementId + &quot;, with error code: &quot; + error.ErrorCode + &quot; and error message: &quot; + error.ErrorMessage);
+}
+
+public void OnAdExpired (string placementId)
+{
+  Debug.Log (&quot;Ad has expired for placement: &quot; + placementId);
+}</code></pre>
+
+
+<p>Then you need to register the delegates by using the ColorTvCallbacks class members:</p>
+<pre class="code"><code class="language-csharp">ColorTvCallbacks.AdLoaded += OnAdLoaded;
+ColorTvCallbacks.AdClosed += OnAdClosed;
+ColorTvCallbacks.AdError += OnError;
+ColorTvCallbacks.AdExpired += OnAdExpired;</code></pre>
+
+
+<p>To load an ad for a certain placement, you need to call the following method:</p>
+<pre class="code"><code class="language-csharp">ColorTv.LoadAd (AdPlacement.LEVEL_UP);</code></pre>
+
+
+<p>Use one of the predefined placements that you can find in <code>AdPlacement</code> class, e.g. <code>AdPlacement.LEVEL_UP</code>.</p>
+<p>To show an ad for a certain placement, you need to call the following method:</p>
+<pre class="code"><code class="language-csharp">ColorTv.ShowAd (AdPlacement.LEVEL_UP);</code></pre>
+
+
+<p>Calling this method will show an ad for the placement you pass. Make sure you get the <code>AdLoaded</code> callback first, otherwise the ad won't be ready to be played.</p>
+<h3 id="registering-currency-earned-listener">Registering currency earned listener</h3>
+<p>In order to reward the user, you have to create a delegate method in one of your scripts:</p>
+<pre class="code"><code class="language-csharp">public void OnCurrencyEarnedListener (Currency reward)
+{
+  Debug.Log (&quot;User has been awarded for placement &quot; + reward.Placement + &quot;: &quot; + reward.Amount + &quot; x &quot; + reward.Type);
+}</code></pre>
+
+
+<p>And then register the delegate by calling:</p>
+<pre class="code"><code class="language-csharp">ColorTvCallbacks.CurrencyEarned += OnCurrencyEarnedListener;</code></pre>
+
+
+<p>Now you will be notified when the user earns virtual currency.</p>
+<h3 id="currency-for-user">Currency for user</h3>
+<p>In order to distribute currency to the same user but on other device, use below:</p>
+<pre class="code"><code class="language-csharp">ColorTv.SetUserId (&quot;user123&quot;);</code></pre>
+
+
+<h2 id="user-profile">User profile</h2>
+<p>To improve ad targeting you can use methods in ColorTv class that set the user profile.</p>
+<p>You can set age, gender and some keywords as comma-separated values, eg. <code>sport,health</code> like so:</p>
+<pre class="code"><code class="language-csharp">ColorTv.SetUserAge(24);
+ColorTv.SetUserGender(ColorTv.Gender.FEMALE);
+ColorTv.SetUserKeywords(&quot;sport,health&quot;);</code></pre>
+
+
+<p>These values will automatically be saved and attached to an ad request.</p>
 <div class="admonition note">
-<p class="admonition-title">Download</p>
-<p><a href="http://google.com">Download the Unity tvOS Plugin here</a></p>
+<p>If you're already using XUPorter make sure you exclude the <code>Assets/ColorTv/Editor/ColorTV.projmods</code>, which will add unnecessary framework to your iOS build.</p>
 </div>
-<p>Double click the ReplayTV.unitypackage file</p>
+<h2 id="known-issues">Known issues</h2>
+<p>The Apple TV remote's menu button behaves strangely when used to dismiss an ad. The click is received and propagated to Unity, even though it is in a "paused" state. If that issue occurs in your game, a workaround would be to go to <code>Edit-&gt;Project Settings-&gt;Input</code> and remove <code>joystick button 0</code> from the <code>Submit</code> action.</p>
             <div class="helpful">
                 <hr>
-                <span class="helpfulSectionLabel">Was this section helpful?</span>
-                <div class="helpfulSectionButtonBlock">
-                    <button type="button" class="buttonWhiteWithHover" id="yesHelpSectionButton">Yes</button>
-                    <button type="button" class="buttonWhiteWithHover" id="noHelpSectionButton">No</button>
-                 </div>
+                <div class="initialPart">
+                    <span class="helpfulSectionLabel">Was this section helpful?</span>
+                    <div class="helpfulSectionButtonBlock">
+                        <button type="button" class="buttonWhiteWithHover" id="yesHelpSectionButton">Yes</button>
+                        <button type="button" class="buttonWhiteWithHover" id="noHelpSectionButton">No</button>
+                    </div>
+                </div>
                 <span class="helpfulSectionThanks animateShow">Thanks for your feedback! We always working on improving our documentation.</span>
+                <span class="helpfulSectionError animateShow">Could not establish a connection to the server. Please check your internet and try again.</span>
                 <div class="helpfulSectionWhyNot animateShow">
                     <span class="helpfulSectionWhyNotLabel">Please leave your feedback so we can work on improving our documentation.</span><br>
                     <textarea noresize class="helpfulSectionWhyNotTextarea"></textarea><br>
-                    <span class="helpfulSectionWhyNotTextAreaError">Please write a longer description.</span>
+                    <span class="helpfulSectionWhyNotTextAreaError animateShow">Please write a longer description.</span>
                     <button id="opinionSubmit" class="helpfulSectionWhyNotSubmit buttonWhiteWithHover">Submit</button>
                 </div>
             </div>
-            <div class="bottomPadding">
-            </div>
-            
-            <footer class="footer">
-                
+            <div class="bottomPadding"></div>
+        </div>
+    </article>
+    
+    <footer class="footer">
+        
   <nav class="pagination" aria-label="Footer">
     <div class="previous">
       
@@ -263,12 +383,12 @@ the actual device, simulators and Unity Editor will not show ads.</p>
     </div>
     <div class="next">
       
-        <a href="../androidTVSDK/" title="ANDROID TV SDK">
+        <a href="../androidTVSDK/" title="ANDROID TV / FIRE TV SDK">
           <span class="direction">Next</span>
           <div class="page">
             <div class="stretch">
               <div class="title">
-                ANDROID TV SDK
+                ANDROID TV / FIRE TV SDK
               </div>
             </div>
             <div class="button button-next" role="button" aria-label="Next">
@@ -280,10 +400,8 @@ the actual device, simulators and Unity Editor will not show ads.</p>
     </div>
   </nav>
 
-            </footer>
-            
-        </div>
-    </article>
+    </footer>
+    
     <div class="results" role="status" aria-live="polite">
         <div class="scrollable">
             <div class="wrapper">

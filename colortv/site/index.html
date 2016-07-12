@@ -143,12 +143,6 @@
         <ul>
           
             <li class="anchor">
-              <a title="Introduction" href="#introduction">
-                Introduction
-              </a>
-            </li>
-          
-            <li class="anchor">
               <a title="Adding an Application" href="#adding-an-application">
                 Adding an Application
               </a>
@@ -169,12 +163,6 @@
             <li class="anchor">
               <a title="Payments" href="#payments">
                 Payments
-              </a>
-            </li>
-          
-            <li class="anchor">
-              <a title="Referrals" href="#referrals">
-                Referrals
               </a>
             </li>
           
@@ -204,8 +192,8 @@
           
             
   <li>
-    <a class="" title="ANDROID TV SDK" href="androidTVSDK/">
-      ANDROID TV SDK
+    <a class="" title="ANDROID TV / FIRE TV SDK" href="androidTVSDK/">
+      ANDROID TV / FIRE TV SDK
     </a>
     
   </li>
@@ -213,8 +201,8 @@
           
             
   <li>
-    <a class="" title="UNITY ANDROID TV" href="unityAndroidTV/">
-      UNITY ANDROID TV
+    <a class="" title="UNITY ANDROID TV / FIRE TV" href="unityAndroidTV/">
+      UNITY ANDROID TV / FIRE TV
     </a>
     
   </li>
@@ -234,33 +222,27 @@
             <h1>Getting Started</h1>
             
             
-            <p>Welcome to the home of Color's documentation. You'll find tons of information here, topics ranging from navigating through the dashboard to integrating your app with our SDK. If you can't find what you are looking for, click the button in the bottom right corner to chat with our team or email us at support@colortv.com</p>
-<h2 id="introduction">Introduction</h2>
-<h3 id="quickstart">Quickstart</h3>
-<p><a href="#adding-an-application">Add an Application</a> 
-<a href="#ad-units">Ad Units</a> </p>
-<h3 id="sdk-setup">SDK Setup</h3>
-<p><a href="tvOsSdk/">tvOS SDK</a> 
-<a href="unityTVOS/">Unity tvOS Plugin</a> 
-<a href="androidTVSDK/">Android TV SDK</a> 
-<a href="unityAndroidTV/">Unity Android TV Plugin</a></p>
+            <p>Welcome to the home of ColorTV's documentation. You'll find topics ranging from navigating around the dashboard to integrating your app with our SDK. If you can't find what you are looking for, click the button in the bottom right corner to chat with our team or email us at support@colortv.com</p>
 <h2 id="adding-an-application">Adding an Application</h2>
-<p>Navigate to the My Applications section in the Publisher Dashboard. To add a new application, click the plus button. </p>
+<p>You can add a new application by clicking the plus button in either the Analytics or My Applications sections. </p>
 <p><center><img alt="Screenshot" src="./images/add_new_app.png" /></center></p>
-<p>Copy and paste the tvOS, Android TV, or Amazon Fire TV app store URL for your application and all the details of your app will be gathered and displayed. </p>
-<p>If you want to integrate a virtual currency from you can configure it in the next tab. First enter your virtual currency name and value. The value of your virtual currency should be the amount per $1 e.g. 100 gems, 2 spins, etc. Then choose whether you would like to have a Client Side or Server Side callback and configure either appropriately. </p>
+<p>Copy and paste the tvOS, Android TV, or Amazon Fire TV app store URL for your application and all the details of your app will be displayed. </p>
+<p><center><img alt="Screenshot" src="./images/add_app2.png" /></center>
+<center><img alt="Screenshot" src="./images/add_app.gif" /></center></p>
+<p>If you want to integrate a virtual currency you can configure it in the next tab. First enter your virtual currency name and value. The value of your virtual currency should be the amount per $1 e.g. 100 gems, 2 spins, etc. Then choose whether you would like to have a Client Side or Server Side callback and configure either appropriately. </p>
+<p>Next you can choose if you would like to join our Open Marketplace. Our Open Marketplace allows you to gain more users and traction to your app by helping promote other apps. The discovery potential of your app is dependant on how well you promote other apps: the more your users download other apps in the marketplace, the more users you will gain!</p>
 <div class="admonition note">
 <p class="admonition-title">Placements</p>
-<p>A placement is a specific time or location in your application where you might want to display Replay content to your users.</p>
-<p>You can find out more specifics about placements and how to incorporate them in your app <a href="androidTVSDK/#showing-ads">here</a></p>
+<p>A placement is a specific time or location in your application where you might want to display ColorTV content to your users.</p>
+<p>You can find out more specifics about placements and how to incorporate them in your app <a href="androidTVSDK/#showing-ads">here</a>
+In order to show an ad, you must declare the placement in the ad request inside of your code.</p>
 </div>
-<p>In order to show an ad, you must declare the placement in the ad request inside of your code.</p>
 <h2 id="ad-units">Ad units</h2>
 <p><center><img alt="Screenshot" src="./images/FrameBlurNFL.png" /></center></p>
 <h3 id="discovery-center">Discovery Center</h3>
 <p>Discovery Center amplifies the finite amount of content in the App Store to provide users with an extended amount of app, video, and brand recommendations. The duel functionality of the Discovery Center helps cater to all types of developers by serving as a free-marketplace to increase your app's reach or a tool for monetization. Our discovery platform uses machine learning to deliver the most relevant suggestions to your users in a non-intrusive manner.</p>
 <p>Configure the way you want to utilize the Discovery Center for your apps in the My Applications section of the dashboard by selecting the option to join our open-marketplace or integrate your virtual currency to monetize. If you are using the monetization component, you will be notified by the SDK that the transaction was successful and your users will be credited by either client or server side callbacks. </p>
-<p><center><img alt="Screenshot" src="./images/discoveryCenter.png" /></center></p>
+<p><center><img alt="Screenshot" src="./images/discoveryCenter-1.png" /></center></p>
 <h3 id="game-trailer">Game Trailer</h3>
 <p>Game Trailer gives users an immersive experience with one of our featured applications. Scroll through the assortment of images to get insight to the gameplay and functionality of the app,  description and app ratings further helps users determine whether the app will appeal to them. The Game Trailer unit also supports showing video before to further enhance the user's experience with the app. </p>
 <div class="admonition note">
@@ -307,29 +289,30 @@
 <h2 id="payments">Payments</h2>
 <p>Payment information must be filled out before getting paid. Navigate to the Payments section of the dashboard and click on the settings icon above the table to edit or update your payment information. </p>
 <p>Payments are paid out by either Paypal or a Wire transfer. Contact your account manager if you would like to receive payments by Wire.</p>
-<h2 id="referrals">Referrals</h2>
-<p>Payment information must be filled out before getting paid. Navigate to the Payments section of the dashboard and click on the settings icon above the table to edit or update your payment information. </p>
-<p>Payments are paid out by either Paypal or a Wire transfer. Contact your account manager if you would like to receive payments by Wire.</p>
             <div class="helpful">
                 <hr>
-                <span class="helpfulSectionLabel">Was this section helpful?</span>
-                <div class="helpfulSectionButtonBlock">
-                    <button type="button" class="buttonWhiteWithHover" id="yesHelpSectionButton">Yes</button>
-                    <button type="button" class="buttonWhiteWithHover" id="noHelpSectionButton">No</button>
-                 </div>
+                <div class="initialPart">
+                    <span class="helpfulSectionLabel">Was this section helpful?</span>
+                    <div class="helpfulSectionButtonBlock">
+                        <button type="button" class="buttonWhiteWithHover" id="yesHelpSectionButton">Yes</button>
+                        <button type="button" class="buttonWhiteWithHover" id="noHelpSectionButton">No</button>
+                    </div>
+                </div>
                 <span class="helpfulSectionThanks animateShow">Thanks for your feedback! We always working on improving our documentation.</span>
+                <span class="helpfulSectionError animateShow">Could not establish a connection to the server. Please check your internet and try again.</span>
                 <div class="helpfulSectionWhyNot animateShow">
                     <span class="helpfulSectionWhyNotLabel">Please leave your feedback so we can work on improving our documentation.</span><br>
                     <textarea noresize class="helpfulSectionWhyNotTextarea"></textarea><br>
-                    <span class="helpfulSectionWhyNotTextAreaError">Please write a longer description.</span>
+                    <span class="helpfulSectionWhyNotTextAreaError animateShow">Please write a longer description.</span>
                     <button id="opinionSubmit" class="helpfulSectionWhyNotSubmit buttonWhiteWithHover">Submit</button>
                 </div>
             </div>
-            <div class="bottomPadding">
-            </div>
-            
-            <footer class="footer">
-                
+            <div class="bottomPadding"></div>
+        </div>
+    </article>
+    
+    <footer class="footer">
+        
   <nav class="pagination" aria-label="Footer">
     <div class="previous">
       
@@ -353,10 +336,8 @@
     </div>
   </nav>
 
-            </footer>
-            
-        </div>
-    </article>
+    </footer>
+    
     <div class="results" role="status" aria-live="polite">
         <div class="scrollable">
             <div class="wrapper">

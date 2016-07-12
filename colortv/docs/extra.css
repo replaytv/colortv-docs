@@ -64,13 +64,9 @@ h1, h3 {
 }
 
 .header {
-    background-color: #03A9F4;
-    height: 112px;
+    background-color: transparent;
     box-shadow: none;
-}
-
-.header .bar {
-    padding-top: 25px;
+    color: black;
 }
 
 .main > .drawer > nav > .project > .banner > .name {

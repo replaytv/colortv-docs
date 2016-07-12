@@ -148,12 +148,15 @@
     </a>
     
       
+        
+        
+      
       
         <ul>
           
             <li class="anchor">
-              <a title="Getting Started" href="#getting-started">
-                Getting Started
+              <a title="Getting started" href="#getting-started">
+                Getting started
               </a>
             </li>
           
@@ -170,20 +173,26 @@
             </li>
           
             <li class="anchor">
-              <a title="Displaying Ads" href="#displaying-ads">
-                Displaying Ads
-              </a>
-            </li>
-          
-            <li class="anchor">
-              <a title="Earning Virtual Currency" href="#earning-virtual-currency">
-                Earning Virtual Currency
+              <a title="Displaying ads" href="#displaying-ads">
+                Displaying ads
               </a>
             </li>
           
             <li class="anchor">
               <a title="Placements" href="#placements">
                 Placements
+              </a>
+            </li>
+          
+            <li class="anchor">
+              <a title="User Profile" href="#user-profile">
+                User Profile
+              </a>
+            </li>
+          
+            <li class="anchor">
+              <a title="Earning Virtual Currency" href="#earning-virtual-currency">
+                Earning Virtual Currency
               </a>
             </li>
           
@@ -204,8 +213,8 @@
           
             
   <li>
-    <a class="" title="ANDROID TV SDK" href="../androidTVSDK/">
-      ANDROID TV SDK
+    <a class="" title="ANDROID TV / FIRE TV SDK" href="../androidTVSDK/">
+      ANDROID TV / FIRE TV SDK
     </a>
     
   </li>
@@ -213,8 +222,8 @@
           
             
   <li>
-    <a class="" title="UNITY ANDROID TV" href="../unityAndroidTV/">
-      UNITY ANDROID TV
+    <a class="" title="UNITY ANDROID TV / FIRE TV" href="../unityAndroidTV/">
+      UNITY ANDROID TV / FIRE TV
     </a>
     
   </li>
@@ -230,50 +239,55 @@
     <article class="article">
         <div class="wrapper">
             
-            
-            <h1>TVOS SDK</h1>
-            
-            
-            <h2 id="getting-started">Getting Started</h2>
+            <h1 id="colortv-tvos-sdk">ColorTV tvOS SDK</h1>
+<h2 id="getting-started">Getting started</h2>
 <p>Before getting started make sure you have: </p>
 <ul>
 <li>
 <p>Added your app in the My Applications section of the Color Dashboard. You need to do this so that you can get your App ID that you'll be adding to your app with our SDK.</p>
 </li>
 <li>
-<p>Our newest tvOS SDK supports the newest Xcode (x). Please ensure you are using Xcode (x) or higher to ensure smooth integration.</p>
+<p>Our newest tvOS SDK supports the newest Xcode (7.2). Please ensure you are using Xcode (7.2) or higher to ensure smooth integration.</p>
 </li>
 </ul>
+<hr />
 <h2 id="adding-tvos-sdk">Adding tvOS SDK</h2>
 <h3 id="connecting-your-app">Connecting Your App</h3>
 <p>There are two ways to add Color to your Xcode project:</p>
-<h4 id="1-cocoapods">1) Cocoapods</h4>
+<h4 id="1-cocoapods">1. Cocoapods</h4>
 <p>Easily add Color to your project by adding the following code to your Podfile:</p>
-<pre class="code"><code class="language-objc">pod &quot;value&quot; </code></pre>
+<pre class="code"><code class="language-objective-c">pod 'Color-tvOS-SDK'</code></pre>
 
 
-<p>After adding this value, run <em>pod install</em> and the latest version of our tvOS SDk will be installed! Skip to the Initializing SDK section in our guide. </p>
-<div class="admonition note">
-<p class="admonition-title">tvOS SDK Download</p>
-<p><a href="http://google.com">Downoad the tvOS SDK here</a></p>
-</div>
-<h3 id="download-unzip-sdk">Download &amp; Unzip SDK</h3>
-<p>Drag and drop the RPLTAdFramework.framework directory into Xcode under <em>Frameworks</em>.
-Open your project in Xcode and go to project settings. Select <em>General</em> and choose proper target, it name in most cases corresponds to name of your project.</p>
-<p><center><img alt="Screenshot" src="../images/downloadSDK.png" /></center></p>
-<p>Expand <em>Embedded Binaries</em> section and click + icon. Add RPLTAdFramework to your project. Please note that the framework will be automatically added to <em>Linked Frameworks and Libraries</em>. It will <strong>not</strong> happen if you add it to Linked Frameworks and Libraries first.</p>
+<p>After adding this value, run <code>pod install</code> and the latest version of our tvOS SDk will be installed!</p>
+<h4 id="2-manual-integration">2. Manual Integration</h4>
+<p><a href="https://github.com/replaytv/Color-tvOS-SDK">Download the tvOS SDK here</a></p>
+<h4 id="download-unzip-sdk">Download &amp; Unzip SDK</h4>
+<p>Unzip and open the folder, then navigate to the ColorTV framework folder. Included are both frameworks for simulator and actual devices. Use the framework from the tvos-device folder for production, <strong>only</strong> use the framework for simulator for testing. </p>
+<p>Click on your Application at the top-left side of Xcode and go to project settings. Select <em>General</em> and choose proper target, the name in most cases corresponds to name of your project. Then drag and drop the COLORAdFramework.framework directory into the <strong>Embeded Binaries</strong> section.</p>
+<p><img alt="Importing Framework" src="https://raw.githubusercontent.com/color-tv/colortv-docs/master/colortv/docs/images/add_framework_tvOS.gif" /></p>
+<p>Once complete, you will see the COLORAdFramework in both the <strong>Embedded Binaries and Linked Frameworks and Libraries</strong> sections. Please note that the framework will be automatically added to <strong>Linked Frameworks and Libraries</strong>. It will <strong>not</strong> be automatically added to both if you add it to Linked Frameworks and Libraries first.</p>
+<p><img alt="Xcode configuration" src="https://www.filepicker.io/api/file/ncUuqdGR1GSOBtTaoUE3" /></p>
+<hr />
 <h2 id="initializing-sdk">Initializing SDK</h2>
-<p>Open AppDelegate.m and modify body of function application:DidFinishLaunchingWithOptions:</p>
-<pre class="code"><code class="language-objectivec">[[RPLTAdController sharedAdController] startWithAppIdentifier:@&quot;566dbd1a326aeb750132fdfb&quot;];</code></pre>
+<p>Open AppDelegate.m and modify body of function <code>application:DidFinishLaunchingWithOptions:</code> with the App ID generated in the dashboard</p>
+<pre class="code"><code class="language-objective-c">[[COLORAdController sharedAdController] startWithAppIdentifier:@&quot;YOUR_APP_ID_HERE&quot;];</code></pre>
 
 
-<p>Remember to import RPLTAdFramework module. Add following line of code above class implementation.</p>
-<pre class="code"><code class="language-objectivec">@import RPLTAdFramework;</code></pre>
+<pre class="code"><code class="language-Swift">COLORAdController.sharedAdController().startWithAppIdentifier(&quot;YOUR_APP_ID_HERE&quot;);</code></pre>
 
 
-<h2 id="displaying-ads">Displaying Ads</h2>
-<p>Replay offer lot of different types of advertisement which are automatically provided by our server in order to attract you audience. You do not need to care about proper ad and its content. We do it for you. All you need to do is to type a few lines of code to have the ad displayed wherever and whenever you want.</p>
-<pre class="code"><code class="language-objectivec">[[RPLTAdController sharedAdController] adViewControllerWithCompletion:^(RPLTAdViewController * _Nullable vc, NSError * _Nullable error) {
+<p>Remember to import COLORAdFramework module. Add following line of code above class implementation.</p>
+<pre class="code"><code class="language-objective-c">@import COLORAdFramework;</code></pre>
+
+
+<pre class="code"><code class="language-Swift">@import COLORAdFramework</code></pre>
+
+
+<hr />
+<h2 id="displaying-ads">Displaying ads</h2>
+<p>ColorTV offers lot of different types of advertisement which are automatically provided by our server in order to attract you audience. You do not need to care about proper ad and its content, we optimize the best performing content for all of your users. All you need to do is to add a few lines of code and an ad will be displayed wherever and whenever you want.</p>
+<pre class="code"><code class="language-objective-c">    [[COLORAdController sharedAdController] adViewControllerForPlacement:COLORAdFrameworkPlacementAppLaunch withCompletion:^(COLORAdViewController * _Nullable vc, NSError * _Nullable error) {
         if(vc) {
 
             vc.adCompleted = ^{
@@ -282,7 +296,7 @@ Open your project in Xcode and go to project settings. Select <em>General</em> a
                 });
             };
 
-            dispatch_async(dispatch_get_main_queue(), ^{                
+            dispatch_async(dispatch_get_main_queue(), ^{
                 [self presentViewController:vc animated:YES completion:^{
 
                 }];
@@ -293,62 +307,126 @@ Open your project in Xcode and go to project settings. Select <em>General</em> a
     }];</code></pre>
 
 
-<p>A few words of explanation are probably required here. We care about user experience a lot. Nobody wants to wait a few seconds just to see an advertisement regardless how attractive its content is. Call a method named adViewControllerWithCompletion whenever you think an ad is likely to be shown. Completion block is called when some elements of ad are loaded.
-It provides you two arguments, viewController and error. Let's concentrate on the first one. Basically the framework generates viewController which is to be displayed in the manner which matches your application's structure. In most cases modal view controller is OK but sometimes navigation view controller or some kind if embedded view controller will be better. It is up to you.</p>
-<p>When we believe that ad should not longer be displayed you will be informed accordingly. Please define completion block. In the example above that controller is simply dismissed from screen.</p>
-<p>Please note that majority of operations are done on the background threads while interactions with User Interface are to be made only on the main thread. Remember to use [NSThread mainThread] (old style) or main queue from GDC (new style) when interacting with UI.</p>
+<pre class="code"><code class="language-Swift">    COLORAdController.sharedAdController().adViewControllerForPlacement(placement, withCompletion:{ (vc , error) in
+            guard let vc = vc else {
+                print(&quot;Failed to initialize ad view controller, error: \(error?.description)&quot;)
+                return
+            }
+
+            vc.adCompleted = {
+                self.dismissViewControllerAnimated(true, completion: nil)
+            }
+
+            dispatch_async(dispatch_get_main_queue()) {
+                self.presentViewController(vc, animated: true, completion: nil)
+            }
+        })</code></pre>
+
+
+<p>We understand how imporant user experience is to your app's performance. Nobody wants to wait a few seconds to see an advertisement regardless how relevant it's content is, so we developed the method <code>adViewControllerWithCompletion</code> for optimal performance. Call <code>adViewControllerWithCompletion</code> whenever you think an ad is likely to be shown. We highly reccommend invoking this method in all potential places you will show an ad. By doing this you can decide to either stop or start showing ads at specific placements in your app via our dashboard without pushing updates to your users! </p>
+<p>Completion block is called when some elements of ad are loaded. It provides you two arguments, <code>viewController</code> and <code>error</code>. The framework generates <code>viewController</code> which is to be displayed in the manner which matches your application's structure. In most cases modal view controller is OK but sometimes navigation view controller or some kind if embedded view controller will be better. It is up to you.</p>
+<p>When the ad should no longer be displayed you will be informed and need to define completion block. In the example above that controller is simply dismissed from screen.</p>
+<p>Please note that majority of operations are done on the background threads while interactions with User Interface are only made on the main thread. Remember to use <code>[NSThread mainThread]</code> (old style) or main queue from GCD (new style) when interacting with UI.</p>
+<hr />
+<h2 id="placements">Placements</h2>
+<p>When showing an ad you must provide the context inside your app where you are showing the ad. It will allow us to target ads more effectively and give you the ability to control the ads shown in the dashboard.</p>
+<pre class="code"><code class="language-objective-c">[[COLORAdController sharedAdController] setCurrentPlacement:COLORAdFrameworkPlacementStageOpen];</code></pre>
+
+
+<pre class="code"><code class="language-Swift">COLORAdController.sharedAdController().currentPlacement = COLORAdFrameworkPlacementMainMenu</code></pre>
+
+
+<p>The predefined values available as constants whose names start with COLORAdFrameworkPlacement... </p>
+<hr />
+<h2 id="user-profile">User Profile</h2>
+<p>Another way to provide valuable information which allows us to provide suitable ads to your audience is user profile. You can provide basic information which characterise specific user by setting properties of <code>COLORUserProfile</code> Singleton. If for some reason you believe that user of your application has changed, e.g. account is switched call <code>-(void)reset</code> method and set new values.
+Property <code>age</code> is an unsigned integer which represent number of years elapsed since user was born. If you do not know exact value but you are able to predict age range pass number in the middle of predicted range.
+Property <code>gender</code> is a string literal which should contain <code>male</code> of <code>female</code>.
+Additionally set of keywords may be added in order to let us know something more about user of your app. You can manipulate keywords by calling methods <code>-(void)addKeyword:(NSString*)keyword</code> and <code>-(void)removeKeyword:(NSString*)keyword</code>. If profile is reseted collection of keywords becomes empty.</p>
+<pre class="code"><code class="language-objective-c">COLORUserProfile *profile = [COLORUserProfile sharedProfile];
+
+[profile reset]; //reset current profile if user is switched in your application.
+
+profile.age = 30;
+profile.gender = @&quot;female&quot;; //male or female are expected here
+
+//keywords which may characterize your audience. They are used to target ads more effectively.
+[profile addKeyword:@&quot;aviation&quot;];
+[profile addKeyword:@&quot;airplane&quot;];
+[profile addKeyword:@&quot;airport&quot;];</code></pre>
+
+
+<pre class="code"><code class="language-Swift">    let profile = COLORUserProfile.sharedProfile()
+    profile.reset() //reset current profile if user is switched in your application.
+
+    profile.age = 30
+    profile.gender = &quot;female&quot; //male or female are expected here
+
+    //keywords which may characterize your audience. They are used to target ads more effectively.
+    profile.addKeyword(&quot;aviation&quot;)
+    profile.addKeyword(&quot;airplane&quot;)
+    profile.addKeyword(&quot;airport&quot;)</code></pre>
+
+
+<hr />
 <h2 id="earning-virtual-currency">Earning Virtual Currency</h2>
-<p>Your audience is more likely to interact with presented ads if something in reward is given. We offer a mechanism to provide end user a variety of incentives based on so-called virtual currency. All settings required are to be done in administration panel provided for your application. Your application needs only a few lines of code more to enable features or add some gems to user's collection.
-Ads conversion are monitored in background, you will be informed when some currency is assigned. It is up to you whether you prefer to get notification through NSNotificationCenter or use delegate pattern.</p>
-<pre class="code"><code class="language-objectivec">[[NSNotificationCenter defaultCenter] addObserverForName:RPLTAdFrameworkNotificationDidGetCurrency object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
-        NSLog(@&quot;userInfo: %@&quot;, note);
-    }];</code></pre>
+<p>Integrating virtual currency inside of your advertisments greatly increases user interaction as well as monetization for your app. We offer a mechanism to provide users a variety of incentives using your app's virtual currency. Virtual Currency must first be set up in the dashboard for your application and then a few lines of code need to be added to be fully setup.</p>
+<p>Ad conversions are monitored by our server and you will be informed when some currency is assigned. It is up to you whether you prefer to get the notification through NSNotificationCenter or use delegate pattern.</p>
+<h4 id="nsnotificationcenter">NSNotificationCenter</h4>
+<pre class="code"><code class="language-objective-c">[[NSNotificationCenter defaultCenter] addObserverForName:COLORAdFrameworkNotificationDidGetCurrency object:nil queue:nil usingBlock:^(NSNotification * _Nonnull note) {
+    NSLog(@&quot;userInfo: %@&quot;, note);
+}];</code></pre>
 
 
-<p>Each time positive conversion is registered (usually when application returns to foreground) notification will be triggered for each conversion separately. Note is an object of class NSNotification which contains property userInfo of class NSDictionary. It contains some useful information like amount of currency to be assigned or name of the currency.</p>
-<pre class="code"><code class="language-objectivec">@interface AppDelegate ()&lt;RPLTAdControllerDelegate&gt;
-
-@end</code></pre>
-
-
-<p>If you prefer to use delegates please remember to set desired class as compliant to RPLTAdControllerDelegate protocol. Then set the delegate.</p>
-<pre class="code"><code class="language-objectivec">[RPLTAdController sharedAdController].delegate = self;</code></pre>
+<pre class="code"><code class="language-swift">NSNotificationCenter.defaultCenter().addObserverForName(COLORAdFrameworkNotificationDidGetCurrency, object: nil, queue: nil) { note in
+    print(&quot;userInfo: \(note.userInfo)&quot;)
+}</code></pre>
 
 
-<p>Whenever conversion is registered following method is to be called. Details contains the same information as userInfo.</p>
-<pre class="code"><code class="language-objectivec">#pragma mark - RPLTAdControllerDelegate
+<p>Each time a conversion is registered (usually when application returns to foreground) a notification will be triggered for each conversion. Note is an object of class NSNotification which contains property userInfo of class NSDictionary. It contains some useful information like amount of currency to be assigned or name of the currency.</p>
+<h4 id="delegate">Delegate</h4>
+<p>If you prefer to use delegates please remember to set desired class as compliant to COLORAdControllerDelegate protocol. Then set the delegate.</p>
+<pre class="code"><code class="language-objective-c">[COLORAdController sharedAdController].delegate = self;</code></pre>
+
+
+<pre class="code"><code class="language-swift">COLORAdController.sharedAdController().delegate = self</code></pre>
+
+
+<p>Whenever a conversion is registered, the following method is to be called. Details contains the same information as userInfo.</p>
+<pre class="code"><code class="language-objective-c">#pragma mark - COLORAdControllerDelegate
 
 -(void)didGetCurrency:(NSDictionary *)details {
     NSLog(@&quot;didGetcurrency delegate method: %@&quot;, details);
 }</code></pre>
 
 
-<h2 id="placements">Placements</h2>
-<p>You can inform us about the place in your application user interacts with at the time. It will allow us to target ads more effectively thus you can earn more.</p>
-<pre class="code"><code class="language-objectivec">[[RPLTAdController sharedAdController] setCurrentPlacement:RPLTAdFrameworkPlacementStageOpen];</code></pre>
-
-
-<p>The argument may be any object of class NSString. There is lot of predefined values available as constants whose names start with RPLTAdFrameworkPlacement... .</p>
+<pre class="code"><code class="language-swift">func didGetCurrency(details: [NSObject : AnyObject]!) {
+    print(&quot;didGetCurrency delegate method: \(details)&quot;)
+}</code></pre>
             <div class="helpful">
                 <hr>
-                <span class="helpfulSectionLabel">Was this section helpful?</span>
-                <div class="helpfulSectionButtonBlock">
-                    <button type="button" class="buttonWhiteWithHover" id="yesHelpSectionButton">Yes</button>
-                    <button type="button" class="buttonWhiteWithHover" id="noHelpSectionButton">No</button>
-                 </div>
+                <div class="initialPart">
+                    <span class="helpfulSectionLabel">Was this section helpful?</span>
+                    <div class="helpfulSectionButtonBlock">
+                        <button type="button" class="buttonWhiteWithHover" id="yesHelpSectionButton">Yes</button>
+                        <button type="button" class="buttonWhiteWithHover" id="noHelpSectionButton">No</button>
+                    </div>
+                </div>
                 <span class="helpfulSectionThanks animateShow">Thanks for your feedback! We always working on improving our documentation.</span>
+                <span class="helpfulSectionError animateShow">Could not establish a connection to the server. Please check your internet and try again.</span>
                 <div class="helpfulSectionWhyNot animateShow">
                     <span class="helpfulSectionWhyNotLabel">Please leave your feedback so we can work on improving our documentation.</span><br>
                     <textarea noresize class="helpfulSectionWhyNotTextarea"></textarea><br>
-                    <span class="helpfulSectionWhyNotTextAreaError">Please write a longer description.</span>
+                    <span class="helpfulSectionWhyNotTextAreaError animateShow">Please write a longer description.</span>
                     <button id="opinionSubmit" class="helpfulSectionWhyNotSubmit buttonWhiteWithHover">Submit</button>
                 </div>
             </div>
-            <div class="bottomPadding">
-            </div>
-            
-            <footer class="footer">
-                
+            <div class="bottomPadding"></div>
+        </div>
+    </article>
+    
+    <footer class="footer">
+        
   <nav class="pagination" aria-label="Footer">
     <div class="previous">
       
@@ -386,10 +464,8 @@ Ads conversion are monitored in background, you will be informed when some curre
     </div>
   </nav>
 
-            </footer>
-            
-        </div>
-    </article>
+    </footer>
+    
     <div class="results" role="status" aria-live="polite">
         <div class="scrollable">
             <div class="wrapper">
