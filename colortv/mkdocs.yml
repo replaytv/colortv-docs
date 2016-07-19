@@ -2,6 +2,7 @@ site_name: Getting Started
 site_favicon: favicon.ico
 pages:
 - Getting Started: index.md
+- JavaScript SDK: javaScriptSDK.md
 - TVOS SDK: tvOsSdk.md
 - UNITY TVOS: unityTVOS.md
 - ANDROID TV / FIRE TV SDK: androidTVSDK.md
