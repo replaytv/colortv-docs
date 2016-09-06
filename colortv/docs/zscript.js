@@ -313,6 +313,9 @@ function detectLanguage(classes) {
             case 'nginx':
                 lang = 'Nginx';
                 break;
+            case 'language-lua':
+                lang = 'Lua';
+                break;
         }
     });
     return lang;
