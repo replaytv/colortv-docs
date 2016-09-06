@@ -63,9 +63,9 @@ public void OnAdLoaded (string placementId)
   Debug.Log ("Ad is available for placement: " + placementId);
 }
     
-public void OnAdClosed (string placementId)
+public void OnAdClosed (string placementId, bool watched)
 {
-  Debug.Log ("Ad has been closed for placement: " + placementId);
+  Debug.Log ("Ad has been closed for placement: " + placementId + " and was watched: " + watched);
 }
     
 public void OnError (ColorTvError error)
@@ -78,6 +78,9 @@ public void OnAdExpired (string placementId)
   Debug.Log ("Ad has expired for placement: " + placementId);
 }
 ```
+
+!!! note "Warning"
+    From version 1.7.0 of the plugin we've added the **watched** argument to the onAdClosed callback, please update your app.
 
 Then you need to register the delegates by using the ColorTvCallbacks class members:
 
