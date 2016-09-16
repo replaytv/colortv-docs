@@ -93,6 +93,10 @@
     </div>
     
     
+      <div class="button button-github" role="button" aria-label="GitHub">
+        <a href="https://github.com/color-tv" title="@color-tv on GitHub" target="_blank" class="toggle-button icon icon-github"></a>
+      </div>
+    
     <div class="button button-search" role="button" aria-label="Search">
       <label class="toggle-button icon icon-search" title="Search" for="toggle-search"></label>
     </div>
@@ -209,7 +213,7 @@
 
           
         </ul>
-        
+
       </div>
     </div>
   </div>
@@ -336,6 +340,20 @@ In order to show an ad, you must declare the placement in the ad request inside 
     </div>
   </nav>
 
+
+<script>
+  function inIframe () {
+    try {
+      return window.self !== window.top;
+    } catch (e) {
+      return true;
+    }
+  }
+  var header = document.getElementsByClassName('header');
+  if (inIframe ()) {
+    header.className += ' in-frame'
+  }
+</script>
     </footer>
     
     <div class="results" role="status" aria-live="polite">

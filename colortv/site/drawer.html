@@ -41,28 +41,7 @@
             {% include "nav.html" %}
           {% endfor %}
         </ul>
-        {% if config.extra.author %}
-          <hr>
-          <span class="section">The author</span>
-          <ul>
-            {% if config.extra.author.twitter %}
-              {% set author = config.extra.author.twitter %}
-              <li>
-                <a href="https://twitter.com/{{ author }}" target="_blank" title="@{{ author }} on Twitter">
-                  @{{ author }} on Twitter
-                </a>
-              </li>
-            {% endif %}
-            {% if config.extra.author.github %}
-              {% set author = config.extra.author.github %}
-              <li>
-                <a href="https://github.com/{{ author }}" target="_blank" title="@{{ author }} on GitHub">
-                  @{{ author }} on GitHub
-                </a>
-              </li>
-            {% endif %}
-          </ul>
-        {% endif %}
+
       </div>
     </div>
   </div>

@@ -10,3 +10,6 @@ theme_dir: '../mkdocs-material/material'
 markdown_extensions:
   - codehilite(css_class=code)
   - admonition
+extra:
+  author:
+    github: color-tv

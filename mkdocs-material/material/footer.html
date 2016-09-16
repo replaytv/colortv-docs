@@ -36,3 +36,17 @@
     </div>
   </nav>
 {% endif %}
+
+<script>
+  function inIframe () {
+    try {
+      return window.self !== window.top;
+    } catch (e) {
+      return true;
+    }
+  }
+  var header = document.getElementsByClassName('header');
+  if (inIframe ()) {
+    header.className += ' in-frame'
+  }
+</script>

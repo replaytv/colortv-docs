@@ -1,8 +1,27 @@
 'use strict';
 
+function inIframe () {
+  try {
+    return window.self !== window.top;
+  } catch (e) {
+    return true;
+  }
+}
+
 $(document).ready(() => {
 
     let userID = getUrlParameter('id');
+
+    // run highlight
+
+    if (inIframe ()) {
+      $('.header').addClass('in-frame');
+    }
+
+
+    $('pre code').each(function (i, block) {
+      hljs.highlightBlock(block);
+    });
 
     $('li a').each((i, elem) => {
         elem = $(elem);
@@ -11,12 +30,16 @@ $(document).ready(() => {
             elem.attr('href', newURL);
         }
     });
-    // run highlight
 
-
-    $('pre code').each(function (i, block) {
-        hljs.highlightBlock(block);
+    $(window).on('scroll', function () {
+        console.log($(window).scrollTop())
+        if($(window).scrollTop() > 1) {
+            $('.header').addClass('scrolled')
+        } else {
+            $('.header').removeClass('scrolled')
+        }
     });
+
 
     createSingleAndMultilanguageCodeBlocksWithButtons();
 

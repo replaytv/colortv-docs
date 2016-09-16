@@ -93,6 +93,10 @@
     </div>
     
     
+      <div class="button button-github" role="button" aria-label="GitHub">
+        <a href="https://github.com/color-tv" title="@color-tv on GitHub" target="_blank" class="toggle-button icon icon-github"></a>
+      </div>
+    
     <div class="button button-search" role="button" aria-label="Search">
       <label class="toggle-button icon icon-search" title="Search" for="toggle-search"></label>
     </div>
@@ -245,7 +249,7 @@
 
           
         </ul>
-        
+
       </div>
     </div>
   </div>
@@ -284,9 +288,9 @@
 
 <p>Then add the following dependencies in your app's <strong>build.gradle</strong> file in Android Studio: </p>
 <pre class="code"><code class="language-groovy">dependencies {
-    compile 'com.colortv:android-sdk:1.4.0'
-    compile 'com.google.android.gms:play-services-ads:8.4.0'
-    compile 'com.android.support:recyclerview-v7:23.3.0'
+    compile 'com.colortv:android-sdk:1.6.0'
+    compile 'com.google.android.gms:play-services-ads:9.4.0'
+    compile 'com.android.support:recyclerview-v7:24.1.1'
 }</code></pre>
 
 
@@ -383,7 +387,7 @@
     }
 
     @Override
-    public void onAdClosed(String placement) {
+    public void onAdClosed(String placement, boolean watched) {
     }
 
     @Override
@@ -396,6 +400,10 @@
 <pre class="code"><code class="language-java">ColorTvSdk.registerAdListener(listener);</code></pre>
 
 
+<div class="admonition note">
+<p class="admonition-title">WARNING</p>
+<p>The <strong>onAdClosed</strong> callback without the <strong>watched</strong> flag has been deprecated and will be removed in future versions of the SDK.</p>
+</div>
 <p>To load an ad for a certain placement, you need to call the following method:</p>
 <pre class="code"><code class="language-java">ColorTvSdk.loadAd(AdPlacement.LEVEL_UP);</code></pre>
 
@@ -624,6 +632,20 @@ public class MainActivity extends Activity {
     </div>
   </nav>
 
+
+<script>
+  function inIframe () {
+    try {
+      return window.self !== window.top;
+    } catch (e) {
+      return true;
+    }
+  }
+  var header = document.getElementsByClassName('header');
+  if (inIframe ()) {
+    header.className += ' in-frame'
+  }
+</script>
     </footer>
     
     <div class="results" role="status" aria-live="polite">
