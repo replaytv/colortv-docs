@@ -381,7 +381,7 @@ public class MainActivity extends Activity {
 
         @Override
         public void onLoaded(String placement) {
-            ColorTvSdk.showAd(placement);
+            ColorTvSdk.showContentRecommendation(placement);
         }
 
         @Override
