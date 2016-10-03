@@ -28,9 +28,9 @@ Then add the following dependencies in your app's **build.gradle** file in Andro
 
 ```groovy
 dependencies {
-    compile 'com.colortv:android-sdk:1.6.0'
-    compile 'com.google.android.gms:play-services-ads:9.4.0'
-    compile 'com.android.support:recyclerview-v7:24.1.1'
+    compile 'com.colortv:android-sdk:2.0.0'
+    compile 'com.google.android.gms:play-services-ads:9.6.1'
+    compile 'com.android.support:recyclerview-v7:24.2.1'
 }
 ```
 
@@ -99,9 +99,20 @@ Below are all the possible placement values:
 - InsufficientCurrency
 
 - FinishedTutorial
+
+- VideoStart
+
+- VideoPause
+
+- VideoStop
+
+- VideoEnd
  
 !!! note ""
     You can choose what ad units you want to show for a specific placement in the dashboard, [click to learn more about Ad Units](index.md#ad-units)
+   
+!!! note ""
+    The `AdPlacement` class has been deprecated and replaced by `Placements`. The old version will be removed in future versions of the SDK.
     
 To get callbacks about the ad status, you need to create a `ColorTvAdListener` object by overriding it's methods:
 
@@ -139,21 +150,81 @@ ColorTvSdk.registerAdListener(listener);
 To load an ad for a certain placement, you need to call the following method:
 
 ```java
-ColorTvSdk.loadAd(AdPlacement.LEVEL_UP);
+ColorTvSdk.loadAd(Placements.LEVEL_UP);
 ```
 
-Use one of the predefined placements that you can find in `AdPlacement` class, e.g. `AdPlacement.LEVEL_UP`.
+Use one of the predefined placements that you can find in `Placements` class, e.g. `Placements.LEVEL_UP`.
 
 In order to show an ad, call the following function: 
 
 ```java
-ColorTvSdk.showAd(AdPlacement.LEVEL_UP);
+ColorTvSdk.showAd(Placements.LEVEL_UP);
 ```
 
-Calling this method will show an ad for the placement you pass. Make sure you get the `adLoaded` callback first, otherwise the ad won't be played.
+Calling this method will show an ad for the placement you pass. Make sure you get the `onAdLoaded` callback first, otherwise the ad won't be played.
 
 !!! note ""
     It is recommended to set up multiple placements inside your app to maximize monetization and improve user experience.
+
+##Displaying Recommendation Center
+
+Displaying Recommendation Center is simillar to displaying ads. It may be shown wherever you place them inside your app, but you need to include a Placement parameter to indicate the specific location. Placements are used to optimize user experience and analytics. 
+
+You can use the same Placements as are pointed in [Ads section](#placements).
+
+To get callbacks about the content recommendation status, you need to create a ColorTvContentRecommendationListener object by overriding it's methods:
+
+```java
+ColorTvContentRecommendationListener listener = new ColorTvContentRecommendationListener() {
+
+    @Override
+    public void onLoaded(String placement) {
+    }
+
+    @Override
+    public void onError(String placement, ColorTvError colorTvError) {
+    }
+
+    @Override
+    public void onClosed(String placement, boolean watched) {
+    }
+
+    @Override
+    public void onExpired(String placement) {
+    }
+    
+    @Override
+    public void onContentChosen(String videoId, String videoUrl) {
+    }
+};
+```
+
+and register that listener to the SDK:
+
+```java
+ColorTvSdk.registerContentRecommendationListener(listener);
+```
+
+!!! note "WARNING" if you set up videoUrl as a deep link, then onContentChosen callback is invoked simultaneously to opening new activity with the deep link.
+
+To load a Content Recommendation for a certain placement, you need to call the following method:
+
+```java
+ColorTvSdk.loadContentRecommendation(Placements.LEVEL_UP);
+```
+
+Use one of the predefined placements that you can find in `Placements` class, e.g. `Placements.LEVEL_UP`.
+
+In order to show Content Recommendation, call the following function: 
+
+```java
+ColorTvSdk.showContentRecommendation(Placements.LEVEL_UP);
+```
+
+Calling this method will show Content Recommendation for the placement you pass. Make sure you get the `onLoaded` callback first, otherwise the Content Recommendation won't be displayed.
+
+!!! note ""
+    It is recommended to set up multiple placements inside your app to maximize monetization and improve user experience.  
 
 ##Declaring Session
 
@@ -285,7 +356,7 @@ import com.colortv.android.OnCurrencyEarnedListener;
 
 public class MainActivity extends Activity {
 
-    private ColorTvAdListener listener = new ColorTvAdListener() {
+    private ColorTvAdListener adListener = new ColorTvAdListener() {
 
         @Override
         public void onAdLoaded(String placement) {
@@ -306,6 +377,32 @@ public class MainActivity extends Activity {
         }
     };
     
+    private ColorTvContentRecommendationListener recommendationListener = new ColorTvContentRecommendationListener() {
+
+        @Override
+        public void onLoaded(String placement) {
+            ColorTvSdk.showContentRecommendation(placement);
+        }
+
+        @Override
+        public void onError(String placement, ColorTvError colorTvError) {
+        }
+
+        @Override
+        public void onClosed(String placement) {
+        }
+
+        @Override
+        public void onExpired(String placement) {
+        }
+        
+        @Override
+        public void onContentChosen(String videoId, String videoUrl) {
+            //play video with videoId, kept under videoUrl
+        }
+    }
+    };
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -313,12 +410,20 @@ public class MainActivity extends Activity {
 
         ColorTvSdk.setDebugMode(true);
         ColorTvSdk.init(this, "your_app_id");
-        ColorTvSdk.registerOnAdStatusChangedListener(listener);
+        ColorTvSdk.registerAdListener(adListener);
+        ColorTvSdk.registerContentRecommendationListener(recommendationListener);
 
         findViewById(R.id.btnShowAd).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ColorTvSdk.loadAd(AdPlacement.APP_LAUNCH);
+                ColorTvSdk.loadAd(Placements.APP_LAUNCH);
+            }
+        });
+        
+        findViewById(R.id.btnShowContentRec).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ColorTvSdk.loadContentRecommendation(Placements.VIDEO_START);
             }
         });
 
