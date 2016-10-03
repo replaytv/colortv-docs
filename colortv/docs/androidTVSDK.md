@@ -161,7 +161,7 @@ In order to show an ad, call the following function:
 ColorTvSdk.showAd(Placements.LEVEL_UP);
 ```
 
-Calling this method will show an ad for the placement you pass. Make sure you get the `adLoaded` callback first, otherwise the ad won't be played.
+Calling this method will show an ad for the placement you pass. Make sure you get the `onAdLoaded` callback first, otherwise the ad won't be played.
 
 !!! note ""
     It is recommended to set up multiple placements inside your app to maximize monetization and improve user experience.
@@ -205,7 +205,7 @@ and register that listener to the SDK:
 ColorTvSdk.registerContentRecommendationListener(listener);
 ```
 
-!!! note "WARNING" if you set up videoUrl as a deep link, then onContentChosen callback is invoked pararell to opening new activity with this deep link.
+!!! note "WARNING" if you set up videoUrl as a deep link, then onContentChosen callback is invoked simultaneously to opening new activity with the deep link.
 
 To load a Content Recommendation for a certain placement, you need to call the following method:
 
