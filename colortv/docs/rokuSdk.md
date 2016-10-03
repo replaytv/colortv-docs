@@ -202,6 +202,12 @@ colorTvSdk.loadContentRecommendation("Placement")
 !!! note ""
     You can use the same placements as for ads listed above.
 
+You can also add another argument to this method, a previously watched video id, which will make the recommendation more accurate:
+
+```
+colorTvSdk.loadContentRecommendation("Placement", "previousVideoId")
+```
+
 In order to show content recommendation, call the following function:
 
 ```java
