@@ -312,10 +312,10 @@ ColorTvSdk.reportVideoTrackingEvent(videoId, TrackingEventType.VIDEO_STOPPED, wa
 ColorTvSdk.reportVideoTrackingEvent(videoId, TrackingEventType.VIDEO_STARTED);
 ```
 
-videoId is an id which you have set in video feed provided in ColorTv dashboard.
-watchedSeconds is a watched duration of video with given id.
+`videoId` is an id which you have set in video feed provided in ColorTv dashboard.
+`watchedSeconds` is a watched duration of video with given id.
 
-You should use first method only to report VIDEO_STOPPED event, or some custom events which you need to know the time they happened. Second method should be used to report VIDEO_STARTED, VIDEO_COMPLETED events, or some custom events which aren't related to moment in the video.
+You should use first method only to report `VIDEO_STOPPED` event, or some custom events which you need to know the time they happened. Second method should be used to report `VIDEO_STARTED`, `VIDEO_COMPLETED` events, or some custom events which aren't related to moment in the video.
 
 ##INSTALL_REFERRER Conflict
 
