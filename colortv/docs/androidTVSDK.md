@@ -210,13 +210,16 @@ ColorTvSdk.registerContentRecommendationListener(listener);
 
 !!! note "WARNING" if you set up videoUrl as a deep link, then onContentChosen callback is invoked simultaneously to opening new activity with the deep link.
 
-To load a Content Recommendation for a certain placement, you need to call the following method:
+To load a Content Recommendation for a certain placement, you need to call one of the following methods:
 
 ```java
+ColorTvSdk.loadContentRecommendation(Placements.LEVEL_UP, previousVideoId);
+
 ColorTvSdk.loadContentRecommendation(Placements.LEVEL_UP);
 ```
 
 Use one of the predefined placements that you can find in `Placements` class, e.g. `Placements.LEVEL_UP`.
+If you display Recommendation Center after playing some video you should additionally provide id of this video.
 
 In order to show Content Recommendation, call the following function: 
 
