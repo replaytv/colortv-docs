@@ -384,7 +384,7 @@ ColorTvSdk.setRecordAudioEnabled(false);
 After completing all previous steps your Activity could look like this:
 
 ```java
-import com.colortv.android.AdPlacement;
+import com.colortv.android.Placements;
 import com.colortv.android.ColorTvAdListener;
 import com.colortv.android.ColorTvError;
 import com.colortv.android.ColorTvSdk;
