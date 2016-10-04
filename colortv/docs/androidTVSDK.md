@@ -60,7 +60,7 @@ Your app id is generated in the publisher dashboard after adding or editing an a
 Ads may be shown wherever you place them inside your app, but they **must** include a Placement parameter to indicate the specific location. Placements are used to optimize user experience and analytics. 
 
 ###Placements
-Below are all the possible placement values: 
+Below are all predefined placement values: 
 
 - AppLaunch
 
@@ -168,6 +168,9 @@ Calling this method will show an ad for the placement you pass. Make sure you ge
 
 ##Displaying Recommendation Center
 
+!!! note ""
+    Only for Content Providers
+
 Displaying Recommendation Center is simillar to displaying ads. It may be shown wherever you place them inside your app, but you need to include a Placement parameter to indicate the specific location. Placements are used to optimize user experience and analytics. 
 
 You can use the same Placements as are pointed in [Ads section](#placements).
@@ -207,13 +210,16 @@ ColorTvSdk.registerContentRecommendationListener(listener);
 
 !!! note "WARNING" if you set up videoUrl as a deep link, then onContentChosen callback is invoked simultaneously to opening new activity with the deep link.
 
-To load a Content Recommendation for a certain placement, you need to call the following method:
+To load a Content Recommendation for a certain placement, you need to call one of the following methods:
 
 ```java
+ColorTvSdk.loadContentRecommendation(Placements.LEVEL_UP, previousVideoId);
+
 ColorTvSdk.loadContentRecommendation(Placements.LEVEL_UP);
 ```
 
 Use one of the predefined placements that you can find in `Placements` class, e.g. `Placements.LEVEL_UP`.
+If you display Recommendation Center after playing some video you should additionally provide id of this video to get a better recommendation.
 
 In order to show Content Recommendation, call the following function: 
 
@@ -247,6 +253,7 @@ protected void onDestroy() {
 ```
 
 ##Earning Virtual Currency
+
 A listener must be added in order to receive events when a virtual currency transaction has occurred. 
 
 ```java
@@ -283,6 +290,35 @@ In order to distribute currency to the same user but on other device, use below:
 ```java
 ColorTvSdk.setUserId("user123");
 ```
+
+##Video Tracking
+
+!!! note ""
+    Only for Content Providers
+
+In order to provide additional data for ColorTv Analytics and to improve Content Recommendation, you can report events related to your videos.
+
+###Tracking Events
+Below are all predefined in `TrackingEventType` class tracking event values: 
+
+- VIDEO_STARTED
+
+- VIDEO_STOPPED
+
+- VIDEO_COMPLETED
+
+You can report them calling one of following methods:
+
+```java
+ColorTvSdk.reportVideoTrackingEvent(videoId, TrackingEventType.VIDEO_STOPPED, watchedSeconds);
+
+ColorTvSdk.reportVideoTrackingEvent(videoId, TrackingEventType.VIDEO_STARTED);
+```
+
+`videoId` is an id which you have set in video feed provided in ColorTv dashboard.
+`watchedSeconds` is a watched duration of video with given id.
+
+You should use the first method only to report `VIDEO_STOPPED` event, or some custom events which you need to know the time they happened. Second method should be used to report `VIDEO_STARTED`, `VIDEO_COMPLETED` events, or some custom events which aren't related to moment in the video.
 
 ##INSTALL_REFERRER Conflict
 
