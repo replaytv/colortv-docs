@@ -32,7 +32,6 @@ $(document).ready(() => {
     });
 
     $(window).on('scroll', function () {
-        console.log($(window).scrollTop())
         if($(window).scrollTop() > 1) {
             $('.header').addClass('scrolled')
         } else {

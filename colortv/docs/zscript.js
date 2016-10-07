@@ -10,6 +10,23 @@ function inIframe () {
 
 $(document).ready(() => {
 
+    switch (window.location.pathname) {
+      case '/tvOsSdk/':
+        $('.button-github a').attr('href', 'https://github.com/replaytv/Color-tvOS-SDK');
+        break;
+
+      case '/unityTVOS/':
+        $('.button-github a').attr('href', 'https://bintray.com/colortv/unity-plugin/unity-plugin/view');
+        break;
+
+      case '/unityAndroidTV/':
+        $('.button-github a').attr('href', 'https://bintray.com/colortv/unity-plugin/unity-plugin/view');
+        break;
+
+      default:
+        $('.button-github a').attr('href', 'https://github.com/color-tv')
+    }
+
     let userID = getUrlParameter('id');
 
     // run highlight
@@ -32,7 +49,6 @@ $(document).ready(() => {
     });
 
     $(window).on('scroll', function () {
-        console.log($(window).scrollTop())
         if($(window).scrollTop() > 1) {
             $('.header').addClass('scrolled')
         } else {
