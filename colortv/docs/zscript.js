@@ -10,16 +10,21 @@ function inIframe () {
 
 $(document).ready(() => {
 
-    switch (window.location.pathname) {
-      case '/tvOsSdk/':
+    var pathname = window.location.pathname;
+    var pathArray = pathname.split('/');
+    var lastUrlSegment = pathArray[pathArray.length - 2];
+
+
+    switch (lastUrlSegment) {
+      case 'tvOsSdk':
         $('.button-github a').attr('href', 'https://github.com/replaytv/Color-tvOS-SDK');
         break;
 
-      case '/unityTVOS/':
+      case 'unityTVOS':
         $('.button-github a').attr('href', 'https://bintray.com/colortv/unity-plugin/unity-plugin/view');
         break;
 
-      case '/unityAndroidTV/':
+      case 'unityAndroidTV':
         $('.button-github a').attr('href', 'https://bintray.com/colortv/unity-plugin/unity-plugin/view');
         break;
 
