@@ -8,7 +8,7 @@ Download this repository as a zip file, extract it and merge the components, fon
 
 Initialize the ColorTV SDK by invoking the following method in your main.brs:
 
-```
+```Brightscript
 colorTvSdk = ColorTvSdk("your_app_id_from_dashboard")
 ```
 
@@ -16,13 +16,13 @@ Your app id is generated in the publisher dashboard after adding or editing an a
 
 After initialization, you can obtain a reference to the SDK by calling the following function:
 
-```
+```Brightscript
 colorTvSdk = ColorTVSdkGetInstance()
 ```
 
 **IMPORTANT:** To ensure that all the session and currency calls are being invoked in the background, please implement the following function call in all your event loops, like so:
 
-```
+```Brightscript
 while true
     msg = wait(GetColorTVSDKTimerInterval(), m.port)
     msgType = type(msg)
@@ -40,11 +40,11 @@ The first `wait` function parameter will ensure the loop gets executed every sec
 
 To obtain verbose logging from the SDK you can enable debug mode by calling:
 
-```
+```Brightscript
 colorTvSdk.setDebugMode(true)
 ```
 
-### Ads
+## Ads
 
 #### Placements
 Below are all the possible placement values:
@@ -102,7 +102,7 @@ Below are all the possible placement values:
 
 If you want to receive status updates about ads create the following callback functions:
 
-```
+```Brightscript
 sub adLoaded(placement as String)
     print "Ad loaded for placement: " + placement
 end sub
@@ -122,7 +122,7 @@ end sub
 
 And then register those callbacks by invoking:
 
-```
+```Brightscript
 adCallbacks = {
     adLoaded: adLoaded
     adClosed: adClosed
@@ -134,7 +134,7 @@ colorTvSdk.registerAdCallbacks(adCallbacks)
 
 To load an ad for a certain placement, you need to call the following method:
 
-```
+```Brightscript
 colorTvSdk.loadAd("Placement")
 ```
 
@@ -150,18 +150,18 @@ Calling this method will show an ad for the placement you pass. Make sure you ge
 
 We recommend to show ads in the `adLoaded` callback like so:
 
-```
+```Brightscript
 sub adLoaded(placement as String)
     print "Ad loaded for placement: " + placement
     ColorTVSdkGetInstance().showAd(placement)
 end sub
 ```
 
-### Content Recommendation
+## Content Recommendation
 
 If you want to receive status updates about content recommendation create the following callback functions:
 
-```
+```Brightscript
 sub contentRecommendationLoaded(placement as String)
     print "Content recommendation loaded for placement: " + placement
 end sub
@@ -181,7 +181,7 @@ end sub
 
 And then register those callbacks by invoking:
 
-```
+```Brightscript
 contentRecommendationCallbacks = {
     contentRecommendationLoaded: contentRecommendationLoaded
     contentRecommendationClicked: contentRecommendationClicked
@@ -195,7 +195,7 @@ After the user clicks on one of the content recommendation items, you will be no
 
 To load content recommendation for a certain placement, you need to call the following method:
 
-```
+```Brightscript
 colorTvSdk.loadContentRecommendation("Placement")
 ```
 
@@ -204,7 +204,7 @@ colorTvSdk.loadContentRecommendation("Placement")
 
 You can also add another argument to this method, a previously watched video id, which will make the recommendation more accurate:
 
-```
+```Brightscript
 colorTvSdk.loadContentRecommendation("Placement", "previousVideoId")
 ```
 
@@ -218,18 +218,18 @@ Calling this method will show content recommendation for the placement you pass.
 
 We recommend to show content recommendation in the `contentRecommendationLoaded` callback function like so:
 
-```
+```Brightscript
 sub contentRecommendationLoaded(placement as String)
     printWithTime("Content recommendation loaded for placement: " + placement)
     ColorTVSdkGetInstance().showContentRecommendation(placement)
 end sub
 ```
 
-#### Video tracking
+## Video tracking
 
 If you want to collect data about the users' behaviour in your channel's videos you can use the video tracking function:
 
-```
+```Brightscript
 colorTvSdk.trackVideoEvents("videoId", msg)
 ```
 
@@ -237,7 +237,7 @@ You can use this function with both Scene Graph Video Node messages and `roVideo
 
 ##### Usage with Scene Graph Video Node:
 
-```
+```Brightscript
 screen = CreateObject("roSGScreen")
 port = CreateObject("roMessagePort")
 screen.setMessagePort(port)
@@ -269,7 +269,7 @@ where the `colorTvSdk.trackVideoEvents("videoId", "interrupted")` line is there 
 
 ##### Usage with `roVideoPlayer` object:
 
-```
+```Brightscript
 canvas = prepareCanvas()
 canvas.Show()
 
@@ -301,7 +301,7 @@ where the `colorTvSdk.trackVideoEvents("videoId", "interrupted")` line is there 
 
 The `player.SetPositionNotificationPeriod(1)` is very important, because this will notify the SDK of every second of the video that has passed and will allow to determine the watched lenght of the video.
 
-### User profile
+## User Profiles
 
 To improve ad targeting you can use the user profile functions. You can set age, gender and some keywords as comma-separated values, eg. `sport,health` like so:
 
