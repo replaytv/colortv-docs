@@ -87,13 +87,13 @@ Below are all the possible placement values:
 
 - FinishedTutorial
 
-- VideoStarted
+- VideoStart
 
-- VideoPaused
+- VideoPause
 
-- VideoStopped
+- VideoStop
 
-- VideoFinished
+- VideoFinish
 
 !!! note ""
     You can choose what ad units you want to show for a specific placement in the dashboard, [click to learn more about Ad Units](https://www.colortv.com/dashboard/docs/#ad-units)
