@@ -73,6 +73,10 @@ Placements are specific times or locations inside of your app where you can choo
   * OutofEnergy
   * InsufficientCurrency
   * FinishedTutorial
+  * VideoStart
+  * VideoPause
+  * VideoStop
+  * VideoEnd
   
 By setting up placements inside your app, you will have the ability to control what type of ad units are being shown at specific locations in your app in real-time server side. In addition to added control, our machine learning algorithm optimizes the best performing ad units for specific times: Making more relevant content displayed to your users and maximizing revenue for you. It is recommended that you select all ad units to maximize revenue for your placements.
 
