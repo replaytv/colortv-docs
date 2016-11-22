@@ -227,6 +227,9 @@ end sub
 
 ## Video tracking
 
+!!! note ""
+    Only for Content Providers
+
 If you want to collect data about the users' behaviour in your channel's videos you can use the video tracking function:
 
 ```Brightscript
