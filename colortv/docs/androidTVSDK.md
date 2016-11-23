@@ -5,9 +5,6 @@ Before getting started make sure you have:
 
 * Make sure your Android Studio version is up to date and that your application is targeting `minSdkVersion:14`
 
-!!! note ""
-    Our SDK supports Android versions 21+, but for convenience in maintaining one app for multiple platforms we've lowered the `minSdkVersion` to 14. ColorTv SDK will not be initialized however on versions below 21.
-
 ##Adding Android TV/Amazon Fire TV SDK
 
 For a demo of the correct integration, please refer to our [demo application](https://github.com/color-tv/android-DemoApp)
@@ -55,9 +52,12 @@ Your app id is generated in the publisher dashboard after adding or editing an a
 !!! note ""
     We recommend putting the initialization method inside either **Application.onCreate()** or **MainActivity.onCreate() **. The application must be initialized before invoking any functions of the SDK.
 
-##Displaying Ads
+##Displaying Recommendation Center
 
-Ads may be shown wherever you place them inside your app, but they **must** include a Placement parameter to indicate the specific location. Placements are used to optimize user experience and analytics. 
+!!! note ""
+    Only for Content Providers
+
+Displaying Recommendation Center is simillar to displaying ads. It may be shown wherever you place them inside your app, but you need to include a Placement parameter to indicate the specific location. Placements are used to optimize user experience and analytics. 
 
 ###Placements
 Below are all predefined placement values: 
@@ -107,73 +107,6 @@ Below are all predefined placement values:
 - VideoStop
 
 - VideoEnd
- 
-!!! note ""
-    You can choose what ad units you want to show for a specific placement in the dashboard, [click to learn more about Ad Units](index.md#ad-units)
-   
-!!! note ""
-    The `AdPlacement` class has been deprecated and replaced by `Placements`. The old version will be removed in future versions of the SDK.
-    
-To get callbacks about the ad status, you need to create a `ColorTvAdListener` object by overriding it's methods:
-
-```java
-ColorTvAdListener listener = new ColorTvAdListener() {
-
-    @Override
-    public void onAdLoaded(String placement) {
-        ColorTvSdk.showAd(placement);
-    }
-
-    @Override
-    public void onAdError(String placement, ColorTvError colorTvError) {
-    }
-
-    @Override
-    public void onAdClosed(String placement, boolean watched) {
-    }
-
-    @Override
-    public void onAdExpired(String placement) {
-    }
-};
-```
-
-and register that listener to the SDK:
-
-```java
-ColorTvSdk.registerAdListener(listener);
-```
-
-!!! note "WARNING"
-    The **onAdClosed** callback without the **watched** flag has been deprecated and will be removed in future versions of the SDK.
-
-To load an ad for a certain placement, you need to call the following method:
-
-```java
-ColorTvSdk.loadAd(Placements.LEVEL_UP);
-```
-
-Use one of the predefined placements that you can find in `Placements` class, e.g. `Placements.LEVEL_UP`.
-
-In order to show an ad, call the following function: 
-
-```java
-ColorTvSdk.showAd(Placements.LEVEL_UP);
-```
-
-Calling this method will show an ad for the placement you pass. Make sure you get the `onAdLoaded` callback first, otherwise the ad won't be played.
-
-!!! note ""
-    It is recommended to set up multiple placements inside your app to maximize monetization and improve user experience.
-
-##Displaying Recommendation Center
-
-!!! note ""
-    Only for Content Providers
-
-Displaying Recommendation Center is simillar to displaying ads. It may be shown wherever you place them inside your app, but you need to include a Placement parameter to indicate the specific location. Placements are used to optimize user experience and analytics. 
-
-You can use the same Placements as are pointed in [Ads section](#placements).
 
 To get callbacks about the content recommendation status, you need to create a ColorTvContentRecommendationListener object by overriding it's methods:
 
@@ -230,11 +163,84 @@ ColorTvSdk.showContentRecommendation(Placements.LEVEL_UP);
 Calling this method will show Content Recommendation for the placement you pass. Make sure you get the `onLoaded` callback first, otherwise the Content Recommendation won't be displayed.
 
 !!! note ""
+    It is recommended to set up multiple placements inside your app to maximize monetization and improve user experience.
+    
+##Displaying Ads
+
+!!! note "WARNING"
+    Ads are provided only for AndroidTv devices. 
+
+Ads may be shown wherever you place them inside your app, but they **must** include a Placement parameter to indicate the specific location. Placements are used to optimize user experience and analytics. 
+
+You can use the same Placements as are pointed in [content recommendation section](#placements).
+ 
+!!! note ""
+    You can choose what ad units you want to show for a specific placement in the dashboard, [click to learn more about Ad Units](index.md#ad-units)
+   
+!!! note ""
+    The `AdPlacement` class has been deprecated and replaced by `Placements`. The old version will be removed in future versions of the SDK.
+    
+To get callbacks about the ad status, you need to create a `ColorTvAdListener` object by overriding it's methods:
+
+```java
+ColorTvAdListener listener = new ColorTvAdListener() {
+
+    @Override
+    public void onAdLoaded(String placement) {
+        ColorTvSdk.showAd(placement);
+    }
+
+    @Override
+    public void onAdError(String placement, ColorTvError colorTvError) {
+    }
+
+    @Override
+    public void onAdClosed(String placement, boolean watched) {
+    }
+
+    @Override
+    public void onAdExpired(String placement) {
+    }
+};
+```
+
+and register that listener to the SDK:
+
+```java
+ColorTvSdk.registerAdListener(listener);
+```
+
+!!! note "WARNING"
+    The **onAdClosed** callback without the **watched** flag has been deprecated and will be removed in future versions of the SDK.
+
+To load an ad for a certain placement, you need to call the following method:
+
+```java
+ColorTvSdk.loadAd(Placements.LEVEL_UP);
+```
+
+!!! note ""
+    Invoking loadAd method on a mobile device won't do anything - it will just return at the beggining.
+
+Use one of the predefined placements that you can find in `Placements` class, e.g. `Placements.LEVEL_UP`.
+
+In order to show an ad, call the following function: 
+
+```java
+ColorTvSdk.showAd(Placements.LEVEL_UP);
+```
+
+!!! note ""
+    Invoking showAd method on a mobile device won't do anything - it will just return at the beggining.
+    
+Calling this method will show an ad for the placement you pass. Make sure you get the `onAdLoaded` callback first, otherwise the ad won't be played.
+
+!!! note ""
     It is recommended to set up multiple placements inside your app to maximize monetization and improve user experience.  
 
 ##Declaring Session
 
-Creating a session is **necessary** for tracking virtual currency transactions and user sessions. Add the following code to every Activity file in your application e.g. `MainActivity.java`
+Creating a session is **necessary** for tracking user sessions and  virtual currency transactions. Add the following code to every Activity file in your application e.g. `MainActivity.java`
 
 ```java
 // Start Session
