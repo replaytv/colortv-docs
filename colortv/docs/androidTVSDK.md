@@ -220,7 +220,7 @@ ColorTvSdk.loadAd(Placements.LEVEL_UP);
 ```
 
 !!! note ""
-    Invoking loadAd method on a mobile device won't do anything - it will just return at the beggining.
+    Invoking **loadAd** method on a mobile device won't do anything - it will just return at the beggining.
 
 Use one of the predefined placements that you can find in `Placements` class, e.g. `Placements.LEVEL_UP`.
 
@@ -231,7 +231,7 @@ ColorTvSdk.showAd(Placements.LEVEL_UP);
 ```
 
 !!! note ""
-    Invoking showAd method on a mobile device won't do anything - it will just return at the beggining.
+    Invoking **showAd** method on a mobile device won't do anything - it will just return at the beggining.
     
 Calling this method will show an ad for the placement you pass. Make sure you get the `onAdLoaded` callback first, otherwise the ad won't be played.
 
