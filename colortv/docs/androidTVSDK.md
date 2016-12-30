@@ -333,6 +333,22 @@ ColorTvSdk.reportVideoTrackingEvent(videoId, TrackingEventType.VIDEO_STOPPED, po
 
 To report fast-forwarding or rewinding through the video, use `VIDEO_PAUSED` at the start and `VIDEO_RESUMED` at the end of the process.
 
+If you are using ExoPlayer you can track your video events calling the following method:
+
+```java
+ColorTvSdk.setExoPlayerToTrackVideo(exoPlayer);
+```
+
+`exoPlayer` is your ExoPlayer instance.
+
+If you are launching some video without usage of ColorTv Content Recommendation Center then you need to also call:
+
+```java
+ColorTvSdk.setVideoIdForPlayerTracking(videoId);
+```
+
+with id of launching video, set up in ColorTv Dashbord. In case you are using ColorTv Content Recommendation video id will be taken from recommendation.
+
 ##INSTALL_REFERRER Conflict
 
 If any of your `BroadcastReceiver` class declared in `AndroidManifest.xml` contains Intent Action `INSTALL_REFERRER`:
