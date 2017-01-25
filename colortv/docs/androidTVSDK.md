@@ -7,7 +7,7 @@ Before getting started make sure you have:
 
 ##Adding Android TV/Amazon Fire TV SDK
 
-For a demo of the correct integration, please refer to our [demo application](https://github.com/color-tv/android-DemoApp)
+For a sample of the correct integration, please refer to our [sample application](https://github.com/color-tv/android-SampleApp)
 
 ###Connecting Your App
 
