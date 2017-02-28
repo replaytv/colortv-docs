@@ -71,6 +71,7 @@ protected void onDestroy() {
 ```
 
 ##Placements
+
 Placements are used to optimize user experience and analytics. Below are all predefined placement values used to indicate the specific location of Recommendation Center, UpNext and ads in your app:
 
 - VideoStart
@@ -97,12 +98,14 @@ Placements are used to optimize user experience and analytics. Below are all pre
 - InsufficientCurrency
 - FinishedTutorial
 
-##Displaying Recommendation Center
+##Content Recommendations
 
 !!! note ""
     Only for Content Providers
 
-Recommendation Center may be shown wherever you place it inside your app, but it **must** include a Placement parameter.
+In order to control Content Recommendations you need to retrieve **ColorTvRecommendationsController** object by calling `ColorTvSdk.getRecommendationsController()` method. This object is a singleton, which allows loading and showing both **Recommendation Center** and **UpNext**, listening to events or managing assets preloading.
+
+###Registering recommendations listener
 
 To get callbacks about the content recommendation status, you need to create a ColorTvContentRecommendationListener object by implementing it's methods:
 
@@ -149,24 +152,118 @@ recommendationsController.registerListener(recommendationsListener);
 !!! note "WARNING" 
     If you set up `videoUrl` as a deep link, then `onContentChosen` callback is invoked simultaneously to opening new activity with the deep link.
 
-To load Content Recommendation for a certain placement, you need to call one of the following methods:
+###Loading Content Recommendations
+
+Before displaying recommendations in either **Recommendation Center** or **UpNext** you need to load recommendations related data from server. In order to do that you can invoke one of following methods:
 
 ```java
-recommendationsController.load(ColorTvPlacements.VIDEO_END, previousVideoId);
+colorTvRecommendationsController.load(ColorTvPlacements.VIDEO_END);
 
-recommendationsController.load(ColorTvPlacements.VIDEO_END);
+colorTvRecommendationsController.load(ColorTvPlacements.VIDEO_END, previousVideoId);
+
+colorTvRecommendationsController.loadOnlyUpNext(ColorTvPlacements.VIDEO_END);
+
+colorTvRecommendationsController.loadOnlyUpNext(ColorTvPlacements.VIDEO_END, previousVideoId);
 ```
 
 Use one of the predefined placements that you can find in `ColorTvPlacements` class, e.g. `ColorTvPlacements.VIDEO_END`.
-If you display Recommendation Center after playing a video, you should additionally provide id of this video to get accurate recommendations.
 
-In order to show Content Recommendation, call the following function:
+Methods with `previousVideoId` parameter should be used when loading recommendations after playing a video in your app, as it allows to provide accurate recommendations. Video Id have to be the same as set in your feed shared with ColorTv. `load` methods can be used when using both **Recommendation Center** and **UpNext**. `loadOnlyUpNext` should be used when your intent is to use **UpNext** unit only, as it skips loading assets for **Recommendation Center**.
+
+In case you would like to load recommendations just before showing them, you can decide to speed up the loading process by disabling assets prealoding. In this case you need to invoke the following method:
 
 ```java
-recommendationsController.showRecommendationCenter(ColorTvPlacements.VIDEO_END);
+colorTvRecommendationsController.setPreloadingAssets(false);
 ```
 
-Calling this method will show Recommendation Center for the placement you pass. Make sure you get the `onLoaded` callback first, otherwise the Recommendation Center won't be displayed.
+It is not a recommended action, however, as the video previews won't be played due to a decrease in performance.
+
+###Showing Content Recommendations
+
+You can show Content Recommendations in one of two visual forms: **Recommendation Center** and **UpNext**.
+
+####Recommendation Center
+
+Recommendation Center is a unit that lets you display recommendations in an Activity with scrollable grid layout form.
+
+In order to show Recommendation Center, you have to call following method: 
+
+```java
+colorTvRecommendationsController.showRecommendationCenter(Placements.VIDEO_END);
+```
+
+Invoking this method will show Recommendation Center for the placement you pass. You need to call the `load` method for a given placement before invoking `show` in order to load recommendations related data. Also make sure you got the `onLoaded` callback first, otherwise the Recommendation Center won't be displayed.
+
+####UpNext
+
+UpNext is a unit which diplays only the best recommendation in form of a small view designed to be placed above a video, which up next holds recommendation for. In order to keep the video playing we are delivering UpNext as a Fragment which you need to add to your layout. To make it work properly, you need to add a container to which you'll inject the UpNext fragment. This container have to be inside a RelativeLayout or a FrameLayout with the possibility to use the whole screen size in order to let it place itself in a proper place and size for various devices. The container should also have width set to `match_parent` and height set to `wrap_content`. For a sample of the correct layout, please refer to our [sample application's layout](https://github.com/color-tv/android-SampleApp/blob/master/SampleApp/app/src/main/res/layout/activity_exo.xml). In close future we are going to provide more possibilities to customize the UpNext layout and it's position.
+
+In order to fetch UpNext fragment, you have to call following method:
+
+```java
+colorTvRecommendationsController.getUpNextFragment(Placements.VIDEO_END);
+```
+
+It should be previously loaded for a given placement with either `load` or `loadOnlyUpNext` methods. Unlike **Recommendation Center** the same **UpNext** can be displayed multiple times with the same server data as long as it isn't clicked. What is more when UpNext wasn't clicked it is possible to invoke `showContentRecommendation` method. It is impossible to display **Recommendation Center** when **UpNext** is added, but if you call the `showConetentRecomendation` method, **Recommendation Center** will be opened as soon as UpNext is closed without clicking it.
+
+**UpNextFragment** provides a bunch of methods that allows you to manage **UpNext's** behaviour.
+
+It is highly recommended to use the following method:
+
+```java
+upNextFragment.autoStart(getSupportFragmentManager(), R.id.flUpNextFragment, upNextStartBeforeVideoEndTime, shouldUseAutoPlay, new UpNextFragment.ColorTvVideoListener() {
+                    @Override
+                    public int getDurationInSeconds() {
+                        return (int) TimeUnit.MILLISECONDS.toSeconds(videoView.getDuration());
+                    }
+
+                    @Override
+                    public int getPositionInSeconds() {
+                        return (int) TimeUnit.MILLISECONDS.toSeconds(videoView.getCurrentPosition());
+                    }
+                });
+            }
+```
+
+It is designed to improve user experience provided by **UpNext** and lets you skip handling many cases by yourself. It automatically injects the fragment into the view container with given id, when video which it is related to is positioned at given amount of seconds before the end. It also removes **UpNext** when the video has been rewind to a position farther from video end than given in `secondsBeforeEnd`. It records all video pauses, for both buffering and controller invoked pause and it is pausing the auto play timer in such situations. When user forwards the video to a position closer than 3 seconds to the end, then auto play timer is set to `secondsBeforeEnd` value in order to give the user time to react to UpNext. Otherwise it is set to the amount of seconds remaining to the end of the video. When auto play countdown finishes, it automatically "clicks" an element invoking the `onContentChosen` callback. Position of the video is being read from `videoListener` which should return the current position of a video and its whole duration.
+
+If auto start is no longer required it can also be canceled with the following method:
+
+```java
+upNextFragment.cancelAutoStart();
+```
+
+Auto playing can be disabled by `shouldUseAutoPlay` flag. Then it either waits for a click from the user, or can be handled with other methods such as:
+
+```java
+upNextFragment.setAutoPlayTimer(lengthInMillis, shouldStartAutomatically);
+
+upNextFragment.startAutoPlayTimer();
+
+upNextFragment.stopAutoPlayTimer();
+
+upNextFragment.invokeClick();
+
+upNextFragment.cancel();
+```
+
+These methods allow you to configure custom behaviour such as clicking **UpNext** at the video end, initiating auto play then; just clicking recommendation at video end without any timer; cancelling (removing) **UpNext** on some custom action, and many others.
+
+`invokeClick` and `cancel` methods can be safely used when `autoStart` is used with `shouldUseAutoPlay`, although it is not recommended to use `setAutoPlayTimer`, `startAutoPlayTimer` and `stopAutoPlayTimer` in that case, as it may cause some unexpected behaviour.
+
+#####UpNext's specific actions for TVs
+
+Android TV requires focus handling and controlling with key events. It is why we've provided following methods:
+
+```java
+upNextFragment.requestFocus();
+
+upNextFragment.dispatchKeyEvent();
+```
+
+By default UpNext requests focus when created, but in case of a necessity to change it, it is possible to gain focus back by calling `requestFocus` method.
+    
+There is no need to invoke `dispatchKeyEvent`, as the default behaviour based on focus with usage of `autoStart` works, although you may find it useful in your specific case. You need to add it to your activity's `dispatchKeyEvent` method. It dispatches `KEYCODE_DPAD_CENTER` and `KEYCODE_MEDIA_PLAY_PAUSE` invoking click on **UpNext**, and for other events removes the **UpNext** fragment. It doesn't dispatch `KEYCODE_BACK` and when **UpNext** is destroyed. It dispatches only `ACTION_DOWN` events. It is designed especially for media players that don't work properly on AndroidTv when there is some other view which is focused.
 
 ##Video Tracking
 
@@ -217,7 +314,7 @@ videoTrackingController.setVideoIdForPlayerTracking(videoId);
 
 with id of launched video that is set up in ColorTv Dashbord. In case you are using ColorTv Content Recommendation, the video id will be automatically taken from the chosen recommendation.
 
-##Displaying Ads
+##Ads
 
 !!! note "WARNING"
     Ads are provided only for AndroidTv devices.
