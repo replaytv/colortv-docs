@@ -1,5 +1,5 @@
 ##Getting Started
-Before getting started make sure you have: 
+Before getting started make sure you have:
 
 * Added your app in the My Applications section of the Color Dashboard. You need to do this so that you can get your App ID that you'll be adding to your app with our SDK.
 
@@ -21,7 +21,7 @@ repositories {
 }
 ```
 
-Then add the following dependencies in your app's **build.gradle** file in Android Studio: 
+Then add the following dependencies in your app's **build.gradle** file in Android Studio:
 
 ```groovy
 dependencies {
@@ -39,7 +39,7 @@ Doing this prevents you from having to download our SDK and adding it manually t
 
 ##Initializing the SDK
 
-Setup the ColorTvSDK by invoking `ColorTvSdk` initialization method. 
+Setup the ColorTvSDK by invoking `ColorTvSdk` initialization method.
 
 ```java
 ColorTvSdk.init(this, "your_app_id_from_dashboard");
@@ -127,7 +127,7 @@ ColorTvContentRecommendationListener recommendationsListener = new ColorTvConten
     @Override
     public void onExpired(String placement) {
     }
-    
+
     @Override
     public void onContentChosen(String videoId, String videoUrl, Map<String, String> videoParams) {
     }
@@ -149,7 +149,7 @@ and register that listener to the SDK:
 recommendationsController.registerListener(recommendationsListener);
 ```
 
-!!! note "WARNING" 
+!!! note "WARNING"
     If you set up `videoUrl` as a deep link, then `onContentChosen` callback is invoked simultaneously to opening new activity with the deep link.
 
 ###Loading Content Recommendations
@@ -186,7 +186,7 @@ You can show Content Recommendations in one of two visual forms: **Recommendatio
 
 Recommendation Center is a unit that lets you display recommendations in an Activity with scrollable grid layout form.
 
-In order to show Recommendation Center, you have to call following method: 
+In order to show Recommendation Center, you have to call following method:
 
 ```java
 colorTvRecommendationsController.showRecommendationCenter(Placements.VIDEO_END);
@@ -262,7 +262,7 @@ upNextFragment.dispatchKeyEvent();
 ```
 
 By default UpNext requests focus when created, but in case of a necessity to change it, it is possible to gain focus back by calling `requestFocus` method.
-    
+
 There is no need to invoke `dispatchKeyEvent`, as the default behaviour based on focus with usage of `autoStart` works, although you may find it useful in your specific case. You need to add it to your activity's `dispatchKeyEvent` method. It dispatches `KEYCODE_DPAD_CENTER` and `KEYCODE_MEDIA_PLAY_PAUSE` invoking click on **UpNext**, and for other events removes the **UpNext** fragment. It doesn't dispatch `KEYCODE_BACK` and when **UpNext** is destroyed. It dispatches only `ACTION_DOWN` events. It is designed especially for media players that don't work properly on AndroidTv when there is some other view which is focused.
 
 ##Video Tracking
@@ -322,10 +322,10 @@ with id of launched video that is set up in ColorTv Dashbord. In case you are us
 Displaying ads is simillar to displaying Recommendation Center. They may be shown wherever you place them inside your app, but you need to include a Placement parameter to indicate the specific location.
 
 You can use the same Placements as are pointed in [Placements section](#placements).
- 
+
 !!! note ""
     You can choose what ad units you want to show for a specific placement in the dashboard, [click to learn more about Ad Units](index.md#ad-units)
-    
+
 To get callbacks about the ad status, you need to create a `ColorTvAdListener` object by overriding it's methods:
 
 ```java
@@ -369,12 +369,12 @@ adController.load(ColorTvPlacements.LEVEL_UP);
 
 Use one of the predefined placements that you can find in `ColorTvPlacements` class, e.g. `ColorTvPlacements.LEVEL_UP`.
 
-In order to show an ad, call the following function: 
+In order to show an ad, call the following function:
 
 ```java
 adController.show(ColorTvPlacements.LEVEL_UP);
 ```
-    
+
 Calling this method will show an ad for the placement you pass. Make sure you get the `onLoaded` callback first, otherwise the ad won't be played.
 
 !!! note ""
@@ -382,7 +382,7 @@ Calling this method will show an ad for the placement you pass. Make sure you ge
 
 ##Earning Virtual Currency
 
-A listener must be added in order to receive events when a virtual currency transaction has occurred. 
+A listener must be added in order to receive events when a virtual currency transaction has occurred.
 
 ```java
 private OnCurrencyEarnedListener listener = new OnCurrencyEarnedListener() {
@@ -393,7 +393,7 @@ private OnCurrencyEarnedListener listener = new OnCurrencyEarnedListener() {
 };
 
 ...
-  
+
 adController.addOnCurrencyEarnedListener(listener);
 ```
 
@@ -403,7 +403,7 @@ Use the following function to unregister listeners:
 adController.removeOnCurrencyEarnedListener(listener);
 ```
 
-Use the following function to cancel all listeners: 
+Use the following function to cancel all listeners:
 
 ```java
 adController.clearOnCurrencyEarnedListeners();
@@ -431,7 +431,7 @@ If any of your `BroadcastReceiver` class declared in `AndroidManifest.xml` conta
 </receiver>
 ```
 
-Add the following code to your `AndroidManifest.xml` file: 
+Add the following code to your `AndroidManifest.xml` file:
 
 ```xml
 <receiver android:name="com.colortv.android.ColorTvBroadcastReceiver">
@@ -447,7 +447,7 @@ if (intent.getAction().equals("com.android.vending.INSTALL_REFERRER")) {
 ```
 
 ##User profile
- 
+
 To improve ad targeting you can use the `ColorTvUserProfile` class. To do so, get the reference to this class:
 
 ```java
@@ -516,7 +516,7 @@ public class MainActivity extends Activity {
         public void onExpired(String placement) {
         }
     };
-    
+
     private ColorTvContentRecommendationListener recommendationListener = new ColorTvContentRecommendationListener() {
 
         @Override
@@ -535,13 +535,13 @@ public class MainActivity extends Activity {
         @Override
         public void onExpired(String placement) {
         }
-        
+
         @Override
         public void onContentChosen(String videoId, String videoUrl, Map<String, String> videoParams) {
             //play video with videoId, kept under videoUrl
         }
     };
-    
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -551,7 +551,7 @@ public class MainActivity extends Activity {
 
         recommendationsController = ColorTvSdk.getRecommendationsController();
         recommendationsController.registerListener(recommendationListener);
-        
+
         findViewById(R.id.btnShowContentRec).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -568,7 +568,7 @@ public class MainActivity extends Activity {
                 adController.load(ColorTvPlacements.APP_LAUNCH);
             }
         });
-        
+
         adController.addOnCurrencyEarnedListener(new OnCurrencyEarnedListener() {
             @Override
             public void onCurrencyEarned(String placement, int currencyAmount, String currencyType) {
@@ -578,7 +578,7 @@ public class MainActivity extends Activity {
 
         ColorTvSdk.onCreate();
     }
-    
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -588,3 +588,28 @@ public class MainActivity extends Activity {
     }
 }
 ```
+
+####Customizable Recommendation Center
+
+If you want to customize Recommendation Center we added few methods which allow you to change whole layouts.
+
+Layout containing RecyclerView and layout of items are fully customizable. You can change one, both or use default.
+Process of designing is no different from the usual when you have to create it for your own. You can use all type of Views or Layouts, there are no limits.
+
+
+##Config
+
+With Headless Con-Rec we add `ColorTvRecommendationConfig` (accessible from from `ColorTvRecommendationController`) which provides customization methods:
+
+```java
+- setGridLayout(Device device, @LayoutRes int layoutResId)
+- setItemLayout(Device device, @LayoutRes int layoutResId)
+- setRowCount(Device device, int rowCount)
+- setFont(Device device, Typeface typeface)
+- setSnapEnabled(boolean enabled)
+- resetToDefault()
+```
+
+All methods (except `setSnapEnabled` - only mobile) are applicable for TV, Mobile and Tablet devices.
+
+First two methods are used to pass correct XML layouts from resources and assign them to specified device type.
