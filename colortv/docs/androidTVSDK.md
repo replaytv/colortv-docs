@@ -189,14 +189,14 @@ Recommendation Center is a unit that lets you display recommendations in an Acti
 In order to show Recommendation Center, you have to call following method: 
 
 ```java
-colorTvRecommendationsController.showRecommendationCenter(Placements.VIDEO_END);
+colorTvRecommendationsController.showRecommendationCenter(ColorTvPlacements.VIDEO_END);
 ```
 
-Invoking this method will show Recommendation Center for the placement you pass. You need to call the `load` method for a given placement before invoking `show` in order to load recommendations related data. Also make sure you got the `onLoaded` callback first, otherwise the Recommendation Center won't be displayed.
+Invoking this method will show Recommendation Center for the placement you pass. You need to call the `load` method for a given placement before invoking `showRecommendationCenter` in order to load recommendations related data. Also make sure you got the `onLoaded` callback first, otherwise the Recommendation Center won't be displayed.
 
 ####UpNext
 
-UpNext is a unit which diplays only the best recommendation in form of a small view designed to be placed above a video, which up next holds recommendation for. In order to keep the video playing we are delivering UpNext as a Fragment which you need to add to your layout. To make it work properly, you need to add a container to which you'll inject the UpNext fragment. This container have to be inside a RelativeLayout or a FrameLayout with the possibility to use the whole screen size in order to let it place itself in a proper place and size for various devices. The container should also have width set to `match_parent` and height set to `wrap_content`. For a sample of the correct layout, please refer to our [sample application's layout](https://github.com/color-tv/android-SampleApp/blob/master/SampleApp/app/src/main/res/layout/activity_exo.xml). In close future we are going to provide more possibilities to customize the UpNext layout and it's position.
+UpNext is a unit which diplays only the best recommendation in form of a small view designed to be placed over a video, which up next holds recommendation for. In order to keep the video playing we are delivering UpNext as a Fragment which you need to add to your layout. To make it work properly, you need to add a container to which you'll inject the UpNext fragment. This container have to be inside a RelativeLayout or a FrameLayout with the possibility to use the whole screen size in order to let it place itself in a proper place and size for various devices. The container should also have width set to `match_parent` and height set to `wrap_content`. For a sample of the correct layout, please refer to our [sample application's layout](https://github.com/color-tv/android-SampleApp/blob/master/SampleApp/app/src/main/res/layout/activity_exo.xml). In close future we are going to provide more possibilities to customize the UpNext layout and it's position.
 
 In order to fetch UpNext fragment, you have to call following method:
 
@@ -293,7 +293,7 @@ You can report them by calling the following method:
 videoTrackingController.reportVideoTrackingEvent(videoId, ColorTvTrackingEventType.VIDEO_STOPPED, positionSeconds);
 ```
 
-`videoId` is an id which you have set in video feed provided in ColorTv dashboard.
+`videoId` is an id that you have set in your feed.
 `positionSeconds` is a postition at which the given event occur.
 
 To report fast-forwarding or rewinding through the video, use `VIDEO_PAUSED` at the start and `VIDEO_RESUMED` at the end of the process.
@@ -306,13 +306,13 @@ videoTrackingController.setExoPlayerToTrackVideo(exoPlayer);
 
 `exoPlayer` is your ExoPlayer instance.
 
-If you are launching a video without usaging ColorTv Content Recommendation Center then you need to also call:
+If you are launching a video without using ColorTv Content Recommendation Center then you need to also call:
 
 ```java
 videoTrackingController.setVideoIdForPlayerTracking(videoId);
 ```
 
-with id of launched video that is set up in ColorTv Dashbord. In case you are using ColorTv Content Recommendation, the video id will be automatically taken from the chosen recommendation.
+with id of launched video that is set in your feed. In case you are using ColorTv Content Recommendation, the video id will be automatically taken from the chosen recommendation.
 
 ##Ads
 
