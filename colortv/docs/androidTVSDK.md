@@ -613,3 +613,63 @@ With Headless Con-Rec we add `ColorTvRecommendationConfig` (accessible from from
 All methods (except `setSnapEnabled` - only mobile) are applicable for TV, Mobile and Tablet devices.
 
 First two methods are used to pass correct XML layouts from resources and assign them to specified device type.
+
+```java
+#setGridLayout(Device device, @LayoutRes int layoutResId)
+```
+Used to set custom grid layout for specified device type. Grid layout can contain following views. Moreover you can add additional images, texts etc.
+
+| ID                              | View type  | Animation    | Description                                     | Device |
+|---------------------------------|------------|--------------|-------------------------------------------------|--------|
+| ctv_featuredUnitLayoutContainer | Any layout |              | Injected featured ad if available               | TV     |
+| ctv_recyclerViewContainer       | Any layout |              | Injected recycler                               | ALL    |
+| ctv_ivFavoriteContainer         | Any layout | show + scale | Appears on play/pause button click if available | ALL    |
+| ctv_ivGridClose                 | ImageView  | scale        |                                                 | TV     |
+| ctv_layoutSubscriptionFragment  | Any layout |              | *Discovery center only                          | TV     |
+
+```java
+#setItemLayout(Device device, @LayoutRes int layoutResId)
+```
+Used to set custom item layout for specified device type. Item layout can contain following views. Moreover you can add additional images, texts etc. All views are animated if contains selectors with default state and state_selected.
+
+| ID                         | VIEW TYPE    | ANIMATION (on focus)                | DESCRIPTION                                                                 | DEVICE |
+|----------------------------|--------------|-------------------------------------|-----------------------------------------------------------------------------|--------|
+| ctv_card                   | Any layout   |                                     | Main item layout                                                            | ALL    |
+| ctv_ivVideoThumbnail       | ImageView    | Visibility.GONE                     | Display video thumbnail                                                     | ALL    |
+| ctv_ivAppLogo              | ImageView    |                                     | Display logo                                                                | ALL    |
+| ctv_ivPlayButton           | ImageView    | Visibility.GONE (on mobile - scale) |                                                                             | ALL    |
+| ctv_ivBlackMask            | ImageView    | Visibility.GONE (on mobile - fade)  |                                                                             | ALL    |
+| ctv_hide                   | Any layout   | Visibility.GONE                     | Everything inside hide on focus                                             | ALL    |
+| ctv_show                   | Any layout   | Visibility.VISIBLE                  | Everything inside show on focus                                             | ALL    |
+| ctv_autoPlayTimerContainer | Any layout   |                                     | Injected countdown timer to autoplay first video.  Shows only on first item |        |
+| ctv_tvTitle                | TextView     |                                     | Display title                                                               | ALL    |
+| ctv_tvDescription          | TextView     |                                     | Display description                                                         | ALL    |
+| ctv_tvDuration             | TextView     |                                     | Display duration                                                            | ALL    |
+| ctv_tvGenre                | TextView     |                                     | Define how each genre should looks like                                     | ALL    |
+| ctv_llGenres               | LinearLayout |                                     | Each ctv_tvGenre will be added here                                         | ALL    |
+
+```java
+#setRowCount(Device device, int rowCount)
+```
+Used to set number of rows for specified device type.
+
+```java
+#setFont(Device device, Typeface typeface)
+```
+Used to set custom font for specified device type. It works only if you don't use custom item layout.
+
+```java
+#setSnapEnabled(boolean enabled)`
+```
+Used to set snapping RecyclerView elements to the center of screen. Available only on Mobile. Value is forced to false if item layout is not default.
+
+- true - height of items is forced to be MATCH_PARENT and width is calculated by formula: `ITEM_HEIGHT*0.45`. If you change height of RecyclerView in custom grid layout we recommend to disable snapping
+- false - height and width of items is set to be as defined in layout
+
+```java
+#resetToDefault()
+```
+Resets all settings to default.
+
+
+For example of usage all of above methods check our sample app: https://github.com/color-tv/android-SampleApp 
