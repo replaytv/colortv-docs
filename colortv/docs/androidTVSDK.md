@@ -631,20 +631,21 @@ Used to set custom grid layout for specified device type. Grid layout can contai
 ```
 Used to set custom item layout for specified device type. You can add additional images, texts etc. All views are animated if contains selectors with default state and state_selected.
 
-| ID                         | VIEW TYPE    | ANIMATION (on focus)                | DESCRIPTION                                                                       | DEVICE |
-|----------------------------|--------------|-------------------------------------|-----------------------------------------------------------------------------------|--------|
-| ctv_ivVideoThumbnail       | ImageView    | Visibility.GONE                     | Display video thumbnail                                                           | ALL    |
-| ctv_ivAppLogo              | ImageView    |                                     | Display logo                                                                      | ALL    |
-| ctv_ivPlayButton           | ImageView    | Visibility.GONE (on mobile - scale) |                                                                                   | ALL    |
-| ctv_ivBlackMask            | ImageView    | Visibility.GONE (on mobile - fade)  |                                                                                   | ALL    |
-| ctv_tvTitle                | TextView     |                                     | Display title                                                                     | ALL    |
-| ctv_tvDescription          | TextView     |                                     | Display description                                                               | ALL    |
-| ctv_tvDuration             | TextView     |                                     | Display duration                                                                  | ALL    |
-| ctv_tvGenre                | TextView     |                                     | Define how each genre should looks like                                           | ALL    |
-| ctv_hide                   | Any layout   | Visibility.GONE                     | Everything inside hide on focus                                                   | ALL    |
-| ctv_show                   | Any layout   | Visibility.VISIBLE                  | Everything inside show on focus                                                   | ALL    |
-| ctv_autoPlayTimerContainer | Any layout   |                                     | Used to inject countdown timer to autoplay first video - shows only on first item | ALL    |
-| ctv_llGenres               | LinearLayout |                                     | Each ctv_tvGenre will be added here                                               | ALL    |
+| ID                         | VIEW TYPE    | ANIMATION (on focus)                | DESCRIPTION                                               | DEVICE |
+|----------------------------|--------------|-------------------------------------|-----------------------------------------------------------|--------|
+| ctv_hide                   | Any layout   | Visibility.GONE                     | Everything inside hide on focus                           | ALL    |
+| ctv_show                   | Any layout   | Visibility.VISIBLE                  | Everything inside show on focus                           | ALL    |
+| ctv_autoPlayTimerContainer | Any layout   |                                     | Used to inject countdown timer to autoplay first video    | ALL    |
+| ctv_videoPreviewContainer  | Any layout   |                                     | Play video preview. Automatically hide thumbnail on focus | ALL    |
+| ctv_ivVideoThumbnail       | ImageView    | Visibility.GONE                     | Display video thumbnail                                   | ALL    |
+| ctv_ivAppLogo              | ImageView    |                                     | Display logo                                              | ALL    |
+| ctv_ivPlayButton           | ImageView    | Visibility.GONE (on mobile - scale) |                                                           | ALL    |
+| ctv_ivBlackMask            | ImageView    | Visibility.GONE (on mobile - fade)  |                                                           | ALL    |
+| ctv_tvTitle                | TextView     |                                     | Display title                                             | ALL    |
+| ctv_tvDescription          | TextView     |                                     | Display description                                       | ALL    |
+| ctv_tvDuration             | TextView     |                                     | Display duration                                          | ALL    |
+| ctv_tvGenre                | TextView     |                                     | Define how each genre should looks like                   | ALL    |
+| ctv_llGenres               | LinearLayout |                                     | Each ctv_tvGenre will be added here                       | ALL    |
 
 ```java
 #setRowCount(Device device, int rowCount)
@@ -661,8 +662,8 @@ Used to set custom font for specified device type. It works only if you don't us
 ```
 Used to set snapping RecyclerView elements to the center of screen. Available only on Mobile. Value is forced to false if item layout is not default.
 
-- true - height of items is forced to be `MATCH_PARENT` and width is calculated by formula: `ITEM_HEIGHT*0.45`. If you change height of RecyclerView in custom grid layout we recommend to disable snapping
-- false - height and width of items is set to be as defined in layout
+- true - height of items is forced to be `MATCH_PARENT` and width is calculated by formula: `ITEM_HEIGHT*0.45`. If you change height of RecyclerView in custom grid layout we recommend to disable snapping. Video preview is enabled and will be shown.
+- false - height and width of items is set to be as defined in layout. Video preview is disabled and will be not shown.
 
 ```java
 #resetToDefault()
