@@ -596,6 +596,8 @@ If you want to customize `Recommendation Center` we have added `ColorTvRecommend
 Layouts containing RecyclerView and items are fully customizable. You can change one, both or use the default.
 Process of designing is no different from the usual layout creation. You can use all types of Views or Layouts, there are no limits.
 
+!!! note ""
+    Once the layout is set, it is stored in the config. If you want to reset the layout to the default one, invoke the resetToDefault() method.
 
 ###ColorTvRecommendationConfig
 
