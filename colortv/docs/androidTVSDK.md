@@ -617,15 +617,18 @@ All methods (except for `setSnapEnabled` - only mobile) are applicable for TV, m
 
 ####setGridLayout(Device device, @LayoutRes int layoutResId)
 
-This method is used to set custom grid layout for specified device type. Grid layout can contain following views. Moreover you can add additional images, texts etc. We will handle the following views if they're available:
+This method is used to set custom grid layout for specified device type. You can add additional images, texts etc. We will handle the following views if they're available:
 
 | ID                              | View type  | Animation    | Description                                     | Device |
 |---------------------------------|------------|--------------|-------------------------------------------------|--------|
-| ctv_featuredUnitLayoutContainer | Any layout |              | Used to inject featured content if available               | TV     |
-| ctv_recyclerViewContainer       | Any layout |              | Used to inject RecylerView                               | ALL    |
+| ctv_rvGrid                      | RecyclerView |              |                                                 | ALL    |
 | ctv_ivFavoriteContainer         | Any layout | Visibility.VISIBLE and scale | Appears on play/pause button click if available | ALL    |
+| ctv_featuredUnitLayoutContainer | Any layout |              | Used to inject featured content if available    | TV     |
 | ctv_ivGridClose                 | ImageView  | Scale        |                                                 | TV     |
-| ctv_layoutSubscriptionFragment  | Any layout |              | Discovery center only                          | TV     |
+| ctv_layoutSubscriptionFragment  | Any layout |              | Discovery center only                           | TV     |
+
+!!! note ""
+    If you are using the default item layout and only want to change the grid layout, the RecyclerView height should be match_parent or defined. If your custom item layout has defined sizes you can use wrap_content.
 
 ####setItemLayout(Device device, @LayoutRes int layoutResId)
 
@@ -657,10 +660,10 @@ This method is used to set a custom font for specified device type. It only work
 
 ####setSnapEnabled(boolean enabled)
 
-This method is used to set snapping RecyclerView elements to the center of the screen. Available only on Mobile.
+This method is used to set snapping RecyclerView elements to the center of the screen. Available only on Mobile. We recommend to disable this option if the width of the elements is too small and the first or the last item is impossible to be snapped.
 
-- true - the height of the items is forced to `MATCH_PARENT` and the width is calculated by the following formula: `RECYCLER_VIEW_HEIGHT*0.45`. Video preview is enabled and will be shown if available. If you change the height of the RecyclerView in the custom grid layout we recommend you to disable snapping
-- false - the height and the width of the items is set to be as defined in layout. Video preview is disabled and will not be shown whether it is available or not
+- true - items snap to center of RecyclerView, video preview is enabled and will be shown if available
+- false - list scrolls freely, video preview is disabled and will not be shown whether it is available or not
 
 ####resetToDefault()
 
