@@ -632,7 +632,7 @@ This method is used to set custom grid layout for specified device type. You can
 
 ####setItemLayout(Device device, @LayoutRes int layoutResId)
 
-This method is used to set custom item layout for specified device type. You can add additional images, texts etc. All views are animated if they contain selectors with default state and state_selected.
+This method is used to set custom item layout for specified device type. You can add additional images, texts etc. All views are animated if they contain selectors with default state and state_selected (works only on TV).
 
 | ID                         | VIEW TYPE    | ANIMATION (on focus)                | DESCRIPTION                                               | DEVICE |
 |----------------------------|--------------|-------------------------------------|-----------------------------------------------------------|--------|
