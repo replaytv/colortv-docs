@@ -698,4 +698,26 @@ body {
     font-size: 11px;
 }
 
+.article pre code {
+    color:white !important;
+}
 
+.article li code {
+    color:black !important;
+}
+  
+.article code {
+    color:black !important;
+}
+
+.article h2 {
+    font-weight: 700 !important; 
+}
+
+.article h3 {
+    font-weight: 400 !important; 
+}
+
+.article summary {
+    font-weight: bold;
+}
