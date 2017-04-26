@@ -196,17 +196,17 @@ Invoking this method will show Recommendation Center for the placement you pass.
 
 #### UpNext
 
-UpNext is a unit which diplays only the best recommendation in form of a view designed to be placed over a video. In order to keep the video playing we are delivering UpNext as a Fragment which you need to add to your layout. 
+UpNext is a unit which displays only the best recommendation in form of a view designed to be placed over a video. In order to keep the video playing we are delivering UpNext as a Fragment which you need to add to your layout. 
 
 Default layout can be located automatically at the bottom of a screen, taking its full width for mobiles and half of it on TVs and tablets. To make it work properly, you need to add a fragment container inside a RelativeLayout or a FrameLayout with width parameter set to `match_parent` in that view and all of its antecedents.
 
-If you want to locate a default layout in some custom place you can invoke following method on `ColorTvUpNextFragment`:
+If you want to locate the default layout in some custom place you can invoke the following method on `ColorTvUpNextFragment`:
 
 ```java
 colorTvUpNextFragment.disableAutoLayoutPosition();
 ```
 
-Height of UpNext layout can be set to some specific value or it can be set proportionaly to it's width (in case it changes depending on device type). In order to adjust height programatically, container just need to have a height parameter set to `wrap_content` or `0`.
+Height of the UpNext layout can be set to some specific value or it can be set proportionally to it's width (in case it changes depending on device type). In order to adjust height programmatically, container just need to have a height parameter set to `wrap_content` or `0`.
 
 For a sample of the correct layout, please refer to our [sample application's layout](https://github.com/color-tv/android-SampleApp/blob/master/SampleApp/app/src/main/res/layout/activity_exo.xml). There are also more possibilities to [customize UpNext layout](#upnext-customization).
 
@@ -306,7 +306,7 @@ videoTrackingController.reportVideoTrackingEvent(videoId, ColorTvTrackingEventTy
 ```
 
 `videoId` is an id that you have set in your feed.
-`positionSeconds` is a postition at which the given event occur.
+`positionSeconds` is a position at which the given event occur.
 
 To report fast-forwarding or rewinding through the video, use `VIDEO_PAUSED` at the start and `VIDEO_RESUMED` at the end of the process.
 
@@ -615,7 +615,7 @@ ColorTvContentRecommendationConfig recommendationConfig = recommendationsControl
 Most of its methods receive `Device` enum type as one of arguments. It is nested inside the `ColorTvContentRecommendationConfig` class. It can be one of: `TV`, `MOBILE` and `TABLET`. It lets you to set various settings for different device types. In order to set custom layouts, you need to provide android layout id leading to aprropriate resource. Process of designing is simillar to the usual layout creation. You can use all types of Views or Layouts, but in order to have injected some recommendations data into them, you need to use some specified ids assigned to proper view types. Although you don not need to use them all and you can add as many additional views as you want.
 
 !!! note ""
-    All settings are stored in the shared preferences, so once they are set in an app they are used in every app launch. In order to restore default layouts you need to invoke `recommendationConfig.resetToDefault()` method.
+    All settings are stored in singleton config which is shared between all recommendation units. In order to restore default layouts you need to invoke `recommendationConfig.resetToDefault()` method.
 
 ### Recommendation Center customization
 
@@ -842,7 +842,7 @@ In order to set custom layout for UpNext you should do it appropriately to Recom
 recommendationConfig.setUpNextLayout(Device device, @LayoutResource int layoutResId);
 ```
 
-This method is used to set a custom UpNext layout for specified device type. You can use in that layout some specified views with proper ids which will be handled by sdk, and some recommendations data will be injected into them, but you can also add as many additional views as you want.
+This method is used to set a custom UpNext layout for specified device type. You can use some specified views with proper ids in that layout, which will be handled by the sdk (some recommendations data will be injected into them), but you can also add as many additional views as you want.
 
 Most of the available handled views are outlined on the following image:
 
@@ -860,7 +860,7 @@ Most of the available handled views are outlined on the following image:
 
 #### **ID:** ctv_ctlAutoPlayTimer
 * **View type:** View extending `ColorTvTimerLayout` or `FrameLayout` which can be either empty or include elements as described in [Custom Timer Layout](#custom-timer-layout)
-* **Description:** Used to display countdown timer which visualizes time left until recommendation is automatically clicked. If it extends `ColorTvTimerLayout` then its impelementation is used for handling timer progress events. If it is `FrameLayout` with `ProgressBar` view with id `ctv_pbTimer` and `TextView` view with id `ctv_tvTimer` they are updeted in default way. All views inluded into such `FrameLayout` are also hidden when auto play timer is not used. In case the view is a `FrameLayout` with no children, default countdown timer layout is injected into it. 
+* **Description:** Used to display countdown timer which visualizes time left until recommendation is automatically clicked. If it extends `ColorTvTimerLayout` then its implementation is used for handling timer progress events. If it is `FrameLayout` with `ProgressBar` view with id `ctv_pbTimer` and `TextView` view with id `ctv_tvTimer` they are updated in a default way. All views included into such `FrameLayout` are also hidden when auto play timer is not used. In case the view is a `FrameLayout` with no children, default countdown timer layout is injected into it. 
 * **Animation:** Hides when auto play timer is not used and when timer reaches 0, or toggles visibility when video is paused and resumed in case of using auto start functionality.
 * **Device:** ALL
 <br /><br />
@@ -923,32 +923,32 @@ Most of the available handled views are outlined on the following image:
 
 #### **ID:** ctv_clickable
 * **View type:** Any view extending the View class (eg. `LinearLayout`, `Button`)
-* **Description:** Element used to capture click on recommendation, which invokes `onContentChosen` callback. If this element is absent `ctv_upNext` is such element. It should be used only when having other views in UpNext which can be focusable and clickable. For TVs it should use some selector in order to point out an user that focus has been changed.
+* **Description:** Element used to capture click on recommendation, which invokes `onContentChosen` callback. If this element is absent `ctv_upNext` is such element. It should only be used when having other views in UpNext, which can be focusable and clickable. For TVs it should use some selector in order to give feedback to a user that the focus has been changed.
 * **Device:** ALL
 <br /><br />
 
 
 #### **ID:** ctv_btnClose
 * **View type:** Any view extending the View class (eg. `LinearLayout`, `ImageView`)
-* **Description:** Element used to close UpNext on click. For TVs it should use some selector in order to point out an user that focus has been changed.
+* **Description:** Element used to close UpNext on click. For TVs it should use some selector in order to give feedback to a user that the focus has been changed.
 * **Device:** ALL
 <br /><br />
 
 #### **ID:** ctv_openRecCenter
 * **View type:** Any view extending the View class (eg. `LinearLayout`, `ImageView`)
-* **Description:** Element used to close UpNext and open Recommendation Center on click. For TVs it should use some selector in order to point out an user that focus has been changed.
+* **Description:** Element used to close UpNext and open Recommendation Center on click. For TVs it should use some selector in order to give feedback to a user that the focus has been changed.
 * **Device:** ALL
 <br /><br />
 
 #### **ID:** ctv_upNextContainer
 * **View type:** Any view extending the ViewGroup class (eg. `LinearLayout`, `FrameLayout`)
-* **Description:** Used to automatically locate UpNext fragment at a bottom of a screen when it's parent is `RelativeLayout` or `FrameLayout`. If the view is an instance of `LinearLayout` and contains a views with ids: `ctv_space` and `ctv_upNext`, then it sets weight of that elements to take half of a screen on TVs and tablets, and full screen on mobiles. 
+* **Description:** Used to automatically locate UpNext fragment at the bottom of the screen when its parent is `RelativeLayout` or `FrameLayout`. If the view is an instance of `LinearLayout` and contains views with ids: `ctv_space` and `ctv_upNext`, then it sets weight of that elements to take half of a screen on TVs and tablets, and full screen on mobiles. 
 * **Device:** ALL
 <br /><br />
 
 #### **ID:** ctv_space
-* **View type:** Any view extending the View class, however recommended `Space` class.
-* **Description:** If is a child of `ctv_upNextContainer` `LinearLayout` and sibling of `ctv_upNext` then used to change width of up next to take just half of a screen on TVs and tablets.
+* **View type:** Any view extending the View class, however `Space` class is recommended.
+* **Description:** If the view is a child of `ctv_upNextContainer` `LinearLayout` and sibling of `ctv_upNext` then it is used to change width of UpNext to take just half of a screen on TVs and tablets.
 * **Device:** ALL
 <br /><br />
 
@@ -956,13 +956,13 @@ Most of the available handled views are outlined on the following image:
 
 #### Programmable customization 
 
-In order to change look and feel of default UpNext layout, you can use `ColorTvUpNextUiCustomizer` class which can be taken from `ColorTvUpNextFragment`:
+In order to change the look and feel of the default UpNext layout, you can use `ColorTvUpNextUiCustomizer` class which can be fetched from `ColorTvUpNextFragment`:
 
 ```java
 ColorTvUpNextUiCustomizer uiCustomizer = upNextFragment.getUiCustomizer();
 ```
 
-`ColorTvUpNextUiCustomized` provides a following bunch of methods:
+`ColorTvUpNextUiCustomized` provides the following methods:
 
 ```java
 uiCustomizer.setSidebarColorRes(@ColorRes int resId);
@@ -975,7 +975,7 @@ uiCustomizer.setDescriptionColorRes(@ColorRes int resId);
 uiCustomizer.setDescriptionColor(@ColorInt int descriptionColor);
 ```
 
-Visualization of all changable elements is outlined on the following image:
+Visualization of all changeable elements is outlined on the following image:
 
 ![UpNext default layout](images/up_next_showcase_2.png)
 
@@ -983,7 +983,7 @@ Visualization of all changable elements is outlined on the following image:
 
 You can include into your custom layouts a view which displays progress until recommendation will be chosen automatically. You can do it in 3 different ways: 
 
-- by adding empty `FrameLayout` with id `ctv_ctlAutoPlayTimer`. Then default auto play timer is injected into such view. 
+- by adding empty `FrameLayout` with id `ctv_ctlAutoPlayTimer`. Then the default auto play timer is injected into such view. 
 - by adding `FrameLayout` with id `ctv_ctlAutoPlayTimer` with some custom views, among which there can be `TextView` with `ctv_tvTimer` id and `ProgressBar` with `ctv_pbTimer` id. In such situation proper seconds number will be set into `ctv_tvTimer` and progres will be updated in `ctv_pbTimer`. Also in case when timer should be hidden, visibility of all `ctv_ctlAutoPlayTimer` children is set to `GONE` and if it should be shown its visibility is set to `VISIBLE`.
 - by adding a view which extends `ColorTvTimerLayout`. It can be used in order to define custom behaviour for showing, hiding the timer, or to set values in some custom way. When extending `ColorTvTimerLayout` it is necessary to implement following methods:
 
