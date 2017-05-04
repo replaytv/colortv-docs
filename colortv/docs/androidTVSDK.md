@@ -196,7 +196,19 @@ Invoking this method will show Recommendation Center for the placement you pass.
 
 #### UpNext
 
-UpNext is a unit which diplays only the best recommendation in form of a small view designed to be placed over a video, which up next holds recommendation for. In order to keep the video playing we are delivering UpNext as a Fragment which you need to add to your layout. To make it work properly, you need to add a container to which you'll inject the UpNext fragment. This container have to be inside a RelativeLayout or a FrameLayout with the possibility to use the whole screen size in order to let it place itself in a proper place and size for various devices. The container should also have width set to `match_parent` and height set to `wrap_content`. For a sample of the correct layout, please refer to our [sample application's layout](https://github.com/color-tv/android-SampleApp/blob/master/SampleApp/app/src/main/res/layout/activity_exo.xml). In close future we are going to provide more possibilities to customize the UpNext layout and it's position.
+UpNext is a unit which displays only the best recommendation in form of a view designed to be placed over a video. In order to keep the video playing we are delivering UpNext as a Fragment which you need to add to your layout. 
+
+Default layout can be located automatically at the bottom of a screen, taking its full width for mobiles and half of it on TVs and tablets. To make it work properly, you need to add a fragment container inside a RelativeLayout or a FrameLayout with width parameter set to `match_parent` in that view and all of its antecedents.
+
+If you want to locate the default layout in some custom place you can invoke the following method on `ColorTvUpNextFragment`:
+
+```java
+colorTvUpNextFragment.disableAutoLayoutPosition();
+```
+
+Height of the UpNext layout can be set to some specific value or it can be set proportionally to it's width (in case it changes depending on device type). In order to adjust height programmatically, container just need to have a height parameter set to `wrap_content` or `0`.
+
+For a sample of the correct layout, please refer to our [sample application's layout](https://github.com/color-tv/android-SampleApp/blob/master/SampleApp/app/src/main/res/layout/activity_exo.xml). There are also more possibilities to [customize UpNext layout](#upnext-customization).
 
 In order to fetch UpNext fragment, you have to call following method:
 
@@ -294,7 +306,7 @@ videoTrackingController.reportVideoTrackingEvent(videoId, ColorTvTrackingEventTy
 ```
 
 `videoId` is an id that you have set in your feed.
-`positionSeconds` is a postition at which the given event occur.
+`positionSeconds` is a position at which the given event occur.
 
 To report fast-forwarding or rewinding through the video, use `VIDEO_PAUSED` at the start and `VIDEO_RESUMED` at the end of the process.
 
@@ -589,34 +601,31 @@ public class MainActivity extends Activity {
 }
 ```
 
-## Customizable Recommendation Center
+## Customization
 
-If you want to customize `Recommendation Center` we have added `ColorTvContentRecommendationConfig` (accessible from `ColorTvRecommendationsController`) which provides methods that allow you to do it.
+There is possibility to customize both Recommendation Center and UpNext layouts. In order to do it, you need to use `ColorTvContentRecommendationConfig`, which provides methods that allow you to change default recommendation layouts into custom ones.
 
-Layouts containing RecyclerView and items are fully customizable. You can change one, both or use the default.
-Process of designing is no different from the usual layout creation. You can use all types of Views or Layouts, there are no limits.
-
-!!! note ""
-    Once the layout is set, it is stored in the singleton config. If you want to reset settings to defaults, invoke the resetToDefault() method.
-
-### ColorTvContentRecommendationConfig
-
-To start customizing recommendation center you have to get `ColorTvContentRecommendationConfig`:
+You can retrieve the config object from `ColorTvRecommendationsController` instance:
 
 ```java
 ColorTvRecommendationsController recommendationsController = ColorTvSdk.getRecommendationsController();
 ColorTvContentRecommendationConfig recommendationConfig = recommendationsController.getConfig();
 ```
 
-Using the config object, you can access the following methods:
+Most of its methods receive `Device` enum type as one of arguments. It is nested inside the `ColorTvContentRecommendationConfig` class. It can be one of: `TV`, `MOBILE` and `TABLET`. It lets you to set various settings for different device types. In order to set custom layouts, you need to provide android layout id leading to aprropriate resource. Process of designing is simillar to the usual layout creation. You can use all types of Views or Layouts, but in order to have injected some recommendations data into them, you need to use some specified ids assigned to proper view types. Although you don not need to use them all and you can add as many additional views as you want.
+
+!!! note ""
+    All settings are stored in singleton config which is shared between all recommendation units. In order to restore default layouts you need to invoke `recommendationConfig.resetToDefault()` method.
+
+### Recommendation Center customization
+
+In Recomendation Center it is possible to customize both RecyclerView and items it contains. You can change one, both or use the default. You can also change number of rows used in RecyclerView, or enable snapping an item on mobiles. You can do it invoking following methods:
 
 ```java
 recommendationConfig.setGridLayout(Device device, @LayoutRes int layoutResId);
 recommendationConfig.setItemLayout(Device device, @LayoutRes int layoutResId);
 recommendationConfig.setRowCount(Device device, int rowCount);
-recommendationConfig.setFont(Device device, Typeface typeface);
 recommendationConfig.setSnapEnabled(boolean enabled);
-recommendationConfig.resetToDefault();
 ```
 
 All methods (except for `setSnapEnabled` - only mobile) are applicable to TV, mobile and tablet devices. `Device` enum is nested inside the `ColorTvContentRecommendationConfig` class.
@@ -664,7 +673,7 @@ This method is used to set custom grid layout for specified device type. You can
 * **Device:** TV
 
 !!! note ""
-    If you are using the default item layout and only want to change the grid layout, the RecyclerView height should be match_parent or defined. If your custom item layout has defined sizes you can use wrap_content.
+    If you are using the default item layout and you only want to change the grid layout, the RecyclerView height should be match_parent or defined. If your custom item layout has defined sizes you can use wrap_content.
 
 </details>
 
@@ -792,10 +801,6 @@ Check our example [item layouts](https://github.com/color-tv/android-SampleApp/t
 
 This method is used to set the number of rows in RecyclerView with id `ctv_rvGrid` for a specified device type.
 
-#### setFont(Device device, Typeface typeface)
-
-This method is used to set a custom font for a specified device type. It only works if you don't use a custom item layout.
-
 #### setSnapEnabled(boolean enabled)
 
 This method is used to set snapping `RecyclerView` elements to the center of the screen. Available only on Mobile. We recommend to disable this option if the width of the elements is too small and the first or the last item is impossible to be snapped.
@@ -803,8 +808,189 @@ This method is used to set snapping `RecyclerView` elements to the center of the
 - true - items snap to the center of the `RecyclerView`, video preview is enabled and will be shown if available.
 - false - list scrolls freely, video preview is disabled and will not be shown whether it is available or not.
 
+### Both Recommendation Center and UpNext related customization
+
+Following config methods has influence on both Recommendation Center and UpNext customization:
+
+```java
+recommendationConfig.setFont(Device device, Typeface typeface);
+recommendationConfig.resetToDefault();
+```
+
+#### setFont(Device device, Typeface typeface)
+
+This method is used to set a custom font for a specified device type. It only works if you don't use a custom item layout.
+
 #### resetToDefault()
 
 This method is used to reset all settings to defaults.
 
 For an example of the usage of all of the above methods, check our [custom recommendation center sample](https://github.com/color-tv/android-SampleApp/blob/master/SampleApp/app/src/main/java/com/colortv/sample/CustomRecommendationCenterActivity.java).
+
+### UpNext customization
+
+It is possible to customize UpNext in 2 ways:
+
+- setting custom layout for UpNext
+- changing colors of default layout through public interface
+
+#### Using custom layout
+
+In order to set custom layout for UpNext you should do it appropriately to Recommendation Center using following method of `ColorTvContentRecommendationConfig` instance:
+
+```java
+recommendationConfig.setUpNextLayout(Device device, @LayoutResource int layoutResId);
+```
+
+This method is used to set a custom UpNext layout for specified device type. You can use some specified views with proper ids in that layout, which will be handled by the sdk (some recommendations data will be injected into them), but you can also add as many additional views as you want.
+
+Most of the available handled views are outlined on the following image:
+
+![UpNext default layout](images/up_next_showcase.png)
+
+<details><summary>Available IDs</summary>
+
+#### **ID:** ctv_upNext 
+* **REQUIRED**
+* **View type:** Any view extending the ViewGroup class (eg. `LinearLayout`, `FrameLayout`)
+* **Description:** Used as a container of UpNext layout. All content views need to be inserted into that view. If there is no `ctv_vClickable` view then `ctv_upNext` is used to gain focus and capture clicks. 
+* **Device:** ALL
+<br /><br />
+
+
+#### **ID:** ctv_ctlAutoPlayTimer
+* **View type:** View extending `ColorTvTimerLayout` or `FrameLayout` which can be either empty or include elements as described in [Custom Timer Layout](#custom-timer-layout)
+* **Description:** Used to display countdown timer which visualizes time left until recommendation is automatically clicked. If it extends `ColorTvTimerLayout` then its implementation is used for handling timer progress events. If it is `FrameLayout` with `ProgressBar` view with id `ctv_pbTimer` and `TextView` view with id `ctv_tvTimer` they are updated in a default way. All views included into such `FrameLayout` are also hidden when auto play timer is not used. In case the view is a `FrameLayout` with no children, default countdown timer layout is injected into it. 
+* **Animation:** Hides when auto play timer is not used and when timer reaches 0, or toggles visibility when video is paused and resumed in case of using auto start functionality.
+* **Device:** ALL
+<br /><br />
+
+#### **ID:** ctv_videoPreviewContainer
+* **View type:** Any view extending the ViewGroup class (eg. `LinearLayout`, `FrameLayout`)
+* **Description:** Used to inject our `VideoPlayer` for previews playback.
+* **Animation:** Plays the preview and hides the thumbnail when video preview is enabled in UpNext interface (only if the preview is available).
+* **Device:** ALL
+<br /><br />
+
+#### **ID:** ctv_ivVideoThumbnail
+* **View type:** `ImageView`
+* **Description:** Used to display the video thumbnail.
+* **Animation:** If there is preview available and `ctv_videoPreviewContainer` is present in the layout it is hidden when the preview is enabled in UpNext interface.
+* **Device:** ALL
+<br /><br />
+
+#### **ID:** ctv_tvTitle
+* **View type:** `TextView`
+* **Description:** Displays the video title.
+* **Device:** ALL
+<br /><br />
+
+
+#### **ID:** ctv_tvDescription
+* **View type:** `TextView`
+* **Description:** Displays the video description.
+* **Device:** ALL
+<br /><br />
+
+
+#### **ID:** ctv_tvDuration
+* **View type:** `TextView`
+* **Description:** Displays the video duration.
+* **Device:** ALL
+<br /><br />
+
+
+#### **ID:** ctv_tvSeries
+* **View type:** `TextView`
+* **Description:** Displays series name when recommending series.
+* **Device:** ALL
+<br /><br />
+
+
+#### **ID:** ctv_tvSeason
+* **View type:** `TextView`
+* **Description:** Appends series season number to contained by the view text, while recommending series. I.e. when TextView has set in XML file a text "Season: " it will append season number creating "Season: 1".
+* **Device:** ALL
+<br /><br />
+
+
+#### **ID:** ctv_tvEpisode
+* **View type:** `TextView`
+* **Description:** Appends series episode number to contained by the view text, while recommending series. I.e. when TextView has set in XML file a text "Episode: " it will append episode number creating "Episode: 1".
+* **Device:** ALL
+<br /><br />
+
+
+#### **ID:** ctv_clickable
+* **View type:** Any view extending the View class (eg. `LinearLayout`, `Button`)
+* **Description:** Element used to capture click on recommendation, which invokes `onContentChosen` callback. If this element is absent `ctv_upNext` is such element. It should only be used when having other views in UpNext, which can be focusable and clickable. For TVs it should use some selector in order to give feedback to a user that the focus has been changed.
+* **Device:** ALL
+<br /><br />
+
+
+#### **ID:** ctv_btnClose
+* **View type:** Any view extending the View class (eg. `LinearLayout`, `ImageView`)
+* **Description:** Element used to close UpNext on click. For TVs it should use some selector in order to give feedback to a user that the focus has been changed.
+* **Device:** ALL
+<br /><br />
+
+#### **ID:** ctv_openRecCenter
+* **View type:** Any view extending the View class (eg. `LinearLayout`, `ImageView`)
+* **Description:** Element used to close UpNext and open Recommendation Center on click. For TVs it should use some selector in order to give feedback to a user that the focus has been changed.
+* **Device:** ALL
+<br /><br />
+
+#### **ID:** ctv_upNextContainer
+* **View type:** Any view extending the ViewGroup class (eg. `LinearLayout`, `FrameLayout`)
+* **Description:** Used to automatically locate UpNext fragment at the bottom of the screen when its parent is `RelativeLayout` or `FrameLayout`. If the view is an instance of `LinearLayout` and contains views with ids: `ctv_space` and `ctv_upNext`, then it sets weight of that elements to take half of a screen on TVs and tablets, and full screen on mobiles. 
+* **Device:** ALL
+<br /><br />
+
+#### **ID:** ctv_space
+* **View type:** Any view extending the View class, however `Space` class is recommended.
+* **Description:** If the view is a child of `ctv_upNextContainer` `LinearLayout` and sibling of `ctv_upNext` then it is used to change width of UpNext to take just half of a screen on TVs and tablets.
+* **Device:** ALL
+<br /><br />
+
+</details>
+
+#### Programmable customization 
+
+In order to change the look and feel of the default UpNext layout, you can use `ColorTvUpNextUiCustomizer` class which can be fetched from `ColorTvUpNextFragment`:
+
+```java
+ColorTvUpNextUiCustomizer uiCustomizer = upNextFragment.getUiCustomizer();
+```
+
+`ColorTvUpNextUiCustomized` provides the following methods:
+
+```java
+uiCustomizer.setSidebarColorRes(@ColorRes int resId);
+uiCustomizer.setSidebarColor(@ColorInt int sideBarColor);
+uiCustomizer.setBackgroundColorRes(@ColorRes int resId);
+uiCustomizer.setBackgroundColor(@ColorInt int backgroundColor);
+uiCustomizer.setTitleColorRes(@ColorRes int resId);
+uiCustomizer.setTitleColor(@ColorInt int textColor);
+uiCustomizer.setDescriptionColorRes(@ColorRes int resId);
+uiCustomizer.setDescriptionColor(@ColorInt int descriptionColor);
+```
+
+Visualization of all changeable elements is outlined on the following image:
+
+![UpNext default layout](images/up_next_showcase_2.png)
+
+#### Custom Timer Layout
+
+You can include into your custom layouts a view which displays progress until recommendation will be chosen automatically. You can do it in 3 different ways: 
+
+- by adding empty `FrameLayout` with id `ctv_ctlAutoPlayTimer`. Then the default auto play timer is injected into such view. 
+- by adding `FrameLayout` with id `ctv_ctlAutoPlayTimer` with some custom views, among which there can be `TextView` with `ctv_tvTimer` id and `ProgressBar` with `ctv_pbTimer` id. In such situation proper seconds number will be set into `ctv_tvTimer` and progres will be updated in `ctv_pbTimer`. Also in case when timer should be hidden, visibility of all `ctv_ctlAutoPlayTimer` children is set to `GONE` and if it should be shown its visibility is set to `VISIBLE`.
+- by adding a view which extends `ColorTvTimerLayout`. It can be used in order to define custom behaviour for showing, hiding the timer, or to set values in some custom way. When extending `ColorTvTimerLayout` it is necessary to implement following methods:
+
+```java
+public void setTotalMillis(int millis);
+public void setProgress(int millisUntilFinished);
+public void onTimerFinished();
+public void hide();
+public void show();
+```
