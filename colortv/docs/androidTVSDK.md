@@ -754,10 +754,10 @@ All the views available are outlined on the following image:
 <br /><br />
 
 
-#### **ID:** ctv_autoPlayTimerContainer
-* **View type:** `FrameLayout`
-* **Description:** Used to inject countdown timer to automatically start playing the first recommended video
-* **Animation:** Hides on any interaction on items list or when timer reaches 0.
+#### **ID:** ctv_ctlAutoPlayTimer
+* **View type:** View extending `ColorTvTimerLayout` or `FrameLayout` which can be either empty or include elements as described in [Custom Timer Layout](#custom-timer-layout)
+* **Description:** Used to display countdown timer which visualizes time left until recommendation is automatically clicked. If it extends `ColorTvTimerLayout` then its implementation is used for handling timer progress events. If it is `FrameLayout` with `ProgressBar` view with id `ctv_pbTimer` and `TextView` view with id `ctv_tvTimer` they are updated in a default way. All views included into such `FrameLayout` are also hidden when auto play timer is not used. In case the view is a `FrameLayout` with no children, default countdown timer layout is injected into it.
+* **Animation:** Hides when auto play timer reaches 0 or user click button or touch screen.
 * **Device:** ALL
 <br /><br />
 
@@ -914,7 +914,7 @@ Most of the available handled views are outlined on the following image:
 #### **ID:** ctv_ctlAutoPlayTimer
 * **View type:** View extending `ColorTvTimerLayout` or `FrameLayout` which can be either empty or include elements as described in [Custom Timer Layout](#custom-timer-layout)
 * **Description:** Used to display countdown timer which visualizes time left until recommendation is automatically clicked. If it extends `ColorTvTimerLayout` then its implementation is used for handling timer progress events. If it is `FrameLayout` with `ProgressBar` view with id `ctv_pbTimer` and `TextView` view with id `ctv_tvTimer` they are updated in a default way. All views included into such `FrameLayout` are also hidden when auto play timer is not used. In case the view is a `FrameLayout` with no children, default countdown timer layout is injected into it.
-* **Animation:** Hides when auto play timer is not used and when timer reaches 0, or toggles visibility when video is paused and resumed in case of using auto start functionality.
+* **Animation:** Hides when auto play timer reaches 0.
 * **Device:** ALL
 <br /><br />
 
