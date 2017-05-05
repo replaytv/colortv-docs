@@ -512,11 +512,12 @@ To improve ad targeting you can use the `ColorTvUserProfile` class. To do so, ge
 ColorTvUserProfile user = ColorTvSdk.getUserProfile();
 ```
 
-You can set age, gender and some keywords as comma-separated values like so:
+You can set age, gender, email and some keywords as comma-separated values like so:
 
 ```java
 user.setAge(24);
 user.setGender(UserProfile.Gender.FEMALE);
+user.setEmail("sample@mail.com");
 user.setKeywords("sport,health");
 ```
 
