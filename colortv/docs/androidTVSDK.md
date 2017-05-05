@@ -107,10 +107,10 @@ In order to control Content Recommendations you need to retrieve **ColorTvRecomm
 
 ### Registering recommendations listener
 
-To get callbacks about the content recommendation status, you need to create a ColorTvContentRecommendationListener object by implementing it's methods:
+To get callbacks about the content recommendation status, you need to create a `ColorTvRecommendationsListener` object by implementing it's methods:
 
 ```java
-ColorTvContentRecommendationListener recommendationsListener = new ColorTvContentRecommendationListener() {
+ColorTvRecommendationsListener recommendationsListener = new ColorTvRecommendationsListener() {
 
     @Override
     public void onLoaded(String placement) {
@@ -157,13 +157,13 @@ recommendationsController.registerListener(recommendationsListener);
 Before displaying recommendations in either **Recommendation Center** or **UpNext** you need to load recommendations related data from server. In order to do that you can invoke one of following methods:
 
 ```java
-colorTvRecommendationsController.load(ColorTvPlacements.VIDEO_END);
+recommendationsController.load(ColorTvPlacements.VIDEO_END);
 
-colorTvRecommendationsController.load(ColorTvPlacements.VIDEO_END, previousVideoId);
+recommendationsController.load(ColorTvPlacements.VIDEO_END, previousVideoId);
 
-colorTvRecommendationsController.loadOnlyUpNext(ColorTvPlacements.VIDEO_END);
+recommendationsController.loadOnlyUpNext(ColorTvPlacements.VIDEO_END);
 
-colorTvRecommendationsController.loadOnlyUpNext(ColorTvPlacements.VIDEO_END, previousVideoId);
+recommendationsController.loadOnlyUpNext(ColorTvPlacements.VIDEO_END, previousVideoId);
 ```
 
 Use one of the predefined placements that you can find in `ColorTvPlacements` class, e.g. `ColorTvPlacements.VIDEO_END`.
@@ -173,7 +173,7 @@ Methods with `previousVideoId` parameter should be used when loading recommendat
 In case you would like to load recommendations just before showing them, you can decide to speed up the loading process by disabling assets prealoding. In this case you need to invoke the following method:
 
 ```java
-colorTvRecommendationsController.setPreloadingAssets(false);
+recommendationsController.setPreloadingAssets(false);
 ```
 
 It is not a recommended action, however, as the video previews won't be played due to a decrease in performance.
@@ -189,7 +189,7 @@ Recommendation Center is a unit that lets you display recommendations in an Acti
 In order to show Recommendation Center, you have to call following method:
 
 ```java
-colorTvRecommendationsController.showRecommendationCenter(ColorTvPlacements.VIDEO_END);
+recommendationsController.showRecommendationCenter(ColorTvPlacements.VIDEO_END);
 ```
 
 Invoking this method will show Recommendation Center for the placement you pass. You need to call the `load` method for a given placement before invoking `showRecommendationCenter` in order to load recommendations related data. Also make sure you got the `onLoaded` callback first, otherwise the Recommendation Center won't be displayed.
@@ -209,10 +209,10 @@ recommendationCenterFragment.setRequestFocusOnStart(boolean enabled)
 This method is used to request focus on first element when Recommendation Center will completely load. Should be used before replacing/adding fragment. To make it work properly you should avoid setting this method to true in more than one fragment on the screen.
 
 ```java
-recommendationCenterFragment.setConfig(ColorTvContentRecommendationConfig config);
+recommendationCenterFragment.setConfig(ColorTvRecommendationCenterConfig config);
 ```
 
-This method allows you to pass separate config for each fragment. We added a new `getCopy()` method to `ColorTvContentRecommendationConfig`, which copies current config to new instance. If you need similar config it will be easier, faster and safer to copy config and change only differing parameter.
+This method allows you to pass separate config for each fragment. We added a new `getCopy()` method to `ColorTvRecommendationCenterConfig`, which copies current config to new instance. If you need similar config it will be easier, faster and safer to copy config and change only differing parameter.
 
 To make Recommendation Center work properly, you have to invoke the following methods in activity's `dispatchKeyEvent` and `dispatchTouchEvent` method which operates on received `ColorTvRecommendationCenterFragment`.
 
@@ -244,25 +244,25 @@ public boolean dispatchTouchEvent(MotionEvent event) {
 
 UpNext is a unit which displays only the best recommendation in form of a view designed to be placed over a video. In order to keep the video playing we are delivering UpNext as a Fragment which you need to add to your layout.
 
+In order to fetch UpNext fragment, you have to call following method:
+
+```java
+ColorTvUpNextFragment upNextFragment = recommendationsController.getUpNextFragment(Placements.VIDEO_END);
+```
+
+It should be previously loaded for a given placement with either `load` or `loadOnlyUpNext` methods. Unlike **Recommendation Center** the same **UpNext** can be displayed multiple times with the same server data as long as it isn't clicked. What is more when UpNext wasn't clicked it is possible to invoke `showRecommendationCenter` method. It is impossible to display **Recommendation Center** when **UpNext** is added, but if you call the `showRecommendationCenter` method, **Recommendation Center** will be opened as soon as UpNext is closed without clicking it.
+
 Default layout can be located automatically at the bottom of a screen, taking its full width for mobiles and half of it on TVs and tablets. To make it work properly, you need to add a fragment container inside a RelativeLayout or a FrameLayout with width parameter set to `match_parent` in that view and all of its antecedents.
 
 If you want to locate the default layout in some custom place you can invoke the following method on `ColorTvUpNextFragment`:
 
 ```java
-colorTvUpNextFragment.disableAutoLayoutPosition();
+upNextFragment.disableAutoLayoutPosition();
 ```
 
 Height of the UpNext layout can be set to some specific value or it can be set proportionally to it's width (in case it changes depending on device type). In order to adjust height programmatically, container just need to have a height parameter set to `wrap_content` or `0`.
 
 For a sample of the correct layout, please refer to our [sample application's layout](https://github.com/color-tv/android-SampleApp/blob/master/SampleApp/app/src/main/res/layout/activity_exo.xml). There are also more possibilities to [customize UpNext layout](#upnext-customization).
-
-In order to fetch UpNext fragment, you have to call following method:
-
-```java
-colorTvRecommendationsController.getUpNextFragment(Placements.VIDEO_END);
-```
-
-It should be previously loaded for a given placement with either `load` or `loadOnlyUpNext` methods. Unlike **Recommendation Center** the same **UpNext** can be displayed multiple times with the same server data as long as it isn't clicked. What is more when UpNext wasn't clicked it is possible to invoke `showContentRecommendation` method. It is impossible to display **Recommendation Center** when **UpNext** is added, but if you call the `showConetentRecomendation` method, **Recommendation Center** will be opened as soon as UpNext is closed without clicking it.
 
 **UpNextFragment** provides a bunch of methods that allows you to manage **UpNext's** behaviour.
 
@@ -443,7 +443,7 @@ Calling this method will show an ad for the placement you pass. Make sure you ge
 A listener must be added in order to receive events when a virtual currency transaction has occurred.
 
 ```java
-private OnCurrencyEarnedListener listener = new OnCurrencyEarnedListener() {
+private ColorTvCurrencyEarnedListener listener = new ColorTvCurrencyEarnedListener() {
     @Override
     public void onCurrencyEarned(String placement, int currencyAmount, String currencyType){
 
@@ -452,19 +452,19 @@ private OnCurrencyEarnedListener listener = new OnCurrencyEarnedListener() {
 
 ...
 
-adController.addOnCurrencyEarnedListener(listener);
+adController.addCurrencyEarnedListener(listener);
 ```
 
 Use the following function to unregister listeners:
 
 ```java
-adController.removeOnCurrencyEarnedListener(listener);
+adController.removeCurrencyEarnedListener(listener);
 ```
 
 Use the following function to cancel all listeners:
 
 ```java
-adController.clearOnCurrencyEarnedListeners();
+adController.clearCurrencyEarnedListeners();
 ```
 
 !!! note "Reminder!"
@@ -544,10 +544,10 @@ After completing all previous steps your Activity could look like this:
 ```java
 import com.colortv.android.api.ColorTvPlacements;
 import com.colortv.android.api.ColorTvSdk;
-import com.colortv.android.api.listener.ColorTvAdListener;
-import com.colortv.android.api.listener.ColorTvContentRecommendationListener;
 import com.colortv.android.api.ColorTvError;
-import com.colortv.android.api.listener.ColorTvOnCurrencyEarnedListener;
+import com.colortv.android.api.listener.ColorTvAdListener;
+import com.colortv.android.api.listener.ColorTvRecommendationsListener;
+import com.colortv.android.api.listener.ColorTvCurrencyEarnedListener;
 import com.colortv.android.api.controller.ColorTvAdController;
 import com.colortv.android.api.controller.ColorTvRecommendationsController;
 
@@ -576,7 +576,7 @@ public class MainActivity extends Activity {
         }
     };
 
-    private ColorTvContentRecommendationListener recommendationListener = new ColorTvContentRecommendationListener() {
+    private ColorTvRecommendationsListener recommendationListener = new ColorTvRecommendationsListener() {
 
         @Override
         public void onLoaded(String placement) {
@@ -628,7 +628,7 @@ public class MainActivity extends Activity {
             }
         });
 
-        adController.addOnCurrencyEarnedListener(new OnCurrencyEarnedListener() {
+        adController.addCurrencyEarnedListener(new ColorTvCurrencyEarnedListener() {
             @Override
             public void onCurrencyEarned(String placement, int currencyAmount, String currencyType) {
                 Toast.makeText(MainActivity.this, "Received " + currencyAmount + " " + currencyType, Toast.LENGTH_LONG).show();
@@ -643,23 +643,23 @@ public class MainActivity extends Activity {
         super.onDestroy();
 
         ColorTvSdk.onDestroy();
-        ColorTvSdk.clearOnCurrencyEarnedListeners();
+        ColorTvSdk.clearCurrencyEarnedListeners();
     }
 }
 ```
 
 ## Customization
 
-There is possibility to customize both Recommendation Center and UpNext layouts. In order to do it, you need to use `ColorTvContentRecommendationConfig`, which provides methods that allow you to change default recommendation layouts into custom ones.
+There is possibility to customize both Recommendation Center and UpNext layouts. In order to do it, you need to use `ColorTvRecommendationCenterConfig`, which provides methods that allow you to change default recommendation layouts into custom ones.
 
 You can retrieve the global config object from `ColorTvRecommendationsController` instance:
 
 ```java
 ColorTvRecommendationsController recommendationsController = ColorTvSdk.getRecommendationsController();
-ColorTvContentRecommendationConfig recommendationConfig = recommendationsController.getConfig();
+ColorTvRecommendationCenterConfig recommendationConfig = recommendationsController.getConfig();
 ```
 
-Most of its methods take `Device` enum type as one of arguments. It is nested inside the `ColorTvContentRecommendationConfig` class. It can be one of: `TV`, `MOBILE` and `TABLET`. It lets you to set various settings for different device types. In order to set custom layouts, you need to provide android layout id leading to aprropriate resource. Process of designing is similar to the usual layout creation. You can use all types of Views or Layouts, but in order to have injected some recommendations data into them, you need to use some specified ids assigned to proper view types. Although you don not need to use them all and you can add as many additional views as you want.
+Most of its methods take `Device` enum type as one of arguments. It is nested inside the `ColorTvRecommendationCenterConfig` class. It can be one of: `TV`, `MOBILE` and `TABLET`. It lets you to set various settings for different device types. In order to set custom layouts, you need to provide android layout id leading to aprropriate resource. Process of designing is similar to the usual layout creation. You can use all types of Views or Layouts, but in order to have injected some recommendations data into them, you need to use some specified ids assigned to proper view types. Although you don not need to use them all and you can add as many additional views as you want.
 
 !!! note ""
     All settings are stored in singleton config which is shared between all recomendation units. We recommend to use `getCopy` method on the global config if you are using Recommendation Center as fragments to not mix global config with fragments configs. In order to restore default layouts you need to invoke `recommendationConfig.resetToDefault()` method.
@@ -676,7 +676,7 @@ recommendationConfig.setRowCount(Device device, int rowCount);
 recommendationConfig.setSnapEnabled(boolean enabled);
 ```
 
-All methods (except for `setSnapEnabled` - only mobile) are applicable to TV, mobile and tablet devices. `Device` enum is nested inside the `ColorTvContentRecommendationConfig` class.
+All methods (except for `setSnapEnabled` - only mobile) are applicable to TV, mobile and tablet devices. `Device` enum is nested inside the `ColorTvRecommendationCenterConfig` class.
 
 #### setGridLayout(Device device, @LayoutRes int layoutResId)
 
@@ -889,7 +889,7 @@ It is possible to customize UpNext in 2 ways:
 
 #### Using custom layout
 
-In order to set custom layout for UpNext you should do it appropriately to Recommendation Center using following method of `ColorTvContentRecommendationConfig` instance:
+In order to set custom layout for UpNext you should do it appropriately to Recommendation Center using following method of `ColorTvRecommendationCenterConfig` instance:
 
 ```java
 recommendationConfig.setUpNextLayout(Device device, @LayoutResource int layoutResId);
