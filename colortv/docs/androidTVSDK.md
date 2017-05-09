@@ -685,29 +685,29 @@ This method is used to set custom grid layout for specified device type. You can
 <details><summary>Available IDs</summary>
 
 
-#### **ID:** ctv_rvGrid
+#### **ID:** ctvRcRvGrid
 * **View type:** `android.support.v7.widget.RecyclerView`
 * **Description:** Contains recommendation items.
 * **Device:** ALL
 <br /><br />
 
 
-#### **ID:** ctv_ivFavoriteContainer
+#### **ID:** ctvRcFavoriteContainer
 * **View type:** Any view extending the View class (eg. `LinearLayout`, `ImageView`).
-* **Description:** Appears when user presses the play-pause remote button on TV or taps on `ImageView` with id `ctv_ivFavoriteIcon` on Mobile/Tablet if available.
+* **Description:** Appears when user presses the play-pause remote button on TV or taps on `ImageView` with id `ctvRcIvFavoriteIcon` on Mobile/Tablet if available. We recommend to use `RelativeLayout` with `match_parent` width/height and `layout_centerInParent` flag set to true on children.
 * **Animation:** Is displayed and scales up for 1 second.
 * **Device:** ALL
 ![Favorite button click](images/favorite_button_click_android.gif)
 
 
-#### **ID:** ctv_featuredUnitLayoutContainer
+#### **ID:** ctvRcFeaturedUnitLayoutContainer
 * **View type:** Any view extending the View class (eg. `LinearLayout`, `ImageView`), `FrameLayout` is recommended.
 * **Description:** Used to inject featured content if available. It is not recommended to add any child views.
 * **Device:** TV
 ![Featured button](images/featured_android.gif)
 
 
-#### **ID:** ctv_ivGridClose
+#### **ID:** ctvRcIvGridClose
 * **View type:** `ImageView`
 * **Description:** Used to close the recommendation center.
 * **Animation:** Scales up on focus, scales down on unfocus.
@@ -715,7 +715,7 @@ This method is used to set custom grid layout for specified device type. You can
 <br /><br />
 
 
-#### **ID:** ctv_layoutSubscriptionFragment
+#### **ID:** ctvRcLayoutSubscriptionFragment
 * **View type:** Any view extending the View class (eg. `LinearLayout`, `ImageView`), `FrameLayout` recommended
 * **Description:** Subscription fragment is injected into this view. It is an overlay view, which appears when user clicks on an element containing a subscription offer and allows user to type phone no./email address and subscribe. We do not recommend to add any child views.
 * **Device:** TV
@@ -738,7 +738,7 @@ All the views available are outlined on the following image:
 <details><summary>Available IDs</summary>
 
 
-#### **ID:** ctv_hide
+#### **ID:** ctvRcHide
 * **View type:** Any view extending the View class (eg. `LinearLayout`, `ImageView`)
 * **Description:** Used to hide views on focus and show them on unfocus. Use any layout if you would like to hide more than one view.
 * **Animation:** Hides (`Visibility.GONE`) the view and its child views on focus and shows them on unfocus.
@@ -746,7 +746,7 @@ All the views available are outlined on the following image:
 <br /><br />
 
 
-#### **ID:** ctv_show
+#### **ID:** ctvRcShow
 * **View type:** Any view extending the View class (eg. `LinearLayout`, `ImageView`)
 * **Description:** Used to show views on focus and hide them on unfocus. Use any Layout if you would like to show more than one view.
 * **Animation:** Shows (`Visibility.VISIBLE`) the view and its child views on focus and hides them on unfocus.
@@ -754,15 +754,15 @@ All the views available are outlined on the following image:
 <br /><br />
 
 
-#### **ID:** ctv_ctlAutoPlayTimer
+#### **ID:** ctvRcCtlAutoPlayTimer
 * **View type:** View extending `ColorTvTimerLayout` or `ViewGroup` (eg. `FrameLayout`, `LinearLayout`) which can be either empty or include elements as described in [Custom Timer Layout](#custom-timer-layout)
-* **Description:** Used to display countdown timer which visualizes time left until recommendation is automatically clicked. If it extends `ColorTvTimerLayout` then its implementation is used for handling timer progress events. If it is `FrameLayout` with `ProgressBar` view with id `ctv_pbTimer` and `TextView` view with id `ctv_tvTimer` they are updated in a default way. All views included into such `FrameLayout` are also hidden when auto play timer is not used. In case the view is a `FrameLayout` with no children, default countdown timer layout is injected into it.
+* **Description:** Used to display countdown timer which visualizes time left until recommendation is automatically clicked. If it extends `ColorTvTimerLayout` then its implementation is used for handling timer progress events. If it is `FrameLayout` with `ProgressBar` view with id `ctvRcPbTimer` and `TextView` view with id `ctvRcTvTimer` they are updated in a default way. All views included into such `FrameLayout` are also hidden when auto play timer is not used. In case the view is a `FrameLayout` with no children, default countdown timer layout is injected into it.
 * **Animation:** Hides when auto play timer reaches 0 or user click button or touch screen.
 * **Device:** ALL
 <br /><br />
 
 
-#### **ID:** ctv_videoPreviewContainer
+#### **ID:** ctvRcVideoPreviewContainer
 * **View type:** Any view extending the ViewGroup class (eg. `LinearLayout`, `RelativeLayout`)
 * **Description:** Used to inject our `VideoPlayer` for previews playback. Check our [custom layout](https://github.com/color-tv/android-SampleApp/blob/master/SampleApp/app/src/main/res/layout/custom_item_layout_2.xml) if you would like to oversize the preview video.
 * **Animation:** Plays the preview and hides the thumbnail on focus (only if the preview is available) and stops playing the preview and shows the thumbnail on unfocus.
@@ -770,22 +770,22 @@ All the views available are outlined on the following image:
 <br /><br />
 
 
-#### **ID:** ctv_ivVideoThumbnail
+#### **ID:** ctvRcIvVideoThumbnail
 * **View type:** `ImageView`
 * **Description:** Used to display the video thumbnail.
-* **Animation:** If there is preview available and `ctv_videoPreviewContainer` is present in the layout it hides on focus and shows on unfocus
+* **Animation:** If there is preview available and `ctvRcVideoPreviewContainer` is present in the layout it hides on focus and shows on unfocus
 * **Device:** ALL
 <br /><br />
 
 
-#### **ID:** ctv_ivAppLogo
+#### **ID:** ctvRcIvAppLogo
 * **View type:** `ImageView`
 * **Description:** Used to display your app's logo.
 * **Device:** ALL
 <br /><br />
 
 
-#### **ID:** ctv_ivPlayButton
+#### **ID:** ctvRcIvPlayButton
 * **View type:** `ImageView`
 * **Description** Used to point out that focusing an element will cause playing a preview.
 * **Animation:** Hides on focus and shows on unfocus.
@@ -793,7 +793,7 @@ All the views available are outlined on the following image:
 <br /><br />
 
 
-#### **ID:** ctv_ivBlackMask
+#### **ID:** ctvRcIvBlackMask
 * **View type:** `ImageView`
 * **Description** Used to cover unfocused thumbnail images with semi transparent mask to highlight the focused item.
 * **Animation:** Hides on focus and shows on unfocus.
@@ -801,44 +801,44 @@ All the views available are outlined on the following image:
 <br /><br />
 
 
-#### **ID:** ctv_tvTitle
+#### **ID:** ctvRcTvTitle
 * **View type:** `TextView`
 * **Description:** Displays the video title.
 * **Device:** ALL
 <br /><br />
 
 
-#### **ID:** ctv_tvDescription
+#### **ID:** ctvRcTvDescription
 * **View type:** `TextView`
 * **Description:** Displays the video description.
 * **Device:** ALL
 <br /><br />
 
 
-#### **ID:** ctv_tvDuration
+#### **ID:** ctvRcTvDuration
 * **View type:** `TextView`
 * **Description:** Displays the video duration.
 * **Device:** ALL
 <br /><br />
 
 
-#### **ID:** ctv_tvGenre
+#### **ID:** ctvRcTvGenre
 * **View type:** `TextView`
 * **Description:** Defines how each genre should look like. Visibility must be set to `Visibility.GONE`.
 * **Device:** ALL
 <br /><br />
 
 
-#### **ID:** ctv_llGenres
+#### **ID:** ctvRcLlGenres
 * **View type:** `LinearLayout`
-* **Description:** Used to contain genres, which will look like the `TextView` with id `ctv_tvGenre`.
+* **Description:** Used to contain genres, which will look like the `TextView` with id `ctvRcTvGenre`.
 * **Device:** ALL
 <br /><br />
 
 
-#### **ID:** ctv_ivFavoriteIcon
+#### **ID:** ctvRcIvFavoriteIcon
 * **View type:** `ImageView`
-* **Description:** Shows `ctv_ivFavoriteContainer` on click.
+* **Description:** Shows `ctvRcFavoriteContainer` on click.
 * **Device:** MOBILE
 
 </details>
@@ -847,7 +847,7 @@ Check our example [item layouts](https://github.com/color-tv/android-SampleApp/t
 
 #### setRowCount(Device device, int rowCount)
 
-This method is used to set the number of rows in RecyclerView with id `ctv_rvGrid` for a specified device type.
+This method is used to set the number of rows in RecyclerView with id `ctvRcRvGrid` for a specified device type.
 
 #### setSnapEnabled(boolean enabled)
 
@@ -903,105 +903,105 @@ Most of the available handled views are outlined on the following image:
 
 <details><summary>Available IDs</summary>
 
-#### **ID:** ctv_upNext
+#### **ID:** ctvUpNext
 * **REQUIRED**
 * **View type:** Any view extending the ViewGroup class (eg. `LinearLayout`, `FrameLayout`)
-* **Description:** Used as a container of UpNext layout. All content views need to be inserted into that view. If there is no `ctv_vClickable` view then `ctv_upNext` is used to gain focus and capture clicks.
+* **Description:** Used as a container of UpNext layout. All content views need to be inserted into that view. If there is no `ctvUnVClickable` view then `ctvUpNext` is used to gain focus and capture clicks.
 * **Device:** ALL
 <br /><br />
 
 
-#### **ID:** ctv_ctlAutoPlayTimer
+#### **ID:** ctvUnCtlAutoPlayTimer
 * **View type:** View extending `ColorTvTimerLayout` or `ViewGroup` (eg. `FrameLayout`, `LinearLayout`) which can be either empty or include elements as described in [Custom Timer Layout](#custom-timer-layout)
-* **Description:** Used to display countdown timer which visualizes time left until recommendation is automatically clicked. If it extends `ColorTvTimerLayout` then its implementation is used for handling timer progress events. If it is `FrameLayout` with `ProgressBar` view with id `ctv_pbTimer` and `TextView` view with id `ctv_tvTimer` they are updated in a default way. All views included into such `FrameLayout` are also hidden when auto play timer is not used. In case the view is a `FrameLayout` with no children, default countdown timer layout is injected into it.
+* **Description:** Used to display countdown timer which visualizes time left until recommendation is automatically clicked. If it extends `ColorTvTimerLayout` then its implementation is used for handling timer progress events. If it is `FrameLayout` with `ProgressBar` view with id `ctvUnPbTimer` and `TextView` view with id `ctvUnTvTimer` they are updated in a default way. All views included into such `FrameLayout` are also hidden when auto play timer is not used. In case the view is a `FrameLayout` with no children, default countdown timer layout is injected into it.
 * **Animation:** Hides when auto play timer reaches 0.
 * **Device:** ALL
 <br /><br />
 
-#### **ID:** ctv_videoPreviewContainer
+#### **ID:** ctvUnVideoPreviewContainer
 * **View type:** Any view extending the ViewGroup class (eg. `LinearLayout`, `FrameLayout`)
 * **Description:** Used to inject our `VideoPlayer` for previews playback.
 * **Animation:** Plays the preview and hides the thumbnail when video preview is enabled in UpNext interface (only if the preview is available).
 * **Device:** ALL
 <br /><br />
 
-#### **ID:** ctv_ivVideoThumbnail
+#### **ID:** ctvUnIvVideoThumbnail
 * **View type:** `ImageView`
 * **Description:** Used to display the video thumbnail.
-* **Animation:** If there is preview available and `ctv_videoPreviewContainer` is present in the layout it is hidden when the preview is enabled in UpNext interface.
+* **Animation:** If there is preview available and `ctvUnVideoPreviewContainer` is present in the layout it is hidden when the preview is enabled in UpNext interface.
 * **Device:** ALL
 <br /><br />
 
-#### **ID:** ctv_tvTitle
+#### **ID:** ctvUnTvTitle
 * **View type:** `TextView`
 * **Description:** Displays the video title.
 * **Device:** ALL
 <br /><br />
 
 
-#### **ID:** ctv_tvDescription
+#### **ID:** ctvUnTvDescription
 * **View type:** `TextView`
 * **Description:** Displays the video description.
 * **Device:** ALL
 <br /><br />
 
 
-#### **ID:** ctv_tvDuration
+#### **ID:** ctvUnTvDuration
 * **View type:** `TextView`
 * **Description:** Displays the video duration.
 * **Device:** ALL
 <br /><br />
 
 
-#### **ID:** ctv_tvSeries
+#### **ID:** ctvUnTvSeries
 * **View type:** `TextView`
 * **Description:** Displays series name when recommending series.
 * **Device:** ALL
 <br /><br />
 
 
-#### **ID:** ctv_tvSeason
+#### **ID:** ctvUnTvSeason
 * **View type:** `TextView`
 * **Description:** Appends series season number to contained by the view text, while recommending series. I.e. when TextView has set in XML file a text "Season: " it will append season number creating "Season: 1".
 * **Device:** ALL
 <br /><br />
 
 
-#### **ID:** ctv_tvEpisode
+#### **ID:** ctvUnTvEpisode
 * **View type:** `TextView`
 * **Description:** Appends series episode number to contained by the view text, while recommending series. I.e. when TextView has set in XML file a text "Episode: " it will append episode number creating "Episode: 1".
 * **Device:** ALL
 <br /><br />
 
 
-#### **ID:** ctv_clickable
+#### **ID:** ctvUnClickable
 * **View type:** Any view extending the View class (eg. `LinearLayout`, `Button`)
-* **Description:** Element used to capture click on recommendation, which invokes `onContentChosen` callback. If this element is absent `ctv_upNext` is such element. It should only be used when having other views in UpNext, which can be focusable and clickable. For TVs it should use some selector in order to give feedback to a user that the focus has been changed.
+* **Description:** Element used to capture click on recommendation, which invokes `onContentChosen` callback. If this element is absent `ctvUpNext` is such element. It should only be used when having other views in UpNext, which can be focusable and clickable. For TVs it should use some selector in order to give feedback to a user that the focus has been changed.
 * **Device:** ALL
 <br /><br />
 
 
-#### **ID:** ctv_btnClose
+#### **ID:** ctvUnBtnClose
 * **View type:** Any view extending the View class (eg. `LinearLayout`, `ImageView`)
 * **Description:** Element used to close UpNext on click. For TVs it should use some selector in order to give feedback to a user that the focus has been changed.
 * **Device:** ALL
 <br /><br />
 
-#### **ID:** ctv_openRecCenter
+#### **ID:** ctvUnOpenRecCenter
 * **View type:** Any view extending the View class (eg. `LinearLayout`, `ImageView`)
 * **Description:** Element used to close UpNext and open Recommendation Center on click. For TVs it should use some selector in order to give feedback to a user that the focus has been changed.
 * **Device:** ALL
 <br /><br />
 
-#### **ID:** ctv_upNextContainer
+#### **ID:** ctvUpNextContainer
 * **View type:** Any view extending the ViewGroup class (eg. `LinearLayout`, `FrameLayout`)
-* **Description:** Used to automatically locate UpNext fragment at the bottom of the screen when its parent is `RelativeLayout` or `FrameLayout`. If the view is an instance of `LinearLayout` and contains views with ids: `ctv_space` and `ctv_upNext`, then it sets weight of that elements to take half of a screen on TVs and tablets, and full screen on mobiles.
+* **Description:** Used to automatically locate UpNext fragment at the bottom of the screen when its parent is `RelativeLayout` or `FrameLayout`. If the view is an instance of `LinearLayout` and contains views with ids: `ctvUnSpace` and `ctvUpNext`, then it sets weight of that elements to take half of a screen on TVs and tablets, and full screen on mobiles.
 * **Device:** ALL
 <br /><br />
 
-#### **ID:** ctv_space
+#### **ID:** ctvUnSpace
 * **View type:** Any view extending the View class, however `Space` class is recommended.
-* **Description:** If the view is a child of `ctv_upNextContainer` `LinearLayout` and sibling of `ctv_upNext` then it is used to change width of UpNext to take just half of a screen on TVs and tablets.
+* **Description:** If the view is a child of `ctvUpNextContainer` `LinearLayout` and sibling of `ctvUpNext` then it is used to change width of UpNext to take just half of a screen on TVs and tablets.
 * **Device:** ALL
 <br /><br />
 
@@ -1015,7 +1015,7 @@ In order to change the look and feel of the default UpNext layout, you can use `
 ColorTvUpNextUiCustomizer uiCustomizer = upNextFragment.getUiCustomizer();
 ```
 
-`ColorTvUpNextUiCustomized` provides the following methods:
+`ColorTvUpNextUiCustomizer` provides the following methods:
 
 ```java
 uiCustomizer.setSidebarColorRes(@ColorRes int resId);
@@ -1036,8 +1036,8 @@ Visualization of all changeable elements is outlined on the following image:
 
 You can include into your custom layouts a view which displays progress until recommendation will be chosen automatically. You can do it in 3 different ways:
 
-- by adding empty `FrameLayout` with id `ctv_ctlAutoPlayTimer`. Then the default auto play timer is injected into such view.
-- by adding `FrameLayout` with id `ctv_ctlAutoPlayTimer` with some custom views, among which there can be `TextView` with `ctv_tvTimer` id and `ProgressBar` with `ctv_pbTimer` id. In such situation proper seconds number will be set into `ctv_tvTimer` and progres will be updated in `ctv_pbTimer`. Also in case when timer should be hidden, visibility of all `ctv_ctlAutoPlayTimer` children is set to `GONE` and if it should be shown its visibility is set to `VISIBLE`.
+- by adding empty `FrameLayout` with id `ctvRcCtlAutoPlayTimer` for `Recommendation Center` or `ctvUnRcCtlAutoPlayTimer` for `Up Next`. Then the default auto play timer is injected into such view.
+- by adding `FrameLayout` with id `ctvRcCtlAutoPlayTimer` or `ctvUnCtlAutoPlayTimer` with some custom views, among which there can be `TextView` with `ctvRcTvTimer` or `ctvUnTvTimer` id and `ProgressBar` with `ctvRcPbTimer` or `ctvUnPbTimer` id. In such situation proper seconds number will be set into `ctvRcTvTimer` or `ctvUnTvTimer` and progres will be updated in `ctvRcPbTimer` or `ctvUnPbTimer`. Also in case when timer should be hidden, visibility of all `ctvRcCtlAutoPlayTimer` or `ctvUnCtlAutoPlayTimer` children is set to `GONE` and if it should be shown its visibility is set to `VISIBLE`.
 - by adding a view which extends `ColorTvTimerLayout`. It can be used in order to define custom behaviour for showing, hiding the timer, or to set values in some custom way. When extending `ColorTvTimerLayout` it is necessary to implement following methods:
 
 ```java
