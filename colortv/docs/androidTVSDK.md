@@ -822,6 +822,13 @@ All the views available are outlined on the following image:
 <br /><br />
 
 
+#### **ID:** ctvRcTvSeries
+* **View type:** `TextView`
+* **Description:** Displays series name when recommending series.
+* **Device:** ALL
+<br /><br />
+
+
 #### **ID:** ctvRcTvGenre
 * **View type:** `TextView`
 * **Description:** Defines how each genre should look like. Visibility must be set to `Visibility.GONE`.
