@@ -856,12 +856,16 @@ Check our example [item layouts](https://github.com/color-tv/android-SampleApp/t
 
 This method is used to set the number of rows in RecyclerView with id `ctvRcRvGrid` for a specified device type.
 
-#### setSnapEnabled(boolean enabled)
+#### setSnapEnabled(Device device, boolean enabled)
 
-This method is used to set snapping `RecyclerView` elements to the center of the screen. Available only on Mobile. We recommend to disable this option if the width of the elements is too small and the first or the last item is impossible to be snapped.
+This method is used to set snapping `RecyclerView` elements to the center of the screen. Available only on Mobile and Tablet devices. We recommend to disable this option if the width of the elements is too small and the first or the last item is impossible to be snapped. As default it is set to true on MOBILE and false on TABLET.
 
-- true - items snap to the center of the `RecyclerView`, video preview is enabled and will be shown if available.
-- false - list scrolls freely, video preview is disabled and will not be shown whether it is available or not.
+- true - items snap to the center of the `RecyclerView`, video preview will be shown if available. Locks width of each element to be multiplied by `1.6*height` on MOBILE and `1.6*height/2` on TABLET
+- false - list scrolls freely. Unlocks each element size to be set as specified in layout.
+
+#### setPlayPreviewEnabled(Device device, boolean enabled)
+
+This method is used to set whether preview should be played on current element or not. It also needs to set `rowCount` to 1 on Mobile/Tablet devices. As default it is set to true on Mobile and false on Tablet
 
 ### Both Recommendation Center and UpNext related customization
 
