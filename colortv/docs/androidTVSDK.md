@@ -852,6 +852,9 @@ All the views available are outlined on the following image:
 
 Check our example [item layouts](https://github.com/color-tv/android-SampleApp/tree/master/SampleApp/app/src/main/res/layout) for better a understanding of the customization options.
 
+!!! note "WARNING"
+    Please avoid setting `focusableInTouchMode` flag to `true` on any view in item layout hierarchy. This may occur with unexpected and uncontrolled auto-scrolling.
+
 #### setRowCount(Device device, int rowCount)
 
 This method is used to set the number of rows in RecyclerView with id `ctvRcRvGrid` for a specified device type.
