@@ -200,6 +200,19 @@ ColorTvRecommendationCenterFragment recommendationCenterFragment = colorTvRecomm
 
 Invoking this method will return `ColorTvRecommendationCenterFragment` class (which inherits `android.support.v4.app.Fragment`) for the placement you pass. When you get the fragment you can put it in any place you want by using `FragmentManager`. It gives a lot of flexibility and capabilities to make Recommendation Center a part of your layout (i.e. you can add it between videos list, use it in vertical/horizontal layout).
 
+In order to correctly finish working with the recommendation fragment you have to manually destroy it. You should do it in `onDestroy()` or `onPause()` method as below:
+
+```java
+@Override
+protected void onDestroy() {
+    super.onDestroy();
+    ColorTvSdk.onDestroy();
+    if(isFinishing()) {
+        recommendationCenterFragment.destroy();
+    }
+}
+```
+
 **ColorTvRecommendationCenterFragment** provides few methods that allows you to make it work as you need.
 
 ```java
