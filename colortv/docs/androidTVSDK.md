@@ -207,9 +207,7 @@ In order to correctly finish working with the recommendation fragment you have t
 protected void onDestroy() {
     super.onDestroy();
     ColorTvSdk.onDestroy();
-    if(isFinishing()) {
-        recommendationCenterFragment.destroy();
-    }
+    recommendationCenterFragment.destroy(isFinishing());
 }
 ```
 
