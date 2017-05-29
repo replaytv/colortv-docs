@@ -1,12 +1,21 @@
 ## Getting Started
+
 To use the ColorTV SDK you first need to create an instance of the `ColorWebSDK` class. This instance will be used to control everything: showing and hiding recommendations, tracking clicks, and listening to SDK events.
 
 ```javascript
 new ColorWebSDK(sdkParams)
 ```
 
-## TODO: Instalation
-We have to wait for hosting and versioning system.
+## Usage
+
+First you need to download the SDK from [here](https://www.google.com). The SDK comes with both CSS and JS components. The CSS file is obviously an optional include but will give you decent styling out of the box. The SDK includes components for both getting/showing recommendations as well as tracking the users engagement.
+
+To include the into your page or app you will need to add these HTML tags to the `<head>` of your page.
+
+```html
+<script type="text/javascript" src="colortv-web-sdk.js"></script>
+<link rel="stylesheet" href="path/to/colortv-web-sdk.css"></link>
+```
 
 ## Arguments
 
