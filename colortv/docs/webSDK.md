@@ -123,35 +123,35 @@ To track users clicks and recommendations you need to call various functions in 
 A function that is to be called when the user starts the video.
 
 #### Arguments
-* positionSeconds *(Number)*: The position of the video in seconds.
+`positionSeconds` *(Number)*: The position of the video in seconds.
 
 ### `ColorWebSDK.tracking.onResume(positionSeconds)`
 
 A function that is to be called when the user resumes the video. There is a difference between the `onStart` and `onResume` events, even though both of these events can occur at any point during the video. The first `video.onplay` should be tracked as `onStart` where the second and all subsequent `onplay` events should be `onResume`.
 
 #### Arguments
-* positionSeconds *(Number)*: The position of the video in seconds.
+`positionSeconds` *(Number)*: The position of the video in seconds.
 
 ### `ColorWebSDK.tracking.onPause(positionSeconds)`
 
 A function that is to be called when the user pauses the video.
 
 #### Arguments
-* positionSeconds *(Number)*: The position of the video in seconds.
+`positionSeconds` *(Number)*: The position of the video in seconds.
 
 ### `ColorWebSDK.tracking.onStop(positionSeconds)`
 
 A function that is to be called when the user stops the video. The general case for stopping the video will be when the page gets closed. In most scenarios only `onPause` will be called.
 
 #### Arguments
-* positionSeconds *(Number)*: The position of the video in seconds.
+`positionSeconds` *(Number)*: The position of the video in seconds.
 
 ### `ColorWebSDK.tracking.onComplete(positionSeconds)`
 
 A function that is to be called when the video completes.
 
 #### Arguments
-* positionSeconds *(Number)*: The position of the video in seconds.
+`positionSeconds` *(Number)*: The position of the video in seconds.
 
 ### Examples
 
