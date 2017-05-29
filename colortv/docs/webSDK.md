@@ -16,7 +16,7 @@ var sdkParams = {
    partnerVideoId: 'VIDEO_ID', // *(String)*: This optional argument is used to get recommendations. When supplied the recommendations will be relevant to this video. If it is not supplied then the recommendations will be generated based on your app alone.
    element: document.querySelector('.rootElement'), // *(DOMNode)*: The `DOMNode` which we will mount the recommendation container to. This is an optional argument, if you do not supply it then we will mount to the body of the page. If you do supply it be careful about parent elements positioning (as described [here](#colorwebsdkshowrecommendations))
    callbacks: { // *(Object)*: Callbacks for when events happen within the instance of the sdk
-      onSessionInit: function(session) { console.log(session) }, // *(Function)*: Called when the session is initialized for the first time. It receives the session object with `sessionId`, `state`,
+      onSessionInit: function(session) {}, // *(Function)*: Called when the session is initialized for the first time. It receives the session object with `sessionId`, `state`,
       onSessionUpdate: function(){}, // *(Function)*: Called when the session is updated. This will happen automatically and you will not need to worry about keeping the session alive.
       onRecommendationsLoaded: function(){}, // *(Function)*: Called when the recommendations are loaded from the server. It receives a list of recommendation objects.
       onRecommendationsClose: function(){}, // *(Function)*: Called when the recommendations are shown to the user
