@@ -1,5 +1,6 @@
 ## Getting Started
 
+!!! IT'S NOT PRODUCTION READY !!!
 To use the ColorTV SDK you first need to create an instance of the `ColorWebSDK` class. This instance will be used to control everything: showing and hiding recommendations, tracking clicks, and listening to SDK events.
 
 ```javascript
