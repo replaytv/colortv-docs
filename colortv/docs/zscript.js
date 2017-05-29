@@ -357,6 +357,9 @@ function detectLanguage(classes) {
             case 'nginx':
                 lang = 'Nginx';
                 break;
+            case 'language-html':
+                lang = 'HTML';
+                break;
         }
     });
     return lang;
