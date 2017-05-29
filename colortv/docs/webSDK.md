@@ -14,8 +14,8 @@ First you need to download the SDK from [here](https://s3.amazonaws.com/color-we
 To include the into your page or app you will need to add these HTML tags to the `<head>` of your page.
 
 ```html
-<script type="text/javascript" src="https://s3.amazonaws.com/color-web-sdk/web/color-web-sdk.0.1.1-beta.3.js"></script>
-<link rel="stylesheet" href="https://s3.amazonaws.com/color-web-sdk/web/color-web-sdk.0.1.1-beta.3.css"></link>
+<script type="text/javascript" src="https://s3.amazonaws.com/color-web-sdk/web/color-web-sdk.0.1.1-beta.4.js"></script>
+<link rel="stylesheet" href="https://s3.amazonaws.com/color-web-sdk/web/color-web-sdk.0.1.1-beta.4.css"></link>
 ```
 
 ## Arguments
