@@ -118,35 +118,35 @@ function scrollToFirst(){
 
 To track users clicks and recommendations you need to call various functions in our SDK. To do this there is a child object of `ColorWebSDK` called `tracking` which has all of the functions to call when an event occurs. It is worth noting that you only need to do this for the first video that the user watches; we will track all events that occur within the recommendation container.
 
-### `ColorWebSDK.tracking.onStart(positionSeconds)`
+### ColorWebSDK.tracking.onStart(positionSeconds)
 
 A function that is to be called when the user starts the video.
 
 #### Arguments
 `positionSeconds` *(Number)*: The position of the video in seconds.
 
-### `ColorWebSDK.tracking.onResume(positionSeconds)`
+### ColorWebSDK.tracking.onResume(positionSeconds)
 
 A function that is to be called when the user resumes the video. There is a difference between the `onStart` and `onResume` events, even though both of these events can occur at any point during the video. The first `video.onplay` should be tracked as `onStart` where the second and all subsequent `onplay` events should be `onResume`.
 
 #### Arguments
 `positionSeconds` *(Number)*: The position of the video in seconds.
 
-### `ColorWebSDK.tracking.onPause(positionSeconds)`
+### ColorWebSDK.tracking.onPause(positionSeconds)
 
 A function that is to be called when the user pauses the video.
 
 #### Arguments
 `positionSeconds` *(Number)*: The position of the video in seconds.
 
-### `ColorWebSDK.tracking.onStop(positionSeconds)`
+### ColorWebSDK.tracking.onStop(positionSeconds)
 
 A function that is to be called when the user stops the video. The general case for stopping the video will be when the page gets closed. In most scenarios only `onPause` will be called.
 
 #### Arguments
 `positionSeconds` *(Number)*: The position of the video in seconds.
 
-### `ColorWebSDK.tracking.onComplete(positionSeconds)`
+### ColorWebSDK.tracking.onComplete(positionSeconds)
 
 A function that is to be called when the video completes.
 
