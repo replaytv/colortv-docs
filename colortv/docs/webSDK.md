@@ -7,6 +7,15 @@ To use the ColorTV SDK you first need to create an instance of the `ColorWebSDK`
 new ColorWebSDK(sdkParams)
 ```
 
+## Compatibility - Mobile
+
+Browser | Version | Support 
+ --- | --- | :---: 
+Safari | 10 | 👍 
+Chrome | 58 | 👍 
+Firefox | 7.5 | 👍 
+
+
 ## Usage
 
 First you need to download the SDK from [here](https://s3.amazonaws.com/color-web-sdk/web/color-web-sdk.0.1.1-beta.3.js). The SDK comes with both CSS and JS components. The CSS file is obviously an optional include but will give you decent styling out of the box. The SDK includes components for both getting/showing recommendations as well as tracking the users engagement.
