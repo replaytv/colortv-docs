@@ -3,10 +3,11 @@ site_favicon: favicon.ico
 pages:
 - Getting Started: index.md
 - TVOS SDK: tvOsSdk.md
-- UNITY TVOS: unityTVOS.md
 - ANDROID TV / FIRE TV SDK: androidTVSDK.md
-- UNITY ANDROID TV / FIRE TV: unityAndroidTV.md
 - ROKU: rokuSdk.md
+- WEB: webSDK.md
+- UNITY ANDROID TV / FIRE TV: unityAndroidTV.md
+- UNITY TVOS: unityTVOS.md
 theme_dir: '../mkdocs-material/material'
 markdown_extensions:
   - codehilite(css_class=code)
