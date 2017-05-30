@@ -18,13 +18,13 @@ Firefox | 7.5 | 👍
 
 ## Usage
 
-First you need to download the SDK from [here](https://s3.amazonaws.com/color-web-sdk/web/color-web-sdk.0.1.1-beta.3.js). The SDK comes with both CSS and JS components. The CSS file is obviously an optional include but will give you decent styling out of the box. The SDK includes components for both getting/showing recommendations as well as tracking the users engagement.
+First you need to download the SDK from [here](https://s3.amazonaws.com/color-web-sdk/web/color-web-sdk.0.2.0-beta.1.js). The SDK comes with both CSS and JS components. The CSS file is obviously an optional include but will give you decent styling out of the box. The SDK includes components for both getting/showing recommendations as well as tracking the users engagement.
 
 To include the into your page or app you will need to add these HTML tags to the `<head>` of your page.
 
 ```html
-<script type="text/javascript" src="https://s3.amazonaws.com/color-web-sdk/web/color-web-sdk.0.1.1-beta.5.js"></script>
-<link rel="stylesheet" href="https://s3.amazonaws.com/color-web-sdk/web/color-web-sdk.0.1.1-beta.5.css"></link>
+<script type="text/javascript" src="https://s3.amazonaws.com/color-web-sdk/web/color-web-sdk.0.2.0-beta.1.js"></script>
+<link rel="stylesheet" href="https://s3.amazonaws.com/color-web-sdk/web/color-web-sdk.0.2.0-beta.1.css"></link>
 ```
 
 ## Arguments
